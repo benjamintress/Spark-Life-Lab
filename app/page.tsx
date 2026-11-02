@@ -77,8 +77,8 @@ export default function Home() {
           <div>
             <p className="eyebrow">A guided space for midlife clarity</p>
             <h1>
-              You&apos;ve built a good life. So why does something feel{" "}
-              <em style={{ color: "var(--ember)" }}>off?</em>
+              What do you want from life{" "}
+              <em style={{ color: "var(--ember)" }}>now?</em>
             </h1>
             <p className="hero-copy">
               That quiet restlessness. The sense that something has shifted but you can&rsquo;t
