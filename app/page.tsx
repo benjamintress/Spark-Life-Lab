@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
+import { HeroAudio } from "@/components/hero-audio";
 import { HeroVideo } from "@/components/hero-video";
 import { ClarityCheckCard } from "@/components/clarity-check-card";
 import { pageMetadata } from "@/lib/seo";
@@ -75,28 +76,27 @@ export default function Home() {
       <section id="hero" className="hero">
         <div className="hero-grid section-inner">
           <div>
-            <p className="eyebrow">A guided space for midlife clarity</p>
+            <p className="eyebrow">When midlife raises new questions</p>
             <h1>
               What do you want from life{" "}
               <em style={{ color: "var(--ember)" }}>now?</em>
             </h1>
             <p className="hero-copy">
-              That quiet restlessness. The sense that something has shifted but you can&rsquo;t
-              quite name it. You&rsquo;re not lost — you&rsquo;re moving through a meaningful life passage. SparkLifeLab
-              walks alongside people in midlife who are ready to find clarity, reconnect with
-              what matters, and step into what comes next.
+              You&rsquo;ve achieved a lot — in your career and in life. But is this how you want
+              to spend the next 10–15 years?
             </p>
-            <p className="hero-descriptor">
-              Start with the free Midlife Clarity Check — a 6-question self-assessment with
-              personalized results.
+            <p className="hero-copy hero-copy-promise">
+              We help you understand what matters most to you, explore new possibilities and
+              find your own direction.
             </p>
             <div className="hero-actions">
-              <Link className="button button-primary" href="#clarity-check">
-                Take the Midlife Clarity Check →
-              </Link>
-              <a className="hero-learn-more" href="#problem">
-                Learn more ↓
-              </a>
+              <div className="hero-cta-group">
+                <p className="hero-cta-intro">Start here for free:</p>
+                <Link className="button button-primary" href="#clarity-check">
+                  Take the Midlife Clarity Check →
+                </Link>
+                <HeroAudio label="Get to know us — listen to our 3-minute audio" />
+              </div>
             </div>
           </div>
 
