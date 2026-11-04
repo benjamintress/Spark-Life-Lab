@@ -29,19 +29,19 @@ const founders = [
     name: "Bärbel Tress, PhD",
     role: "Co-founder",
     bio: "A scientist and maven who spent decades guiding researchers forward — and found her own path forward when she discovered her genius and purpose in midlife.",
-    linkedinUrl: "https://www.linkedin.com/in/baerbeltress",
+    linkedinUrl: "https://www.linkedin.com/in/baerbeltress/",
     linkedinAriaLabel: "Bärbel Tress on LinkedIn (opens in new tab)",
-    photo: "/images/founder_barbel.png",
+    photo: "/images/founder_barbel_v2.jpg",
     photoAlt: "Bärbel Tress, Co-founder of SparkLifeLab",
   },
   {
     id: "founder-gunther",
     name: "Gunther Tress, PhD",
     role: "Co-founder",
-    bio: "A communicator, scientist, and storyteller who built a career making complex ideas come alive — and brings that same clarity, warmth, and lightness to midlife transformation.",
-    linkedinUrl: "https://www.linkedin.com/in/gunthertress",
+    bio: "A scientist and storyteller who has helped academics develop and communicate their ideas for two decades. His own midlife journey rekindled his creativity. At SparkLifeLab, he brings warmth, humor, and a lighter perspective to life's serious questions.",
+    linkedinUrl: "https://www.linkedin.com/in/gunthertress/",
     linkedinAriaLabel: "Gunther Tress on LinkedIn (opens in new tab)",
-    photo: "/images/founder_gunther.png",
+    photo: "/images/founder_gunther_v2.jpg",
     photoAlt: "Gunther Tress, Co-founder of SparkLifeLab",
   },
   {
@@ -49,7 +49,7 @@ const founders = [
     name: "Scott E. Burton",
     role: "Co-founder",
     bio: "An experienced change guide and business leader who helps people navigate transition with clarity, courage, and grounded action — shaped by his own midlife journey.",
-    linkedinUrl: "https://www.linkedin.com/in/scotteburton",
+    linkedinUrl: "https://www.linkedin.com/in/scotteburton/",
     linkedinAriaLabel: "Scott E. Burton on LinkedIn (opens in new tab)",
     photo: "/images/founder_scott.png",
     photoAlt: "Scott E. Burton, Co-founder of SparkLifeLab",
@@ -67,7 +67,7 @@ export default function Home() {
   const identityMapImageAlt =
     "A person reviewing their personal Identity Map and reflection materials at a sunlit table";
   const stakesImageAlt =
-    "Three people walking together along a coastal path at sunset — fellow travellers moving forward with intention.";
+    "Three people walking together along a coastal path at sunset — fellow travelers moving forward with intention.";
 
   return (
     <main>
@@ -115,19 +115,24 @@ export default function Home() {
           <p className="eyebrow-white">What you&rsquo;re experiencing has a name.</p>
           <h2>The Midlife Fog</h2>
           <p>
-            There is a moment many people reach in midlife — quietly, without drama. The
-            day has been full. Life is working, by most measures. And yet, when things go
-            still, something feels slightly off. Not broken. Just… no longer quite yours.
+            Perhaps you&rsquo;ve been feeling restless or dissatisfied lately. Work that once
+            excited you has become routine. Achievements that used to bring satisfaction no
+            longer mean quite as much. Yet something doesn&rsquo;t feel right, and you can&rsquo;t
+            quite put your finger on it.
           </p>
           <p>
-            What you are experiencing has a name. At SparkLifeLab, we call it the Midlife
-            Fog — the phase when old clarity begins to soften and a new direction has not
-            yet formed. Familiar roles feel constraining. Old motivations feel thinner.
-            Something new is trying to emerge, but it is not yet clear.
+            Or perhaps you know you don&rsquo;t want the next 10–15 years to look like the last.
+            You want something more rewarding or meaningful, but you&rsquo;re unsure what that
+            might be. And you don&rsquo;t want to risk the good life you&rsquo;ve worked hard to
+            build.
           </p>
-          <p>This is not a crisis. It is not a sign that something has gone wrong.</p>
+          <p>
+            At SparkLifeLab, we call this the <em>Midlife Fog</em>. What comes next is still
+            unclear.
+          </p>
           <blockquote className="pull-quote">
-            It is a signal — that your life is ready to realign with who you are becoming now.
+            <p>It may feel like a crisis.</p>
+            <p>It could also be the beginning of a more fulfilling chapter of your life.</p>
           </blockquote>
         </div>
       </Reveal>
@@ -136,19 +141,21 @@ export default function Home() {
       <Reveal as="section" id="about" className="section-guidance">
         <div className="guidance-inner">
           <div className="guidance-text">
-            <p className="eyebrow">A calm guided space to regain orientation</p>
+            <p className="eyebrow">A calm, guided space to find your direction</p>
             <h2>You don&rsquo;t have to figure this out alone.</h2>
             <p className="lead founders-lead">
-              SparkLifeLab exists for people in midlife who sense that something in their
-              life no longer fits — even if, from the outside, everything looks fine. We
-              exist because midlife deserves a more thoughtful, humane framing — as a
-              meaningful passage where experience, longing, and possibility meet.
+              You&rsquo;ve spent years making decisions and helping others move forward. But
+              finding answers about your own future isn&rsquo;t always so easy.
             </p>
             <p className="lead founders-lead" style={{ marginTop: "1rem" }}>
-              Feeling stuck or uncertain is not a flaw. It is often a signal that growth is
-              asking for attention. We don&rsquo;t promise quick fixes or dramatic reinvention. We
-              walk alongside people as experienced guides — offering structure, reflection, and a calm,
-              trusted space in which they can find their own way forward.
+              At SparkLifeLab, we help you step back and take a fresh look at your life. What
+              still gives you energy? What interests have you put aside? Exploring these
+              questions can open up new possibilities.
+            </p>
+            <p className="lead founders-lead" style={{ marginTop: "1rem" }}>
+              We bring decades of experience in professional development and navigating
+              change. Through thoughtful questions, practical exercises and honest
+              conversations, we help you find a direction that feels right for you.
             </p>
           </div>
           <Reveal delay={150} className="guidance-image-reveal">
@@ -181,28 +188,24 @@ export default function Home() {
           </div>
 
           <div>
-            <p className="eyebrow">Guided by lived experience</p>
+            <p className="eyebrow">Our story</p>
             <h2>Why we built SparkLifeLab</h2>
             <p>
-              SparkLifeLab began with a quiet question many people reach in midlife:{" "}
-              <em>Is this really it — or is something else trying to emerge?</em>
+              When we, Bärbel and Gunther, met Scott in 2023, we discovered that we were asking
+              similar questions about our lives. We had achieved a great deal, but were
+              wondering what we wanted from the years ahead.
             </p>
             <p>
-              The three of us — Bärbel, Gunther, and Scott — met in 2023, each searching for
-              more meaning. Our lives looked solid from the outside, yet each of us felt
-              the stories we were living no longer quite fit. Something had shifted, and
-              something new was beginning to stir.
+              Our conversations turned into a shared exploration of what might come next.
+              Through honest discussions and thoughtful questions, we began to see
+              possibilities we hadn&rsquo;t considered before. We discovered how much easier it
+              can be to find direction when you explore these questions with others.
             </p>
             <p>
-              What helped us most was slowing down together — making space for honest
-              conversation and listening more closely to what mattered. Gradually, we came to
-              see that this was not a personal failure, but a meaningful midlife passage many
-              people navigate without enough structure or support.
-            </p>
-            <p>
-              That realization became the seed of SparkLifeLab: a calm, human space where
-              people can understand themselves more deeply and find their own way forward,
-              guided by those who know this passage from lived experience.
+              Between us, we bring decades of experience in education, professional
+              development, and business transformation. We realized that combining this
+              experience with what we had learned from our own journeys could help others
+              facing similar questions. That conviction led us to create SparkLifeLab.
             </p>
             <p style={{ marginTop: "1.5rem" }}>
               <Link className="button-text" href="/about/">
@@ -243,7 +246,7 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="founders-closing">Co-founders. Fellow travellers. Still becoming.</p>
+          <p className="founders-closing">Co-founders. Fellow travelers. Still becoming.</p>
         </div>
       </Reveal>
 
@@ -256,31 +259,29 @@ export default function Home() {
           <div className="steps">
             <article className="step-card step-card-default">
               <div className="step-number">01</div>
-              <h3>Take the Midlife Clarity Check</h3>
+              <h3>Understand where you are</h3>
               <p>
-                Start with a short self-assessment to understand where you feel clear, where
-                something no longer fits, and what may need your attention next.
+                Start with our Midlife Clarity Check. Discover what still feels fulfilling,
+                what no longer does and where you might want change.
               </p>
-              <p className="step-note">Free. 20–30 minutes.</p>
             </article>
 
             <article className="step-card step-card-default">
               <div className="step-number">02</div>
-              <h3>Join a guided experience</h3>
+              <h3>Explore what matters now</h3>
               <p>
-                Deepen your clarity through the Identity Lab program — a guided journey to
-                understand who you are now, what matters most, and which direction feels
-                right for your next chapter.
+                In our Identity Lab, explore your interests, strengths and aspirations through
+                guided reflection and conversation. Discover new possibilities for your next
+                chapter.
               </p>
             </article>
 
             <article className="step-card step-card-default">
               <div className="step-number">03</div>
-              <h3>Follow your spark</h3>
+              <h3>Find your direction</h3>
               <p>
-                Use the clarity you have gained to explore new possibilities, make grounded
-                choices, and begin taking meaningful steps toward a life that fits who you
-                are now.
+                Get a clearer picture of what you want from life and identify realistic first
+                steps toward making it happen.
               </p>
             </article>
           </div>
@@ -290,9 +291,6 @@ export default function Home() {
               Take the Midlife Clarity Check →
             </Link>
           </div>
-          <p className="plan-closing">
-            The path forward doesn&rsquo;t need to be clear all at once. It only needs to begin.
-          </p>
         </div>
       </Reveal>
 
@@ -301,31 +299,24 @@ export default function Home() {
         <div className="lead-grid">
           {/* Left — content */}
           <div>
-            <p className="eyebrow-white">Free — your first honest step.</p>
+            <p className="eyebrow-white">A free first step</p>
             <h2 style={{ color: "var(--white)" }}>The Midlife Clarity Check</h2>
             <p className="lead-white" style={{ marginBottom: "1.25rem" }}>
-              A free self-reflection to help you locate yourself — and understand where you
-              truly stand.
-            </p>
-            <p style={{ color: "rgba(255,255,255,0.78)", lineHeight: 1.72, marginBottom: "0.65rem" }}>
-              Many people in midlife sense that something has shifted — but can&rsquo;t quite
-              find words for it. The Midlife Clarity Check gives you language and structure
-              for that experience.
+              A short self-reflection to help you understand where you are and what you might
+              want to change.
             </p>
             <p style={{ color: "rgba(255,255,255,0.78)", lineHeight: 1.72, marginBottom: "1.5rem" }}>
-              Six honest questions. About 20–30 minutes when done with care.
+              Answer six questions about your priorities, motivation and sense of direction.
+              Take 20–30 minutes to reflect at your own pace.
             </p>
             <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "0.75rem" }}>
               What you&rsquo;ll discover:
             </p>
             <ol className="lead-benefits-numbered">
-              <li>Where you are in your midlife transition — from early fog to emerging clarity</li>
-              <li>Which area of your life feels most out of sync right now</li>
-              <li>A short, honest reflection on your current experience — written for where you are now</li>
+              <li>What still feels right in your life and what no longer does</li>
+              <li>Which area of your life needs the most attention</li>
+              <li>What to explore next</li>
             </ol>
-            <p className="lead-closing" style={{ marginTop: "1.75rem", fontStyle: "normal", color: "rgba(255,255,255,0.55)" }}>
-              It takes 20–30 minutes. It costs nothing. And it starts with honesty.
-            </p>
           </div>
 
           {/* Right — Kit form */}
@@ -341,35 +332,37 @@ export default function Home() {
             <div>
               <p className="eyebrow">When you&rsquo;re ready for the next step</p>
               <h2>The Identity Lab</h2>
-              <p
-                className="lead"
-                style={{ fontStyle: "italic", maxWidth: "600px", marginBottom: "1.25rem", marginTop: "1.25rem" }}
-              >
-                Understand who you are now — and what comes next.
+              <p style={{ maxWidth: "680px", marginTop: "1.25rem" }}>
+                You&rsquo;ve built a successful career. But who are you beyond your professional
+                roles, and what do you want from life now?
               </p>
               <p style={{ maxWidth: "680px" }}>
-                The Identity Lab program helps you understand who you are, what energizes
-                you, what no longer fits, and what kind of future could feel truly
-                meaningful.
+                The Identity Lab helps you discover more about yourself and explore what could
+                make your next chapter fulfilling.
               </p>
-              <p style={{ maxWidth: "680px" }}>
-                It guides you through a structured exploration of your values, strengths,
-                desires, purpose, and life patterns, so you can recognize what is uniquely
-                yours and begin to trust it.
-              </p>
-              <p style={{ maxWidth: "680px" }}>
-                By the end, you have more than insight. You have greater clarity about what
-                to carry forward, what to release, and how to shape a life that feels more
-                aligned, alive, and fulfilling. Your personal <strong>Identity Map</strong> brings
-                these discoveries together as a compass you can keep.
-              </p>
+
+              <p className="lab-benefits-label">What you&rsquo;ll gain</p>
+              <ol className="lab-benefits">
+                <li>
+                  <strong>Understand yourself more deeply.</strong> Explore your values,
+                  strengths, motivations and what makes you feel alive.
+                </li>
+                <li>
+                  <strong>Discover what fits your life now.</strong> Recognize what to keep,
+                  what to let go of and what excites you.
+                </li>
+                <li>
+                  <strong>Find a clearer sense of direction.</strong> Explore your future
+                  possibilities and bring your insights together in your personal{" "}
+                  <strong>Identity Map</strong>.
+                </li>
+              </ol>
 
               <div style={{ marginTop: "2rem" }}>
                 <Link className="button button-secondary" href="/identity-lab/">
                   Explore the Identity Lab →
                 </Link>
               </div>
-              <p className="lab-meta">Small cohorts. See current dates and enrollment details.</p>
             </div>
 
             {/* Identity Map visual */}
@@ -391,23 +384,21 @@ export default function Home() {
       <Reveal as="section" id="stakes" className="section-stakes">
         <div className="stakes-grid">
           <div>
-            <p className="eyebrow">A quiet truth worth naming.</p>
-            <h2 style={{ color: "var(--navy)" }}>The fog doesn&rsquo;t lift on its own.</h2>
+            <p className="eyebrow">A question worth asking</p>
+            <h2 style={{ color: "var(--navy)" }}>
+              What if the next 10–15 years look just like the last?
+            </h2>
             <p style={{ color: "rgba(32,43,65,0.82)" }}>
-              The gap between who you are and how you&rsquo;re living tends to widen, not
-              close, without attention. Not dramatically — just slowly, quietly.
+              It&rsquo;s easy to carry on with familiar routines, especially when you&rsquo;ve
+              worked hard to build a good life.
             </p>
             <p style={{ color: "rgba(32,43,65,0.82)" }}>
-              And the longer the gap stays unnamed, the harder it becomes to cross.
+              But if those routines no longer bring the same fulfillment, another five or ten
+              years could pass without you exploring what you really want.
             </p>
             <p className="stakes-key">
-              The people who find their way through are rarely the ones who had all the
-              answers. They&rsquo;re the ones who took one honest step.
-            </p>
-            <p style={{ marginTop: "1.5rem" }}>
-              <Link className="button-text" href="#clarity-check">
-                Take the Midlife Clarity Check →
-              </Link>
+              You don&rsquo;t need to change everything. But perhaps it&rsquo;s time to give those
+              questions some attention.
             </p>
           </div>
           <div>
@@ -426,15 +417,20 @@ export default function Home() {
       {/* ─── SECTION 8 — CLOSING CTA ─── */}
       <Reveal as="section" id="closing-cta" className="section-closing">
         <div className="section-inner narrow">
-          <h2>Start with a free, honest check-in.</h2>
-          <p className="closing-tagline">
-            <span className="closing-tagline-lead">Ignite your best life —</span>{" "}
-            <span className="closing-tagline-tail">on purpose.</span>
+          <p className="eyebrow-center">Your next chapter</p>
+          <h2 className="closing-heading">The years ahead can be different.</h2>
+          <p className="closing-body">
+            Imagine looking forward to the next chapter of your life with renewed enthusiasm.
+            Making room for interests you&rsquo;ve neglected, exploring new possibilities and
+            spending more time on what truly matters to you.
           </p>
-          <Link className="button button-primary" href="#clarity-check">
+          <p className="closing-body">
+            You don&rsquo;t have to reinvent your life. You can begin by discovering what you want
+            from it now.
+          </p>
+          <Link className="button button-primary closing-cta" href="#clarity-check">
             Take the Midlife Clarity Check →
           </Link>
-          <p className="closing-sub">20–30 minutes. No commitment. Just clarity.</p>
         </div>
       </Reveal>
 

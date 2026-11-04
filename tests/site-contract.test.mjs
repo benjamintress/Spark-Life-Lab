@@ -84,8 +84,8 @@ test("uses the final production assets, locked homepage copy, and official Linke
   assert.match(cursor, /ember-trail-grad/);
   assert.match(clarity, /Midlife-Clarity-Check-cover-V2\.2\.jpg/);
   assert.match(home, /ID-Lab-section-on-Home-001\.jpg/);
-  assert.match(home, /Understand who you are now — and what comes next\./);
-  assert.match(home, /Small cohorts\. See current dates and enrollment details\./);
+  assert.match(home, /The Identity Lab helps you discover more about yourself/);
+  assert.doesNotMatch(home, /Small cohorts\. See current dates and enrollment details\./);
   assert.match(home, /<strong>Identity Map<\/strong>/);
   assert.doesNotMatch(home, /Your guided first step into clarity/);
   assert.doesNotMatch(home, /Not a course\. Not coaching\./);
@@ -140,13 +140,12 @@ test("keeps the mobile navigation dropdown visible below the header", () => {
   assert.match(header, /onClick=\{\(\) => setMenuOpen\(false\)\}/);
 });
 
-test("controls the closing tagline wrap point", () => {
+test("uses the approved V2 homepage resolution block", () => {
   const home = read("app/page.tsx");
-  const styles = read("app/globals.css");
 
-  assert.match(home, /closing-tagline-lead/);
-  assert.match(home, /closing-tagline-tail/);
-  assert.match(styles, /\.closing-tagline span\s*{[\s\S]*white-space:\s*nowrap;/);
+  assert.match(home, /The years ahead can be different\./);
+  assert.doesNotMatch(home, /Ignite your best life/);
+  assert.doesNotMatch(home, /No commitment\. Just clarity\./);
 });
 
 test("embeds the live Kit Midlife Clarity Check form in the existing card", () => {

@@ -718,6 +718,15 @@ main {
   padding-left: 1.5rem;
 }
 
+.pull-quote p {
+  color: inherit;
+  margin: 0;
+}
+
+.pull-quote p + p {
+  margin-top: 0.35em;
+}
+
 .pull-quote-dark {
   border-left: 3px solid var(--gold);
   color: var(--navy);
@@ -1035,6 +1044,36 @@ main {
   font-size: 1.22rem;
   margin-top: 1.15rem;
   margin-bottom: 0;
+}
+
+/* V2 homepage copy (Nov 2026) — Section 10 resolution block.
+   Headline uses the site serif at a calm, substantial scale; body stays subordinate. */
+.section-closing .eyebrow-center {
+  margin-bottom: 1.1rem;
+}
+
+.section-closing h2.closing-heading {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  margin: 0 auto 1.6rem;
+  max-width: 820px;
+  text-wrap: balance;
+}
+
+.closing-body {
+  color: var(--mid-navy);
+  font-size: 1.18rem;
+  line-height: 1.7;
+  margin: 0 auto 1rem;
+  max-width: 640px;
+}
+
+.closing-cta {
+  margin-top: 1.5rem;
 }
 
 /* ===== Footer ===== */
@@ -4482,4 +4521,32 @@ html.ember-cursor-active * {
     padding-right: 1rem;
     white-space: nowrap;
   }
+}
+
+/* V2 homepage copy (Nov 2026) — Identity Lab "What you'll gain" (light background) */
+.lab-benefits-label {
+  color: var(--ember);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 1.75rem 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.lab-benefits {
+  list-style: decimal;
+  margin: 0;
+  max-width: 680px;
+  padding-left: 1.2rem;
+}
+
+.lab-benefits li {
+  border-top: 1px solid var(--line);
+  line-height: 1.65;
+  padding: 0.7rem 0 0.7rem 0.4rem;
+}
+
+.lab-benefits li::marker {
+  color: var(--ember);
+  font-weight: 600;
 }
