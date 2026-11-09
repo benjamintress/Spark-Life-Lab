@@ -56,8 +56,8 @@ test("has explicit legal, cookie, and consent integrations", () => {
   assert.match(footer, /Cookie Policy/);
   assert.match(footer, /Legal Note/);
   assert.match(footer, /Cookie preferences/);
-  assert.match(cookie, /Essential only/);
-  assert.match(cookie, /Manage preferences/);
+  assert.match(cookie, /OK, got it/);
+  assert.match(cookie, /Privacy details/);
   assert.doesNotMatch(cookie, /Accept all/);
   assert.match(cookie, /ACTIVE_OPTIONAL_COOKIE_CATEGORIES/);
   assert.match(cookie, /Privacy-friendly website analytics/);

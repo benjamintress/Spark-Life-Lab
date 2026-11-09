@@ -192,15 +192,14 @@ export function CookieConsent() {
           </div>
 
           <div className="cookie-actions">
-            <button type="button" onClick={savePreferences}>
-              Essential only
+            <button type="button" className="cookie-primary" onClick={savePreferences}>
+              OK, got it
             </button>
             <button
               type="button"
-              className="cookie-primary"
               onClick={(event) => openPreferences(event.currentTarget)}
             >
-              Manage preferences
+              Privacy details
             </button>
             {hasOptionalCookieCategories ? (
               <button type="button" onClick={savePreferences}>

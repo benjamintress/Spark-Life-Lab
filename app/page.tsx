@@ -48,7 +48,7 @@ const founders = [
     id: "founder-scott",
     name: "Scott E. Burton",
     role: "Co-founder",
-    bio: "An experienced change guide and business leader who helps people navigate transition with clarity, courage, and grounded action — shaped by his own midlife journey.",
+    bio: "An experienced business leader who has helped people navigate change throughout his career. His own midlife journey deepened his understanding of what matters in life. At SparkLifeLab, he brings thoughtful questions, practical wisdom, and a talent for helping others find their direction.",
     linkedinUrl: "https://www.linkedin.com/in/scotteburton/",
     linkedinAriaLabel: "Scott E. Burton on LinkedIn (opens in new tab)",
     photo: "/images/founder_scott.png",
@@ -258,7 +258,7 @@ export default function Home() {
 
           <div className="steps">
             <article className="step-card step-card-default">
-              <div className="step-number">01</div>
+              <div className="step-number"><span className="step-label">Step</span> 1</div>
               <h3>Understand where you are</h3>
               <p>
                 Start with our Midlife Clarity Check. Discover what still feels fulfilling,
@@ -267,7 +267,7 @@ export default function Home() {
             </article>
 
             <article className="step-card step-card-default">
-              <div className="step-number">02</div>
+              <div className="step-number"><span className="step-label">Step</span> 2</div>
               <h3>Explore what matters now</h3>
               <p>
                 In our Identity Lab, explore your interests, strengths and aspirations through
@@ -277,7 +277,7 @@ export default function Home() {
             </article>
 
             <article className="step-card step-card-default">
-              <div className="step-number">03</div>
+              <div className="step-number"><span className="step-label">Step</span> 3</div>
               <h3>Find your direction</h3>
               <p>
                 Get a clearer picture of what you want from life and identify realistic first
@@ -331,7 +331,7 @@ export default function Home() {
             {/* Text + CTA */}
             <div>
               <p className="eyebrow">When you&rsquo;re ready for the next step</p>
-              <h2>The Identity Lab</h2>
+              <h2>The Identity Lab Program</h2>
               <p style={{ maxWidth: "680px", marginTop: "1.25rem" }}>
                 You&rsquo;ve built a successful career. But who are you beyond your professional
                 roles, and what do you want from life now?

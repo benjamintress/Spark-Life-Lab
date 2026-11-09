@@ -609,8 +609,8 @@ We use cookies to improve your experience. By continuing you accept our Cookie P
 ### Required Buttons
 
 - Accept all
-- Essential only
-- Manage preferences
+- OK, got it
+- Privacy details
 
 ### Implementation Rules
 

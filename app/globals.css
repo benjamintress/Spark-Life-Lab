@@ -918,6 +918,22 @@ main {
   margin-bottom: 1.1rem;
 }
 
+/* Revision 03: "STEP 1" labels — small tracked label beside the existing serif numeral */
+.step-number {
+  align-items: baseline;
+  display: flex;
+  font-variant-numeric: lining-nums;
+  gap: 0.6rem;
+}
+
+.step-label {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
 .step-card-default  .step-number { color: var(--ember); }
 .step-card-featured .step-number { color: var(--ember); }
 

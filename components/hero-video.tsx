@@ -46,7 +46,31 @@ export function HeroVideo({ src, poster, finalPoster, alt }: HeroVideoProps) {
     video.addEventListener("play", handlePlay);
     video.addEventListener("ended", handleEnded);
 
+    // Stacked (mobile) hero layout: the video sits below the copy and CTAs, so
+    // hold playback until about half of it is on screen, then play once.
+    // Desktop keeps the original autoplay-on-load behavior.
+    let observer: IntersectionObserver | null = null;
+    const isStackedLayout = window.matchMedia("(max-width: 900px)").matches;
+    if (isStackedLayout && "IntersectionObserver" in window) {
+      video.pause();
+      video.currentTime = 0;
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer?.disconnect();
+            observer = null;
+            video.play().catch(() => {
+              // Autoplay blocked (e.g. low-power mode): leave the poster as before.
+            });
+          }
+        },
+        { threshold: 0.5 },
+      );
+      observer.observe(video);
+    }
+
     return () => {
+      observer?.disconnect();
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("play", handlePlay);
       video.removeEventListener("ended", handleEnded);
