@@ -51,7 +51,7 @@ const founders = [
     bio: "An experienced business leader who has helped people navigate change throughout his career. His own midlife journey deepened his understanding of what matters in life. At SparkLifeLab, he brings thoughtful questions, practical wisdom, and a talent for helping others find their direction.",
     linkedinUrl: "https://www.linkedin.com/in/scotteburton/",
     linkedinAriaLabel: "Scott E. Burton on LinkedIn (opens in new tab)",
-    photo: "/images/founder_scott.png",
+    photo: "/images/founder_scott_v2.jpg",
     photoAlt: "Scott E. Burton, Co-founder of SparkLifeLab",
   },
 ];
