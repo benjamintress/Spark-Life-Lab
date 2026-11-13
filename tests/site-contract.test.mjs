@@ -310,3 +310,16 @@ test("keeps the preference center accessible and reopenable", () => {
   assert.match(cookie, /Your privacy preferences have been saved/);
   assert.match(footer, /sparklifelab:open-cookie-preferences/);
 });
+
+test("wires the hero 'Get to know us' audio player to a bundled audio file", () => {
+  const home = read("app/page.tsx");
+  const player = read("components/hero-audio.tsx");
+  const match = home.match(/<HeroAudio[\s\S]*?src="([^"]+)"/);
+
+  assert.ok(match, "HeroAudio should receive a src");
+  assert.equal(existsSync(join(root, "public", match[1])), true, `${match[1]} should exist in /public`);
+  // Accessible controls and reduced-motion support stay in place
+  assert.match(player, /aria-label="Back 15 seconds"/);
+  assert.match(player, /aria-label="Forward 15 seconds"/);
+  assert.match(player, /reducedMotion="user"/);
+});
