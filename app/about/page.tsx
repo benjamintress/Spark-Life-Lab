@@ -53,7 +53,7 @@ const founders = [
     id: "scott",
     name: "Scott E. Burton",
     role: "Co-founder",
-    photo: "/images/founder_scott.png",
+    photo: "/images/founder_scott_v3.jpg",
     photoAlt: "Scott E. Burton, Co-founder of SparkLifeLab",
     linkedinUrl: "https://www.linkedin.com/in/scotteburton",
     linkedinLabel: "Scott E. Burton on LinkedIn (opens in new tab)",
