@@ -95,7 +95,7 @@ export default function Home() {
                 <Link className="button button-primary" href="#clarity-check">
                   Take the Midlife Clarity Check →
                 </Link>
-                <HeroAudio label="Get to know us — listen to our 3-minute audio" />
+                <HeroAudio label="Get to know us — listen to our 5-minute audio" />
               </div>
             </div>
           </div>
