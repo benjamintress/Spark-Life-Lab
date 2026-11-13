@@ -28,7 +28,7 @@ const founders = [
     id: "founder-barbel",
     name: "Bärbel Tress, PhD",
     role: "Co-founder",
-    bio: "A scientist and maven who spent decades guiding researchers forward — and found her own path forward when she discovered her genius and purpose in midlife.",
+    bio: "A scientist and consultant with decades of experience developing researchers and leaders. Her own midlife journey led her to discover her genius and purpose. At SparkLifeLab, she helps people envision who they could become and find the courage to make it happen.",
     linkedinUrl: "https://www.linkedin.com/in/baerbeltress/",
     linkedinAriaLabel: "Bärbel Tress on LinkedIn (opens in new tab)",
     photo: "/images/founder_barbel_v2.jpg",
