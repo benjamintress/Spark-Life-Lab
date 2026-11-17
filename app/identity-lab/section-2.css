@@ -1,0 +1,291 @@
+/* Identity Lab — Section 2 prototype, iteration 3. Isolated: every selector
+   is scoped under .s2p. Typography reuses the site's own classes and the
+   exact values already used on the Identity Lab V2 page: no new font
+   families or sizes are introduced. */
+
+.s2p {
+  --paper: #fefdf8;
+  --line: rgba(139, 143, 166, 0.5); /* Slate Mist hairline */
+  --tint: #e4e5ec;  /* default: one light tint derived from Light Lavender #C5C7D3 */
+  --hover: #d9dbe7; /* hover: visibly richer */
+  --sel: #ced1e0;   /* selected + reflection: one continuous Lavender surface, stronger than hover */
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+  background: var(--paper);
+  overflow-x: clip;
+}
+
+/* Hero-context placeholder (not the real hero) */
+.s2p-context {
+  display: grid;
+  place-items: center;
+  min-height: 30vh;
+  padding: 120px 20px 40px;
+  text-align: center;
+}
+.s2p-context p {
+  margin: 0;
+  color: var(--mid-navy);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.s2p-section {
+  background: var(--paper);
+}
+
+/* ─── Opening: eyebrow · headline · intro (V2 Section 2 values) ──── */
+.s2p-head h2 {
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+.s2p-body {
+  max-width: 46rem;
+  margin: 0;
+  color: rgba(32, 43, 65, 0.8);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); /* = .ilv2-why-col p */
+  text-wrap: pretty;
+}
+
+/* ─── Introduction to the interaction (Jost) ────────────────────── */
+.s2p-ask {
+  margin: clamp(2rem, 3.4vw, 2.8rem) 0 1.3rem;
+}
+.s2p .s2p-question {
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--sans);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); /* V2 body size, emphasized */
+  font-weight: 500;
+  line-height: 1.76;
+  letter-spacing: inherit; /* same as body paragraphs */
+}
+.s2p-cue {
+  margin: 0;
+  color: var(--mid-navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); /* same size as the question */
+  font-weight: 400;
+  line-height: 1.76;
+}
+
+/* ─── One surface, four perspectives ─────────────────────────────── */
+.s2p-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  background: var(--tint);
+}
+.s2p-item {
+  display: contents;
+}
+.s2p-title {
+  grid-row: 1;
+  grid-column: calc(var(--n) + 1);
+  display: flex;
+  margin: 0;
+  /* h3: site style, unchanged (Cormorant Garamond, clamp(1.35rem, 1.85vw, 1.62rem)) */
+}
+.s2p-item:not(:first-child) .s2p-title {
+  border-left: 1px solid var(--line);
+}
+
+.s2p .s2p-panel {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.7rem;
+  min-height: 9rem;
+  margin: 0;
+  padding: 1.5rem 1.4rem 1.3rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--tint);
+  color: var(--navy);
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 320ms ease;
+}
+.s2p-panel-text {
+  display: block;
+  text-wrap: balance;
+}
+
+/* Motif: one fine line runs through all four panels; each carries a small
+   marker. Four equal perspectives on one exploration, not steps. */
+.s2p-panel-mark {
+  position: relative;
+  display: block;
+  height: 9px;
+}
+.s2p-panel-mark::before {
+  content: "";
+  position: absolute;
+  left: -1.4rem;
+  right: -1.4rem;
+  top: 4px;
+  height: 1px;
+  background: var(--line);
+}
+.s2p-panel-mark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  box-sizing: border-box;
+  border: 1px solid var(--mid-navy);
+  border-radius: 50%;
+  background: var(--tint);
+  transition:
+    transform 420ms var(--ease),
+    background-color 320ms ease,
+    border-color 320ms ease;
+}
+@media (hover: hover) {
+  .s2p .s2p-panel:hover { background: var(--hover); }
+  .s2p .s2p-panel:hover .s2p-panel-mark::after {
+    transform: translateX(0.7rem);
+    background: var(--hover);
+    border-color: var(--navy);
+  }
+}
+.s2p .s2p-panel[aria-expanded="true"] { background: var(--sel); }
+.s2p .s2p-panel[aria-expanded="true"] .s2p-panel-mark::after {
+  transform: translateX(0.7rem);
+  border-color: var(--ember);
+  background: var(--ember);
+}
+.s2p .s2p-panel:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: -4px;
+}
+
+/* ─── Reflection: a continuation of the selected panel ───────────── */
+.s2p-reflect {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 380ms var(--ease);
+}
+.s2p-item[data-open="true"] .s2p-reflect {
+  grid-template-rows: 1fr;
+}
+.s2p-reflect-clip {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: visibility 0s linear 380ms;
+}
+.s2p-item[data-open="true"] .s2p-reflect-clip {
+  visibility: visible;
+  transition-delay: 0s;
+}
+.s2p-reflect-inner {
+  position: relative;
+  padding: 1.7rem 1.4rem 1.9rem;
+  border-top: 1px solid var(--line);
+  background: var(--sel);
+}
+/* the rule opens beneath the selected panel: the two surfaces become one */
+.s2p-reflect-inner::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: calc(var(--n) * 25%);
+  width: 25%;
+  height: 1px;
+  background: var(--sel);
+}
+.s2p-reflection {
+  max-width: 42rem;
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+.s2p-reflection p {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); /* V2 body: one size, weight and color */
+  font-weight: 400;
+}
+.s2p-reflection-q { margin-top: 0.9rem !important; }
+.s2p-item[data-open="true"] .s2p-reflection {
+  opacity: 1;
+  transition-delay: 120ms;
+}
+
+/* ─── Closing: one paragraph, a thin line at its left ───────────── */
+.s2p-closing {
+  max-width: 46rem;
+  margin-top: clamp(2rem, 3.6vw, 2.8rem);
+  padding-left: 1.4rem;
+  border-left: 1px solid var(--ember);
+}
+.s2p-closing p {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); /* V2 body size */
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+/* ─── Mobile: stacked rows on one vertical line, reflection in place ─ */
+@media (max-width: 640px) {
+  .s2p-board { display: block; }
+  .s2p-item { position: relative; display: block; }
+  .s2p-item:not(:first-child) { border-top: 1px solid var(--line); }
+  .s2p-item:not(:first-child) .s2p-title { border-left: 0; }
+  .s2p .s2p-panel {
+    min-height: 3.75rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 1.1rem 1.1rem 1.1rem 2.9rem;
+  }
+  .s2p-panel-mark {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    width: 9px;
+    margin-top: -4.5px;
+    z-index: 2;
+  }
+  .s2p-panel-mark::before { display: none; }
+  .s2p .s2p-panel:hover .s2p-panel-mark::after,
+  .s2p .s2p-panel[aria-expanded="true"] .s2p-panel-mark::after { transform: translateX(0.35rem); }
+  .s2p-item::before {
+    content: "";
+    position: absolute;
+    left: calc(1.1rem + 4px);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .s2p-item:first-child::before { top: 1.9rem; }
+  .s2p-item:last-child::before { bottom: auto; height: 1.9rem; }
+  .s2p-reflect-inner { padding: 1.2rem 1.1rem 1.4rem 2.9rem; }
+  .s2p-reflect-inner::before { display: none; }
+  .s2p-closing { padding-left: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s2p .s2p-panel,
+  .s2p-panel-mark::after,
+  .s2p-reflect,
+  .s2p-reflect-clip,
+  .s2p-reflection { transition: none !important; }
+}

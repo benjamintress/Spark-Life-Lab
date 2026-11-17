@@ -1,0 +1,113 @@
+/* Identity Lab — Section 5 "How it works" prototype (Concept B). Isolated: every selector is
+   scoped under .s5 / .s5main / .s5x. Revision B: Mid Navy (#4D5772) section. Text is Paper at 100% / 92% / 86%
+   (7.1 / 6.3 / 5.7:1 on Mid Navy — AA). Ember (2.65:1) and Light Lavender (4.27:1) fail AA for small text on
+   Mid Navy, so they are NOT used for text: Ember only as the short eyebrow rule (decorative). */
+
+.s5main { background: #fefdf8; overflow-x: clip; }
+.s5x-spacer { height: 96px; }
+.s5x-bar {
+  position: sticky; top: 70px; z-index: 5;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: rgba(254, 253, 248, 0.94);
+  border-bottom: 1px solid rgba(139, 143, 166, 0.5);
+}
+.s5x-bar button {
+  min-height: 40px; padding: 0.45rem 1rem;
+  border: 1px solid rgba(139, 143, 166, 0.5); border-radius: 0; background: transparent;
+  color: #4d5772; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+}
+.s5x-bar button[aria-pressed="true"] { background: #202841; border-color: #202841; color: #fefdf8; }
+.s5x-bar button:focus-visible { outline: 2px solid #202841; outline-offset: 2px; }
+
+/* ─── the section ───────────────────────────────────────────────── */
+.s5 {
+  --s5-bg: #4d5772;
+  --s5-paper: #fefdf8;
+  --s5-body: rgba(254, 253, 248, 0.92);
+  --s5-soft: rgba(254, 253, 248, 0.86);
+  --s5-rule: rgba(254, 253, 248, 0.3);
+  background: var(--s5-bg);
+  color: var(--s5-paper);
+  padding: clamp(3.25rem, 5vw, 4.5rem) 0 clamp(3rem, 4.5vw, 4rem);
+}
+.s5-inner { width: min(var(--max, 1120px), 100% - 2 * 5vw); margin: 0 auto; }
+.s5-visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Part A: introduction (left) | the three facts (right) */
+.s5-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  column-gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+.s5-top { padding-bottom: clamp(2rem, 3vw, 2.6rem); }
+
+.s5-eyebrow {
+  position: relative; margin: 0 0 0.9rem; padding-left: 2.4rem;
+  color: var(--s5-paper); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.s5-eyebrow::before { content: ""; position: absolute; left: 0; top: 50%; width: 1.7rem; height: 1.5px; background: #ef7c62; }
+.s5 h2 { margin: 0 0 1.1rem; color: var(--s5-paper); max-width: 21ch; text-wrap: balance; }
+.s5-lede {
+  margin: 0 0 0.9rem; max-width: 37rem; color: var(--s5-body);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); text-wrap: pretty;
+}
+.s5-lede:last-child { margin-bottom: 0; }
+
+/* the three facts: editorial lines, not statistics */
+.s5-facts-col { padding-top: 2.4rem; }
+.s5-facts { margin: 0; }
+.s5-fact { padding: 1rem 0 1.05rem; border-top: 1px solid var(--s5-rule); }
+.s5-fact:last-child { padding-bottom: 0; }
+.s5-fact dt { margin: 0 0 0.25rem; font-family: var(--serif); font-size: clamp(1.45rem, 1.2vw + 1.1rem, 1.75rem); font-weight: 500; line-height: 1.15; color: var(--s5-paper); }
+.s5-fact dd { margin: 0; color: var(--s5-soft); font-size: 1rem; line-height: 1.55; max-width: 30rem; }
+
+/* Part B: practical questions — label on the left, a wide accordion on the right */
+.s5-faq {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 3fr);
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+  padding-top: clamp(1.6rem, 2.6vw, 2.1rem);
+  border-top: 1px solid var(--s5-rule);
+}
+.s5-faq-label {
+  margin: 0; padding-top: 1.15rem;
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--s5-paper);
+}
+.s5-acc { margin: 0; padding: 0; list-style: none; }
+.s5-acc-item { border-top: 1px solid var(--s5-rule); }
+.s5-acc-item:first-child { border-top: 0; }
+.s5-acc-item h4 { margin: 0; font: inherit; }
+.s5-acc-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.2rem;
+  width: 100%; min-height: 3.4rem; margin: 0; padding: 0.9rem 0;
+  border: 0; border-radius: 0; background: none; color: var(--s5-paper);
+  font-family: var(--sans); font-size: 1.06rem; font-weight: 500; line-height: 1.4; text-align: left; cursor: pointer;
+}
+/* Ember focus ring is only 2.65:1 on Mid Navy, so the ring is Paper (non-text contrast 7:1) */
+.s5-acc-btn:focus-visible { outline: 2px solid var(--s5-paper); outline-offset: 3px; }
+.s5-acc-icon { position: relative; flex: none; width: 14px; height: 14px; }
+.s5-acc-icon::before, .s5-acc-icon::after { content: ""; position: absolute; left: 0; top: 6.5px; width: 14px; height: 1.5px; background: var(--s5-paper); }
+.s5-acc-icon::after { transform: rotate(90deg); }
+.s5-acc-btn[aria-expanded="true"] .s5-acc-icon::after { display: none; }
+.s5-acc-panel { padding: 0 2.6rem 1.15rem 0; }
+.s5-acc-panel p { margin: 0; max-width: 44rem; color: var(--s5-body); font-size: 1.02rem; line-height: 1.65; }
+
+/* ─── tablet / phone: one column, in reading order ─────────────── */
+@media (max-width: 860px) {
+  .s5-row, .s5-faq { display: block; }
+  .s5 h2 { max-width: none; }
+  .s5-lede { max-width: none; }
+  .s5-top { padding-bottom: 1.8rem; }
+  .s5-facts-col { padding-top: 0; margin-top: 1.7rem; }
+  .s5-faq { padding-top: 1.6rem; }
+  .s5-faq-label { padding-top: 0; margin-bottom: 0.3rem; }
+  .s5-acc-btn { min-height: 56px; }
+  .s5-acc-panel { padding-right: 0; }
+  .s5-acc-panel p { max-width: none; }
+}

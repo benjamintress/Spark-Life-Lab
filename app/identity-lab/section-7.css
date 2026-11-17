@@ -1,0 +1,59 @@
+/* Identity Lab V2 — Section 7 "Take the next step" (approved design). Every selector is scoped under .s7.
+   Full-width coastal image, centered Paper card. The card hosts the existing Kit waitlist form. */
+
+.s7 {
+  scroll-margin-top: 4.5rem; /* clears the sticky navigation when a CTA scrolls here */
+  align-items: center;
+  background: #eeeae5;
+  display: flex;
+  min-height: clamp(640px, 54vw, 760px);
+  position: relative;
+}
+.s7-media { inset: 0; overflow: hidden; position: absolute; }
+.s7-media img { display: block; height: 100%; object-fit: cover; width: 100%; }
+
+.s7-inner {
+  display: flex; justify-content: center; margin: 0 auto; position: relative;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 5vw;
+  width: min(calc(var(--max, 1120px) + 10vw), 100%);
+}
+.s7-card {
+  background: #fefdf8; border-radius: 4px;
+  box-shadow: 0 24px 64px rgba(32, 40, 65, 0.2);
+  padding: clamp(1.9rem, 3vw, 2.6rem);
+  width: min(540px, 100%);
+}
+.s7-title { font-size: clamp(2rem, 2.8vw, 2.55rem); margin-bottom: 0.9rem; max-width: 16ch; }
+.s7-body p:not(.eyebrow) { font-size: 1.02rem; line-height: 1.6; margin-bottom: 0.75rem; }
+.s7-body .s7-reassure { color: #202841; font-weight: 500; margin-bottom: 1.15rem; }
+
+/* The real Kit form (existing embed, UID fed36a3d05). Base styling lives in app/globals.css; these only
+   set the approved navy submit button and focus ring inside the card. Markup, fields and behavior come from Kit. */
+.s7 .sll-identity-waitlist-kit-form { max-width: 100%; }
+.s7 .sll-identity-waitlist-kit-form .formkit-submit { background: var(--navy) !important; }
+.s7 .sll-identity-waitlist-kit-form .formkit-submit:hover,
+.s7 .sll-identity-waitlist-kit-form .formkit-submit:focus-visible { background: var(--mid-navy) !important; }
+.s7 .sll-identity-waitlist-kit-form .formkit-input:focus,
+.s7 .sll-identity-waitlist-kit-form .formkit-input:focus-visible {
+  border-color: var(--mid-navy) !important;
+  box-shadow: 0 0 0 2px rgba(239, 124, 98, 0.35) !important;
+}
+/* dormant enrollment-open block, if the status flag is ever switched */
+.s7-card .il-action-card { background: transparent; border: 0; box-shadow: none; margin: 0; padding: 0; }
+.s7-body .s7-privacy { color: rgba(32, 43, 65, 0.7); font-size: 0.88rem; line-height: 1.5; margin: 0.9rem 0 0.6rem; }
+.s7-body .s7-contact { color: rgba(32, 43, 65, 0.7); font-size: 0.88rem; margin: 0; }
+.s7-contact a { border-bottom: 1px solid rgba(32, 43, 65, 0.3); color: #202841; }
+
+/* tablet and phone: landscape above, solid card below (no form-on-photo on small screens) */
+@media (max-width: 900px) {
+  .s7 { display: block; min-height: 0; }
+  .s7-media { aspect-ratio: 16 / 10; position: relative; }
+  .s7-media::after { display: none; }
+  .s7-inner { display: block; padding: 0 5vw 3.5rem; }
+  .s7-card { box-shadow: 0 16px 40px rgba(32, 40, 65, 0.12); margin: -3.5rem auto 0; position: relative; max-width: 540px; }
+}
+@media (max-width: 600px) {
+  .s7-media { aspect-ratio: 4 / 3; }
+  .s7-inner { padding: 0 4vw 3rem; }
+  .s7-card { margin-top: -2.5rem; padding: 1.7rem 1.3rem; }
+}

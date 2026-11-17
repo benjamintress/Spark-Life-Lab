@@ -1,0 +1,1223 @@
+/* Identity Lab — Section 4 (Your Journey) prototypes A and B. Isolated: every
+   selector is scoped under .s4main / .s4 / .s4x. Uses the site's own typography
+   classes and the V2 values (body clamp(1.06rem…1.18rem), small 0.98rem, labels
+   0.82rem/600/0.18em, h2/h3 untouched). */
+
+.s4main {
+  --paper: #fefdf8;
+  --cream: #eeeae5;
+  --lav: #c5c7d3;
+  --slate: #8b8fa6;
+  --sel: #e6e7ee; /* selected: pale Lavender surface (solid, so panel and column match) */
+  --hov: #eeeff3;
+  --line: rgba(139, 143, 166, 0.5);
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+  background: var(--paper);
+  overflow-x: clip;
+}
+.s4x-spacer { height: 96px; }
+
+/* ─── Preview chrome (not part of the design) ─────────────────────── */
+.s4x-bar {
+  position: sticky;
+  top: 70px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: rgba(254, 253, 248, 0.94);
+  border-bottom: 1px solid var(--line);
+}
+.s4x-bar button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--mid-navy);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.s4x-bar button[aria-pressed="true"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--paper);
+}
+.s4x-bar button:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* ─── Shared ──────────────────────────────────────────────────────── */
+.s4 { background: var(--paper); }
+.s4-head h2 { margin-bottom: 1rem; max-width: 30ch; text-wrap: balance; }
+.s4-intro {
+  max-width: 46rem;
+  margin: 0;
+  color: rgba(32, 43, 65, 0.8);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); /* = V2 body */
+  text-wrap: pretty;
+}
+.s4-cue {
+  margin: clamp(1.8rem, 3vw, 2.6rem) 0 1rem;
+  color: var(--mid-navy);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+.s4 h3 { margin: 0; }
+.s4 button { font-family: inherit; }
+.s4 button:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+/* ═══ Prototype A — Landscape journey ═══════════════════════════════ */
+.s4a-mobile { display: none; }
+.s4a-board { position: relative; }
+.s4a-scene { display: block; width: 100%; height: auto; overflow: visible; }
+
+.s4a-far { fill: var(--lav); fill-opacity: 0.45; }
+.s4a-mid { fill: var(--slate); fill-opacity: 0.3; }
+.s4a-contour { fill: none; stroke: var(--lav); stroke-width: 1; }
+.s4a-near { fill: var(--cream); }
+.s4a-drop { stroke: var(--slate); stroke-opacity: 0.55; stroke-width: 1; stroke-dasharray: 2 4; }
+.s4a-path { fill: none; stroke: var(--mid-navy); stroke-width: 1.5; stroke-linecap: round; }
+.s4a-path-lit {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  transition: stroke-dashoffset 700ms var(--ease);
+}
+.s4a-stop {
+  fill: var(--paper);
+  stroke: var(--mid-navy);
+  stroke-width: 1.5;
+  transition: r 260ms var(--ease), fill 260ms ease;
+}
+.s4a-stop--on { fill: var(--ember); stroke: var(--ember); }
+.s4a-halo { fill: none; stroke: var(--ember); stroke-opacity: 0.45; stroke-width: 1; }
+
+.s4a-stations {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.s4a-st h3 { display: flex; }
+.s4a-btn {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 1.15rem 0.85rem 1.4rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--navy);
+  text-align: center;
+  cursor: pointer;
+  font: inherit;
+  transition: background-color 300ms ease;
+}
+@media (hover: hover) {
+  .s4a-btn:hover { background: var(--hov); }
+}
+.s4a-st[data-sel="true"] .s4a-btn { background: var(--sel); }
+.s4a-num {
+  font-family: var(--sans);
+  font-size: 0.82rem; /* = .ilv2-fact-label */
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--mid-navy);
+}
+.s4a-title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.85vw, 1.62rem); /* = site h3 */
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.s4a-benefit {
+  font-family: var(--sans);
+  font-size: 0.98rem; /* = .ilv2-fact dd */
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+  color: rgba(32, 43, 65, 0.8);
+  text-wrap: pretty;
+}
+
+.s4a-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 380ms var(--ease);
+}
+.s4a-panel[data-open="true"] { grid-template-rows: 1fr; }
+.s4a-panel-clip { min-height: 0; overflow: hidden; visibility: hidden; transition: visibility 0s linear 380ms; }
+.s4a-panel[data-open="true"] .s4a-panel-clip { visibility: visible; transition-delay: 0s; }
+.s4a-panel-inner {
+  position: relative;
+  padding: 1.6rem 1.4rem 1.9rem;
+  border-top: 1px solid var(--line);
+  background: var(--sel);
+  min-height: 2rem;
+}
+/* the rule opens under the selected station: the two surfaces read as one */
+.s4a-panel-inner::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: calc(var(--n) * 20%);
+  width: 20%;
+  height: 1px;
+  background: var(--sel);
+}
+.s4a-desc {
+  max-width: 46rem;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  animation: s4-in 420ms var(--ease) both;
+}
+@keyframes s4-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ═══ Prototype B — Editorial journey ═══════════════════════════════ */
+.s4b-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  column-gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.s4b-list { position: relative; margin: 0; padding: 0; list-style: none; }
+.s4b-item { position: relative; padding: 0 0 1.7rem 3.2rem; }
+.s4b-item:last-child { padding-bottom: 0; }
+/* the journey line: lavender ahead, navy for the stations already walked */
+.s4b-item::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 1.65rem;
+  bottom: -0.1rem;
+  width: 1px;
+  background: var(--lav);
+  transition: background-color 400ms ease;
+}
+.s4b-item:last-child::before { display: none; }
+.s4b-item[data-done="true"]::before { background: var(--mid-navy); }
+.s4b-mark {
+  position: absolute;
+  left: 0;
+  top: 0.62rem;
+  box-sizing: border-box;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--mid-navy);
+  border-radius: 50%;
+  background: var(--paper);
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+.s4b-item[data-reached="true"] .s4b-mark { background: var(--navy); border-color: var(--navy); }
+.s4b-item[data-sel="true"] .s4b-mark { outline: 1.5px solid var(--ember); outline-offset: 3px; }
+
+.s4b-btn {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  column-gap: 0.4rem;
+  row-gap: 0.3rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.2rem 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--navy);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.s4b-num {
+  font-family: var(--sans);
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--slate);
+  transition: color 300ms ease;
+}
+.s4b-title {
+  grid-column: 2;
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.85vw, 1.62rem); /* = site h3 */
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+}
+.s4b-benefit {
+  grid-column: 2;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+  color: rgba(32, 43, 65, 0.8);
+}
+.s4b-item[data-sel="true"] .s4b-num { color: var(--navy); }
+@media (hover: hover) {
+  .s4b-btn:hover .s4b-num { color: var(--navy); }
+  .s4b-btn:hover .s4b-title { text-decoration: underline 1px var(--lav); text-underline-offset: 6px; }
+}
+.s4b-inline { display: none; }
+
+.s4b-stage {
+  position: sticky;
+  top: 130px;
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 2.2rem;
+  align-items: start;
+}
+.s4b-orb {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 11rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--lav);
+  border-radius: 50%;
+  transition: border-color 400ms ease;
+}
+.s4b-orb-num {
+  font-family: var(--serif);
+  font-size: 4.2rem;
+  font-weight: 500;
+  line-height: 1;
+  animation: s4-in 420ms var(--ease) both;
+}
+.s4b-text { padding-top: 0.5rem; min-height: 11rem; }
+.s4b-quiet { margin: 0; color: var(--mid-navy); font-size: 1.02rem; line-height: 1.6; }
+.s4b-desc {
+  position: relative;
+  max-width: 34rem;
+  margin: 0;
+  padding-top: 1.3rem;
+  color: var(--navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  animation: s4-in 420ms var(--ease) both;
+}
+.s4b-desc::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.2rem;
+  height: 1px;
+  background: var(--ember);
+}
+
+/* ═══ Mobile (≤ 800px) ═════════════════════════════════════════════ */
+@media (max-width: 800px) {
+  .s4x-bar { top: 66px; gap: 0.35rem; padding: 0.45rem 0.5rem; flex-wrap: wrap; }
+  .s4x-bar button { padding: 0.35rem 0.5rem; font-size: 0.6rem; letter-spacing: 0.05em; white-space: nowrap; }
+  .s4-cue { margin-top: 1.4rem; }
+
+  /* A — five swipeable panels */
+  .s4a-desktop { display: none; }
+  .s4a-mobile { display: block; margin-top: 1.4rem; }
+  .s4a-track {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 0 -5vw;
+    padding: 0 8%;
+    overflow-x: auto;
+    list-style: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 8%;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .s4a-track::-webkit-scrollbar { display: none; }
+  .s4a-slide { flex: 0 0 84%; scroll-snap-align: center; min-width: 0; }
+  .s4a-slice { display: block; width: 100%; height: auto; }
+  .s4a-slide h3 { display: block; }
+  .s4a-mbtn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.9rem 2.2rem 0.5rem 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: var(--navy);
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+  }
+  .s4a-slide .s4a-num { color: var(--mid-navy); }
+  .s4a-slide .s4a-benefit { font-size: 1.02rem; }
+  .s4a-more {
+    position: absolute;
+    right: 0.3rem;
+    top: 1.35rem;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--mid-navy);
+    border-radius: 50%;
+    transition: background-color 300ms ease, border-color 300ms ease;
+  }
+  .s4a-mbtn[aria-expanded="true"] .s4a-more { background: var(--ember); border-color: var(--ember); }
+  .s4a-mdesc { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 360ms var(--ease); }
+  .s4a-mdesc[data-open="true"] { grid-template-rows: 1fr; }
+  .s4a-mdesc-clip { min-height: 0; overflow: hidden; }
+  .s4a-mdesc p {
+    margin: 0.5rem 0 0.4rem;
+    padding: 1rem 1rem 1.1rem;
+    background: var(--sel);
+    color: var(--navy);
+    font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  }
+  .s4a-mdesc:not([data-open="true"]) .s4a-mdesc-clip { visibility: hidden; }
+  .s4a-controls { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 1.1rem; }
+  .s4a-nav {
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--navy);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .s4a-nav:disabled { opacity: 0.3; cursor: default; }
+  .s4a-count {
+    min-width: 5.2rem;
+    margin: 0;
+    color: var(--navy);
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.14em;
+    text-align: center;
+  }
+  .s4a-dots { display: flex; justify-content: center; margin-top: 0.3rem; }
+  .s4a-dot {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .s4a-dot::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin: -3.5px 0 0 -3.5px;
+    border-radius: 50%;
+    background: var(--lav);
+    transition: background-color 300ms ease, transform 300ms ease;
+  }
+  .s4a-dot[data-cur="true"]::before { background: var(--ember); transform: scale(1.4); }
+
+  /* B — the list stays whole; the description opens inline */
+  .s4b-grid { display: block; }
+  .s4b-stage { display: none; }
+  .s4b-item { padding-left: 2.8rem; }
+  .s4b-btn { grid-template-columns: 2.1rem minmax(0, 1fr); }
+  .s4b-inline { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 360ms var(--ease); }
+  .s4b-inline[data-open="true"] { grid-template-rows: 1fr; }
+  .s4b-inline-clip { min-height: 0; overflow: hidden; }
+  .s4b-inline:not([data-open="true"]) .s4b-inline-clip { visibility: hidden; }
+  .s4b-inline p {
+    margin: 0.7rem 0 0.2rem;
+    padding: 1rem 1rem 1.1rem;
+    background: var(--sel);
+    color: var(--navy);
+    font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s4a-btn,
+  .s4a-panel,
+  .s4a-panel-clip,
+  .s4a-path-lit,
+  .s4a-stop,
+  .s4a-more,
+  .s4a-mdesc,
+  .s4a-dot::before,
+  .s4b-item::before,
+  .s4b-mark,
+  .s4b-num,
+  .s4b-orb,
+  .s4b-inline { transition: none !important; }
+  .s4a-desc,
+  .s4b-desc,
+  .s4b-orb-num { animation: none; }
+  .s4a-track { scroll-behavior: auto; }
+}
+
+/* ═══ Prototype C1 — Photographic journey ═══════════════════════════ */
+.s4c-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  column-gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  margin-top: clamp(1.4rem, 2.6vw, 2.2rem);
+}
+.s4c-nav .s4-cue { margin-top: 0; }
+.s4c-list { position: relative; margin: 0; padding: 0; list-style: none; }
+.s4c-item { position: relative; padding: 0 0 1.55rem 2.9rem; }
+.s4c-item:last-child { padding-bottom: 0; }
+/* the journey line: lavender ahead, navy for the stations already walked */
+.s4c-item::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 1.4rem;
+  bottom: -0.2rem;
+  width: 1px;
+  background: var(--lav);
+  transition: background-color 400ms ease;
+}
+.s4c-item:last-child::before { display: none; }
+.s4c-item[data-done="true"]::before { background: var(--mid-navy); }
+.s4c-mark {
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  box-sizing: border-box;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--mid-navy);
+  border-radius: 50%;
+  background: var(--paper);
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+.s4c-item[data-reached="true"] .s4c-mark { background: var(--navy); border-color: var(--navy); }
+.s4c-item[data-sel="true"] .s4c-mark { outline: 1.5px solid var(--ember); outline-offset: 3px; }
+
+.s4c-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.1rem 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--navy);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.s4c-num {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--slate);
+  transition: color 300ms ease;
+}
+.s4c-title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.85vw, 1.62rem); /* = site h3 */
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+}
+.s4c-benefit {
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+  color: rgba(32, 43, 65, 0.8);
+}
+.s4c-item[data-sel="true"] .s4c-num { color: var(--navy); }
+@media (hover: hover) {
+  .s4c-btn:hover .s4c-num { color: var(--navy); }
+  .s4c-btn:hover .s4c-title { text-decoration: underline 1px var(--lav); text-underline-offset: 6px; }
+}
+.s4c-inline { display: none; }
+
+/* desktop: photographic discovery panel */
+.s4c-panel { position: sticky; top: 118px; }
+.s4c-photo {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  overflow: hidden;
+  background: var(--cream);
+}
+.s4c-photo img { object-fit: cover; }
+.s4c-img { opacity: 0; transition: opacity 650ms ease; }
+.s4c-img[data-on="true"] { opacity: 1; }
+.s4c-caption {
+  display: grid;
+  grid-template-columns: minmax(15rem, 18.5rem) minmax(0, 1fr);
+  column-gap: 1.6rem;
+  align-items: start;
+}
+.s4c-sign-wrap {
+  position: relative;
+  z-index: 2;
+  margin: -2.8rem 0 0 -1.5rem; /* straddles the photograph's lower-left corner */
+  animation: s4c-sign-in 520ms var(--ease) both;
+}
+@keyframes s4c-sign-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.s4c-desc {
+  margin: 0;
+  padding-top: 1.1rem;
+  max-width: 34rem;
+  color: var(--navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  animation: s4-in 520ms var(--ease) 120ms both;
+}
+
+/* the station sign: a small hand-drawn flag, one family of five */
+.s4c-sign {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-height: 5.4rem;
+  padding: 0.95rem 3rem 1.05rem 2rem;
+  color: var(--navy);
+  transform: rotate(var(--tilt, -2deg));
+}
+.s4c-sign-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.s4c-sign-bg path {
+  fill: var(--paper);
+  stroke: var(--navy);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.s4c-pin {
+  position: absolute;
+  left: 0.85rem;
+  top: 1rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ember);
+}
+.s4c-sign-num {
+  position: relative;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mid-navy);
+}
+.s4c-sign-title {
+  position: relative;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+.s4c-doodle {
+  position: absolute;
+  top: -1.7rem;
+  right: 1.3rem;
+  width: 3.4rem;
+  height: auto;
+  transform: rotate(6deg);
+}
+
+@media (max-width: 800px) {
+  .s4c-grid { display: block; }
+  .s4c-panel { display: none; }
+  .s4c-item { padding-left: 2.8rem; }
+  .s4c-inline { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 420ms var(--ease); }
+  .s4c-inline[data-open="true"] { grid-template-rows: 1fr; }
+  .s4c-inline-clip { min-height: 0; overflow: hidden; }
+  .s4c-inline:not([data-open="true"]) .s4c-inline-clip { visibility: hidden; }
+  .s4c-photo--m { margin-top: 1rem; }
+  .s4c-caption--m { display: block; padding-bottom: 0.4rem; }
+  .s4c-caption--m .s4c-sign {
+    margin: -1.9rem 0 0 -0.6rem;
+    width: calc(100% - 3.4rem);
+    max-width: 19rem;
+    z-index: 2;
+  }
+  .s4c-desc-m {
+    margin: 0;
+    padding: 1rem 0 0.8rem;
+    color: var(--navy);
+    font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  }
+  .s4c-item { scroll-margin-top: 150px; }
+  .s4c-btn { scroll-margin-top: 150px; }
+}
+@media (min-width: 801px) {
+  .s4c-caption--m, .s4c-photo--m { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s4c-item::before,
+  .s4c-mark,
+  .s4c-num,
+  .s4c-img,
+  .s4c-inline { transition: none !important; }
+  .s4c-sign-wrap,
+  .s4c-desc { animation: none; }
+}
+
+/* ═══ Prototype C2 — Refined photographic journey ═══════════════════ */
+.s4d-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  column-gap: clamp(2rem, 5vw, 5rem);
+  align-items: stretch; /* the right column ends where the five-station list ends: the shared ground */
+  margin-top: clamp(1.4rem, 2.6vw, 2.2rem);
+}
+.s4d-nav .s4-cue { margin-top: 0; }
+.s4d-list { position: relative; margin: 0; padding: 0; list-style: none; }
+.s4d-item { position: relative; padding: 0 0 1.55rem 2.9rem; }
+.s4d-item:last-child { padding-bottom: 0; }
+.s4d-item::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 1.4rem;
+  bottom: -0.2rem;
+  width: 1px;
+  background: var(--lav);
+  transition: background-color 400ms ease;
+}
+.s4d-item:last-child::before { display: none; }
+.s4d-item[data-done="true"]::before { background: var(--mid-navy); }
+.s4d-mark {
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  box-sizing: border-box;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--mid-navy);
+  border-radius: 50%;
+  background: var(--paper);
+  transition: background-color 300ms ease, border-color 300ms ease, transform 300ms ease;
+}
+.s4d-item[data-reached="true"] .s4d-mark { background: var(--navy); border-color: var(--navy); }
+.s4d-item[data-sel="true"] .s4d-mark { outline: 1.5px solid var(--ember); outline-offset: 3px; }
+
+.s4d-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.1rem 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--navy);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.s4d-num {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--slate);
+  transition: color 250ms ease;
+}
+.s4d-title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.85vw, 1.62rem); /* = site h3 */
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  color: rgba(32, 40, 65, 0.78);
+  transition: color 250ms ease, text-shadow 250ms ease;
+}
+.s4d-benefit {
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(32, 43, 65, 0.8);
+}
+/* selected: Deep Navy label, firmer title (a faint weight, no layout shift), Ember ring on the marker */
+.s4d-item[data-sel="true"] .s4d-num { color: var(--navy); }
+.s4d-item[data-sel="true"] .s4d-title {
+  color: var(--navy);
+  text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor;
+}
+@media (hover: hover) {
+  .s4d-btn:hover .s4d-num { color: var(--navy); }
+  .s4d-btn:hover .s4d-title { color: var(--navy); }
+  .s4d-btn:hover .s4d-mark { transform: scale(1.12); border-color: var(--navy); }
+}
+.s4d-btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
+.s4d-inline { display: none; }
+
+/* desktop: photograph + signpost + description */
+.s4d-panel { position: relative; display: flex; flex-direction: column; }
+.s4d-photo {
+  position: relative;
+  aspect-ratio: 5 / 3;
+  margin: 0;
+  overflow: hidden;
+  background: var(--cream);
+}
+.s4d-photo img { object-fit: cover; }
+.s4d-img { opacity: 0; transition: opacity 650ms ease; }
+.s4d-img[data-on="true"] { opacity: 1; }
+
+.s4d-stage { position: relative; flex: 1; padding-left: 4.7rem; min-height: 8rem; }
+/* the pole and the ground it stands on (ground = bottom of the five-station list) */
+.s4d-pole {
+  position: absolute;
+  left: 1.6rem;
+  top: -4.2rem;
+  width: 0.7rem;
+  height: calc(100% + 3.9rem);
+  overflow: visible;
+  z-index: 1;
+}
+.s4d-pole path, .s4d-ground path {
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.s4d-ground { position: absolute; left: 0.35rem; bottom: 0; width: 3.2rem; height: auto; z-index: 1; }
+.s4d-ground path { stroke-width: 1.4; }
+.s4d-sign-wrap {
+  position: relative;
+  z-index: 2;
+  width: 17.6rem;
+  margin: -3.4rem 0 0 -4.7rem; /* the board overlaps the photograph's lower-left edge */
+  animation: s4d-sign-in 480ms var(--ease) both;
+}
+@keyframes s4d-sign-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.s4d-desc {
+  margin: 1rem 0 0;
+  max-width: 33rem;
+  color: var(--navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  animation: s4-in 520ms var(--ease) 120ms both;
+}
+
+/* the signboard: cream, navy hand-drawn outline, one Ember pin, one Ember doodle */
+.s4d-sign {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  height: 6.3rem;
+  justify-content: center;
+  padding: 0.7rem 3.7rem 0.7rem 2.1rem;
+  color: var(--navy);
+  transform: rotate(var(--tilt, -2deg));
+  transform-origin: 8% 50%;
+}
+.s4d-board { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.s4d-board path {
+  fill: var(--cream);
+  stroke: var(--navy);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.s4d-pin {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--ember);
+}
+.s4d-sign-num {
+  position: relative;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mid-navy);
+}
+.s4d-sign-title {
+  position: relative;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+.s4d-doodle {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  width: 2.3rem;
+  height: auto;
+  margin-top: -1.05rem;
+  transform: rotate(6deg);
+}
+
+@media (max-width: 800px) {
+  .s4d-grid { display: block; }
+  .s4d-panel { display: none; }
+  .s4d-item { padding-left: 2.8rem; scroll-margin-top: 150px; }
+  .s4d-btn { scroll-margin-top: 150px; min-height: 44px; }
+  .s4d-inline { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 420ms var(--ease); }
+  .s4d-inline[data-open="true"] { grid-template-rows: 1fr; }
+  .s4d-inline-clip { min-height: 0; overflow: hidden; }
+  .s4d-inline:not([data-open="true"]) .s4d-inline-clip { visibility: hidden; }
+  .s4d-photo--m { margin-top: 1rem; }
+  /* phones: a compact sign on a short pole — it does not run the length of the list */
+  .s4d-stage--m { position: relative; padding: 5.9rem 0 0.8rem; }
+  .s4d-stage--m .s4d-pole { left: 1.2rem; top: -2.6rem; height: 7.7rem; }
+  .s4d-stage--m .s4d-ground { left: -0.05rem; bottom: auto; top: 4.8rem; width: 2.7rem; }
+  .s4d-stage--m .s4d-sign {
+    position: absolute;
+    top: -1.9rem;
+    left: -0.6rem;
+    z-index: 2;
+    width: calc(100% - 2rem);
+    max-width: 19rem;
+    height: 5.4rem;
+  }
+  .s4d-stage--m .s4d-sign-title { font-size: 1.3rem; }
+  .s4d-desc-m {
+    margin: 0;
+    color: var(--navy);
+    font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  }
+}
+@media (min-width: 801px) {
+  .s4d-stage--m, .s4d-photo--m { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s4d-item::before,
+  .s4d-mark,
+  .s4d-num,
+  .s4d-title,
+  .s4d-img,
+  .s4d-inline { transition: none !important; }
+  .s4d-sign-wrap,
+  .s4d-desc { animation: none; }
+}
+
+/* ═══ Prototype C3 — Final photographic journey refinement ═══════════════════ */
+/* small Ember station labels: a deeper Ember (#C4472B, 4.8:1 on Paper, WCAG AA) — decorative Ember (rings, pins, doodles) is unchanged */
+.s4e { --s4e-ember-text: #C4472B; }
+/* full-width introduction above the two-column journey */
+.s4e-head h2 { margin-bottom: 1rem; max-width: none; text-wrap: balance; }
+@media (min-width: 1100px) { .s4e-head h2 { white-space: nowrap; text-wrap: nowrap; } }
+.s4e-head .s4-intro, .s4e-head .s4e-intro { max-width: 46rem; }
+.s4e-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  column-gap: clamp(2rem, 5vw, 5rem);
+  align-items: stretch; /* the right column ends where the five-station list ends: the shared ground */
+  margin-top: clamp(1.4rem, 2.6vw, 2.2rem);
+}
+.s4e-nav .s4-cue { margin-top: 0; }
+.s4e-list { position: relative; margin: 0; padding: 0; list-style: none; }
+.s4e-item { position: relative; padding: 0 0 1.55rem 2.9rem; }
+.s4e-item:last-child { padding-bottom: 0; }
+.s4e-item::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 1.4rem;
+  bottom: -0.2rem;
+  width: 1px;
+  background: var(--lav);
+  transition: background-color 400ms ease;
+}
+.s4e-item:last-child::before { display: none; }
+.s4e-item[data-done="true"]::before { background: var(--mid-navy); }
+.s4e-mark {
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  box-sizing: border-box;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--mid-navy);
+  border-radius: 50%;
+  background: var(--paper);
+  transition: background-color 300ms ease, border-color 300ms ease, transform 300ms ease;
+}
+.s4e-item[data-reached="true"] .s4e-mark { background: var(--navy); border-color: var(--navy); }
+.s4e-item[data-sel="true"] .s4e-mark { outline: 1.5px solid var(--ember); outline-offset: 3px; }
+
+.s4e-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.1rem 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--navy);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.s4e-num {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--slate);
+  transition: color 200ms ease;
+}
+.s4e-title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.85vw, 1.62rem); /* = site h3 */
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  color: rgba(32, 40, 65, 0.78);
+  transition: color 250ms ease, text-shadow 250ms ease;
+}
+.s4e-benefit {
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(32, 43, 65, 0.8);
+}
+/* selected: bold Ember label, Deep Navy firmer title, Ember ring on the marker */
+.s4e-item[data-sel="true"] .s4e-num { color: var(--s4e-ember-text); font-weight: 700; }
+.s4e-item[data-sel="true"] .s4e-title {
+  color: var(--navy);
+  text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor;
+}
+/* hover and keyboard focus: the same clear response (bold Ember label, Navy title, marker answers) */
+@media (hover: hover) {
+  .s4e-btn:hover .s4e-num { color: var(--s4e-ember-text); font-weight: 700; }
+  .s4e-btn:hover .s4e-title { color: var(--navy); text-shadow: 0.3px 0 0 currentColor, -0.3px 0 0 currentColor; }
+  .s4e-item:has(.s4e-btn:hover) .s4e-mark { transform: scale(1.18); border-color: var(--ember); }
+}
+.s4e-item:has(.s4e-btn:focus-visible) .s4e-mark { transform: scale(1.18); border-color: var(--ember); }
+.s4e-btn:focus-visible .s4e-num { color: var(--s4e-ember-text); font-weight: 700; }
+.s4e-btn:focus-visible .s4e-title { color: var(--navy); }
+.s4e-btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
+.s4e-item[data-sel="true"] .s4e-mark { transform: none; }
+.s4e-inline { display: none; }
+
+/* desktop: photograph + signpost + description */
+.s4e-panel { position: relative; display: flex; flex-direction: column; }
+.s4e-photo {
+  position: relative;
+  aspect-ratio: 5 / 3;
+  margin: 0;
+  overflow: hidden;
+  background: var(--cream);
+}
+.s4e-photo img { object-fit: cover; }
+.s4e-img { opacity: 0; transition: opacity 650ms ease; }
+.s4e-img[data-on="true"] { opacity: 1; }
+
+.s4e-stage { position: relative; flex: 1; padding: 4.4rem 0 0 4.7rem; min-height: 8rem; }
+/* the pole and the ground it stands on (ground = bottom of the five-station list) */
+.s4e-pole {
+  position: absolute;
+  left: 1.6rem;
+  top: -3.1rem;
+  width: 0.7rem;
+  height: calc(100% + 2.8rem);
+  overflow: visible;
+  z-index: 1;
+}
+.s4e-pole path, .s4e-ground path {
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.s4e-ground { position: absolute; left: 0.35rem; bottom: 0; width: 3.2rem; height: auto; z-index: 1; }
+.s4e-ground path { stroke-width: 1.4; }
+.s4e-sign-wrap {
+  position: absolute;
+  z-index: 2;
+  top: -2.3rem; /* C2 was -3.4rem: about 17px lower, so a little more of the photograph shows */
+  left: 0;
+  width: max-content;
+  max-width: 19.5rem;
+  animation: s4e-sign-in 480ms var(--ease) both;
+}
+@keyframes s4e-sign-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.s4e-desc {
+  margin: 0;
+  max-width: 33rem;
+  color: var(--navy);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  animation: s4-in 520ms var(--ease) 120ms both;
+}
+
+/* the signboard: cream, navy hand-drawn outline, one Ember pin, one Ember doodle */
+.s4e-sign {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  height: 4.9rem;
+  justify-content: center;
+  min-width: 14.5rem;
+  padding: 0.6rem 3.5rem 0.6rem 2.1rem;
+  color: var(--navy);
+  transform: rotate(var(--tilt, -2deg));
+  transform-origin: 8% 50%;
+}
+.s4e-board { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.s4e-board path {
+  fill: var(--cream);
+  stroke: var(--navy);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.s4e-pin {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--ember);
+}
+.s4e-sign-num {
+  position: relative;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mid-navy);
+}
+.s4e-sign-title {
+  position: relative;
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  white-space: nowrap;
+  font-weight: 500;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+.s4e-sign[data-long="true"] { height: 5.5rem; }
+.s4e-sign[data-long="true"] .s4e-sign-title { white-space: normal; width: 10.5rem; font-size: 1.3rem; }
+.s4e-doodle {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  width: 2.3rem;
+  height: auto;
+  margin-top: -1.05rem;
+  transform: rotate(6deg);
+}
+
+@media (max-width: 800px) {
+  .s4e-grid { display: block; }
+  .s4e-panel { display: none; }
+  .s4e-item { padding-left: 2.8rem; scroll-margin-top: 150px; }
+  .s4e-btn { scroll-margin-top: 150px; min-height: 44px; }
+  .s4e-inline { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 420ms var(--ease); }
+  .s4e-inline[data-open="true"] { grid-template-rows: 1fr; }
+  .s4e-inline-clip { min-height: 0; overflow: hidden; }
+  .s4e-inline:not([data-open="true"]) .s4e-inline-clip { visibility: hidden; }
+  .s4e-photo--m { margin-top: 1rem; }
+  /* phones: a compact sign on a short pole — it does not run the length of the list */
+  .s4e-stage--m { position: relative; padding: 5.9rem 0 0.8rem; }
+  .s4e-stage--m .s4e-pole { left: 1.2rem; top: -2.6rem; height: 7.7rem; }
+  .s4e-stage--m .s4e-ground { left: -0.05rem; bottom: auto; top: 4.8rem; width: 2.7rem; }
+  .s4e-stage--m .s4e-sign {
+    position: absolute;
+    top: -1.9rem;
+    left: -0.6rem;
+    z-index: 2;
+    width: calc(100% - 2rem);
+    max-width: 19rem;
+    height: 5.4rem;
+  }
+  .s4e-stage--m .s4e-sign-title,
+  .s4e-stage--m .s4e-sign[data-long="true"] .s4e-sign-title { font-size: 1.3rem; white-space: normal; width: auto; }
+  .s4e-stage--m .s4e-sign[data-long="true"] { height: 5.4rem; }
+  .s4e-stage--m .s4e-sign { min-width: 0; }
+  .s4e-desc-m {
+    margin: 0;
+    color: var(--navy);
+    font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+  }
+}
+/* very narrow phones (≤ 380px): a wider board and a slimmer doodle so every title fits (Station 4 wraps to two lines) */
+@media (max-width: 380px) {
+  .s4e-stage--m .s4e-sign { width: calc(100% - 0.6rem); max-width: none; padding-right: 2.9rem; }
+  .s4e-stage--m .s4e-doodle { width: 1.9rem; right: 0.8rem; margin-top: -0.9rem; }
+  .s4e-stage--m .s4e-sign-title,
+  .s4e-stage--m .s4e-sign[data-long="true"] .s4e-sign-title { font-size: 1.2rem; }
+}
+
+@media (min-width: 801px) {
+  .s4e-stage--m, .s4e-photo--m { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .s4e-item::before,
+  .s4e-mark,
+  .s4e-num,
+  .s4e-title,
+  .s4e-img,
+  .s4e-inline { transition: none !important; }
+  .s4e-sign-wrap,
+  .s4e-desc { animation: none; }
+}

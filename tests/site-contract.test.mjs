@@ -184,17 +184,26 @@ test("routes every Identity Lab CTA to the single status-driven action anchor", 
   // The stable anchor is on the central block, regardless of which block is active.
   assert.match(identityLab, /id=\{IDENTITY_LAB_ACTION_ANCHOR\}/);
 
-  // Hero, "What it is", and final "Ready to begin?" CTAs all point at that anchor
-  // and carry the status-driven label — no hardcoded CTA text or destinations.
-  assert.equal((identityLab.match(/href=\{IDENTITY_LAB_ACTION_HREF\}/g) ?? []).length, 3);
-  assert.equal((identityLab.match(/\{IDENTITY_LAB_CTA_LABEL\}/g) ?? []).length, 3);
+  // V2 (Nov 2026): two button CTAs — the hero (Section 1) and the one in Section 3 — point at that anchor
+  // and carry the status-driven label (no hardcoded CTA text or destinations). The third entry point is the
+  // Kit form in Section 7 itself.
+  const hero = read("components/identity-lab-v2/hero.tsx");
+  const section3 = read("components/identity-lab-v2/opening-doorway.tsx");
+  for (const source of [hero, section3]) {
+    assert.equal((source.match(/href=\{IDENTITY_LAB_ACTION_HREF\}/g) ?? []).length, 1);
+    assert.equal((source.match(/\{IDENTITY_LAB_CTA_LABEL\}/g) ?? []).length, 1);
+  }
+  // Secondary hero CTA keeps the existing Midlife Clarity Check destination.
+  assert.match(hero, /href="\/#clarity-check"[\s\S]*Take the Midlife Clarity Check →/);
   assert.doesNotMatch(identityLab, /Join the Identity Lab →/);
 
   // Only the active block is rendered — never both with one hidden by CSS.
   assert.match(
     identityLab,
-    /identityLabStatus === "waitlist" \? \(\s*<IdentityLabWaitlist \/>\s*\) : \(\s*<IdentityLabEnrollmentOpen \/>\s*\)/,
+    /identityLabStatus === "waitlist" \? \(\s*<IdentityLabV2Waitlist \/>\s*\) : \(\s*<IdentityLabEnrollmentOpen \/>\s*\)/,
   );
+  // Section 7 uses the existing Kit form (UID fed36a3d05), never a stand-in.
+  assert.match(read("components/identity-lab-v2/waitlist-card.tsx"), /IdentityWaitlistKitForm/);
   assert.doesNotMatch(identityLab, /https?:\/\/[^\s"']*kajabi/i);
 });
 

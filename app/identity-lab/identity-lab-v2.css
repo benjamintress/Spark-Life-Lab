@@ -1,0 +1,842 @@
+/* ===================================================================
+   Identity Lab page — V2 (seven sections), 16 Nov 2026
+   -------------------------------------------------------------------
+   Page-scoped: every rule is nested under `.ilv2` (the page's <main>),
+   so nothing here can affect any other page. Uses the site's existing
+   design tokens from app/globals.css (navy, mid-navy, cream, paper,
+   lavender, ember, --serif, --sans, --ease-soft).
+   Ember is used only as a hairline/marker accent.
+   =================================================================== */
+
+.ilv2 .visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* ─── Shared ──────────────────────────────────────────────────────── */
+
+.ilv2 h2 {
+  margin-bottom: 1.6rem;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.ilv2 .ilv2-pullquote,
+.ilv2 .ilv2-possible-list,
+.ilv2 .ilv2-possible-close,
+.ilv2 .ilv2-northstar,
+.ilv2 .ilv2-idea-close,
+.ilv2 .ilv2-station-benefit,
+.ilv2 h3 {
+  text-wrap: balance;
+}
+
+.ilv2 p {
+  text-wrap: pretty;
+}
+
+.ilv2 strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* Restrained scroll reveal — only active once JS has added .ilv2-motion
+   (never with reduced motion), so content is always visible without JS. */
+.ilv2.ilv2-motion [data-ilv2-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity 560ms var(--ease-soft) var(--ilv2-delay, 0ms),
+    transform 560ms var(--ease-soft) var(--ilv2-delay, 0ms);
+}
+
+.ilv2.ilv2-motion [data-ilv2-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ilv2.ilv2-motion [data-ilv2-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ─── 1 · Hero ────────────────────────────────────────────────────── */
+
+.ilv2-hero .il-hero-grid {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+}
+
+.ilv2-hero h1 {
+  font-size: clamp(2.5rem, 3.9vw, 3.85rem);
+  line-height: 1.08;
+  margin-bottom: 1.8rem;
+  max-width: 100%;
+  text-wrap: balance;
+  width: auto;
+}
+
+.ilv2-hero-h1-second {
+  color: var(--mid-navy);
+  display: block;
+  margin-top: 0.12em;
+}
+
+.ilv2-hero .hero-copy {
+  margin-bottom: 1.1rem;
+  max-width: 34rem;
+}
+
+.ilv2-hero .hero-copy:first-of-type {
+  color: var(--navy);
+}
+
+.ilv2-hero .hero-actions {
+  column-gap: 1.75rem;
+  margin-top: 2.2rem;
+}
+
+.ilv2-hero .il-hero-image-wrap {
+  animation: rise 900ms var(--ease-soft) 240ms both;
+}
+
+.ilv2-hero .il-hero-img {
+  aspect-ratio: 4 / 5;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  object-position: 55% 30%; /* keep the face clear of every crop */
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ilv2-hero .il-hero-image-wrap { animation: none; }
+}
+
+/* ─── 2 · Why this matters ───────────────────────────────────────── */
+
+.ilv2-why {
+  background: var(--cream);
+}
+
+.ilv2-why-col {
+  max-width: 760px;
+}
+
+.ilv2-why-col p {
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem);
+}
+
+.ilv2-why-question {
+  color: var(--navy);
+}
+
+.ilv2 .ilv2-pullquote {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 2.3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.28;
+  margin: 2.6rem 0 2.4rem;
+  max-width: 30ch;
+  padding-top: 1.6rem;
+  position: relative;
+}
+
+.ilv2-pullquote::before {
+  background: var(--ember);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 2.2rem;
+}
+
+/* ─── 3 · What becomes possible ──────────────────────────────────── */
+
+.ilv2-possible {
+  background: var(--page-bg);
+}
+
+.ilv2-possible-grid {
+  align-items: start;
+  display: grid;
+  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+}
+
+.ilv2 .ilv2-possible-list {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.7vw, 1.6rem);
+  line-height: 1.42;
+  margin-bottom: 1.6rem;
+}
+
+.ilv2 .ilv2-possible-close {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1.7vw, 1.6rem);
+  font-style: italic;
+  line-height: 1.4;
+  margin-top: 2rem;
+}
+
+.ilv2-progression {
+  border-left: 1px solid var(--lavender);
+  list-style: none;
+  margin: clamp(0.5rem, 5vw, 5.2rem) 0 0;
+  padding: 0;
+}
+
+.ilv2-progression-step {
+  padding: 0 0 clamp(2.4rem, 4vw, 3.4rem) clamp(1.8rem, 3vw, 2.6rem);
+  position: relative;
+}
+
+.ilv2-progression-step:last-child {
+  padding-bottom: 0;
+}
+
+.ilv2-progression-marker {
+  background: var(--ember);
+  border-radius: 50%;
+  height: 7px;
+  left: -4px;
+  position: absolute;
+  top: 0.62em;
+  width: 7px;
+}
+
+.ilv2 .ilv2-progression-label {
+  color: var(--mid-navy);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.55rem;
+  text-transform: uppercase;
+}
+
+.ilv2-progression-title {
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+
+.ilv2 .ilv2-progression-desc {
+  color: var(--mid-navy);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 30rem;
+}
+
+/* ─── 4 · Your journey — five stations ───────────────────────────── */
+
+.ilv2-journey {
+  background: var(--cream);
+}
+
+.ilv2-journey-head {
+  margin-bottom: clamp(2.6rem, 5vw, 4rem);
+  max-width: 760px;
+}
+
+.ilv2-journey-head h2 {
+  max-width: 20ch;
+}
+
+.ilv2-stations {
+  border-bottom: 1px solid var(--line-strong);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ilv2-station {
+  align-items: start;
+  border-top: 1px solid var(--line-strong);
+  display: grid;
+  gap: 0 clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: 5.5rem minmax(0, 0.9fr) minmax(0, 1.35fr);
+  padding: clamp(1.8rem, 3vw, 2.6rem) 0;
+  transition: background var(--t-medium) var(--ease-soft);
+}
+
+.ilv2-station-num {
+  color: var(--slate-mist);
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 3.6vw, 3.4rem);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  line-height: 1;
+  position: relative;
+  transition: color var(--t-medium) var(--ease-soft);
+}
+
+/* Tiny ember marker under each number — draws in as the station reveals */
+.ilv2-station-num::after {
+  background: var(--ember);
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 0.9rem;
+  transition: width 700ms var(--ease-soft) 180ms;
+  width: 1.6rem;
+}
+
+.ilv2.ilv2-motion .ilv2-station:not(.is-in) .ilv2-station-num::after {
+  width: 0;
+}
+
+.ilv2 .ilv2-station-kicker {
+  color: var(--mid-navy);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  margin: 0.35rem 0 0.4rem;
+  text-transform: uppercase;
+}
+
+.ilv2-station-name {
+  font-size: clamp(1.55rem, 2.1vw, 1.95rem);
+  margin: 0;
+}
+
+.ilv2 .ilv2-station-benefit {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.28rem, 1.55vw, 1.45rem);
+  line-height: 1.35;
+  margin: 0.25rem 0 0.7rem;
+}
+
+.ilv2 .ilv2-station-desc {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (hover: hover) and (min-width: 901px) {
+  .ilv2-station:hover .ilv2-station-num {
+    color: var(--navy);
+  }
+}
+
+/* ─── 5 · How it works ───────────────────────────────────────────── */
+
+.ilv2-how {
+  background: var(--page-bg);
+}
+
+.ilv2-how-grid {
+  align-items: start;
+  display: grid;
+  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.ilv2 .ilv2-faq-heading {
+  color: var(--mid-navy);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  margin: 2.8rem 0 0.6rem;
+  text-transform: uppercase;
+}
+
+.ilv2-faq {
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.ilv2-faq-item {
+  border-top: 1px solid var(--line-strong);
+}
+
+.ilv2-faq-q {
+  align-items: center;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  font-size: 1.04rem;
+  font-weight: 500;
+  gap: 1.25rem;
+  justify-content: space-between;
+  line-height: 1.4;
+  list-style: none;
+  min-height: 3.25rem;
+  padding: 0.95rem 0;
+}
+
+.ilv2-faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.ilv2-faq-q:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+.ilv2-faq-icon {
+  flex: 0 0 auto;
+  height: 14px;
+  position: relative;
+  width: 14px;
+}
+
+.ilv2-faq-icon::before,
+.ilv2-faq-icon::after {
+  background: var(--navy);
+  content: "";
+  height: 1.5px;
+  left: 0;
+  position: absolute;
+  top: 6.25px;
+  transition: transform var(--t-quick) var(--ease-soft);
+  width: 14px;
+}
+
+.ilv2-faq-icon::after {
+  transform: rotate(90deg);
+}
+
+.ilv2-faq-item[open] .ilv2-faq-icon::after {
+  transform: rotate(0deg);
+}
+
+.ilv2-faq-a p {
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 36rem;
+  padding: 0 2.25rem 1.3rem 0;
+}
+
+.ilv2-overview-link {
+  margin-top: 1.6rem;
+}
+
+.ilv2-facts-col {
+  padding-top: clamp(0rem, 3vw, 3.4rem);
+}
+
+.ilv2-facts {
+  margin: 0;
+}
+
+.ilv2-fact {
+  border-top: 1px solid var(--line);
+  padding: 1.25rem 0 1.35rem;
+}
+
+.ilv2-fact:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.ilv2-fact--joins {
+  padding-bottom: 0.2rem;
+}
+
+.ilv2-fact--continues {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.ilv2-fact dt {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+}
+
+.ilv2-fact-prefix {
+  color: var(--mid-navy);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ilv2-fact-num {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(2.9rem, 4vw, 3.7rem);
+  font-weight: 500;
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: 1;
+  min-width: 2.1ch;
+}
+
+.ilv2-fact-label {
+  color: var(--mid-navy);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ilv2-fact dd {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin: 0.55rem 0 0;
+  max-width: 28rem;
+}
+
+.ilv2-facts-extra {
+  border-top: 1px solid var(--line);
+  margin-top: 0.4rem;
+  padding-top: 1.4rem;
+}
+
+.ilv2-facts-extra p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+  max-width: 28rem;
+}
+
+/* ─── 6 · The idea behind the Identity Lab ───────────────────────── */
+
+.ilv2-idea {
+  background: var(--cream);
+}
+
+.ilv2-idea-grid {
+  align-items: center;
+  display: grid;
+  gap: clamp(3rem, 7vw, 7rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+}
+
+.ilv2 .ilv2-northstar {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 2.5vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 2.2rem 0;
+}
+
+.ilv2 .ilv2-idea-close {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 1.6vw, 1.5rem);
+  font-style: italic;
+  line-height: 1.4;
+  margin: 2rem 0 1.6rem;
+}
+
+.ilv2-collage {
+  margin: 0;
+  width: 100%;
+}
+
+/* Slightly asymmetrical arrangement of three photos. Percentages keep the
+   composition identical at every width; swap images freely. */
+.ilv2-collage-stage {
+  aspect-ratio: 1 / 1.06;
+  position: relative;
+  width: 100%;
+}
+
+.ilv2-collage-item {
+  background: var(--page-bg);
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(32, 40, 65, 0.12);
+  overflow: hidden;
+  padding: 6px;
+  position: absolute;
+}
+
+.ilv2-collage-item img {
+  border-radius: 2px;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.ilv2-collage-item--1 {
+  aspect-ratio: 4 / 5;
+  left: 0;
+  top: 6%;
+  width: 54%;
+}
+
+.ilv2-collage-item--2 {
+  aspect-ratio: 1 / 1;
+  right: 2%;
+  top: 0;
+  width: 38%;
+}
+
+.ilv2-collage-item--3 {
+  aspect-ratio: 1 / 1;
+  bottom: 0;
+  right: 9%;
+  width: 44%;
+}
+
+.ilv2 .ilv2-collage-caption {
+  color: var(--mid-navy);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  margin-top: 1.1rem;
+  text-align: right;
+}
+
+/* ─── 7 · Closing — landscape + waitlist card ────────────────────── */
+
+.ilv2-closing {
+  align-items: center;
+  background: var(--cream);
+  display: flex;
+  min-height: clamp(720px, 62vw, 860px);
+  position: relative;
+  scroll-margin-top: 4.5rem;
+}
+
+.ilv2-closing-media {
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.ilv2-closing-media img {
+  display: block;
+  filter: saturate(0.82) brightness(1.03);
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Quiet veil so the card reads as the focus, not the scenery */
+.ilv2-closing-media::after {
+  background: linear-gradient(
+    90deg,
+    rgba(32, 40, 65, 0.08) 0%,
+    rgba(32, 40, 65, 0.04) 45%,
+    rgba(254, 253, 248, 0.14) 100%
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.ilv2-closing-inner {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+  padding: clamp(4.5rem, 7vw, 6.5rem) 5vw;
+  position: relative;
+  width: min(calc(var(--max) + 10vw), 100%);
+}
+
+.ilv2-closing-card {
+  background: var(--page-bg);
+  border-radius: 4px;
+  box-shadow: 0 24px 64px rgba(32, 40, 65, 0.2);
+  margin-right: clamp(0rem, 4vw, 4rem);
+  padding: clamp(2.2rem, 3.4vw, 3.1rem);
+  width: min(540px, 100%);
+}
+
+.ilv2-waitlist .ilv2-waitlist-title {
+  font-size: clamp(2rem, 2.8vw, 2.55rem);
+  margin-bottom: 1.2rem;
+  max-width: 16ch;
+}
+
+.ilv2-waitlist p {
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.ilv2 .ilv2-waitlist-reassure {
+  color: var(--navy);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.ilv2-waitlist .sll-identity-waitlist-kit-form {
+  max-width: 100%;
+}
+
+/* Kit submit: deep navy primary (brand rule), ember stays an accent.
+   Visual only — markup, fields, validation and submission are untouched. */
+.ilv2-closing .sll-identity-waitlist-kit-form .formkit-submit {
+  background: var(--navy) !important;
+}
+
+.ilv2-closing .sll-identity-waitlist-kit-form .formkit-submit:hover,
+.ilv2-closing .sll-identity-waitlist-kit-form .formkit-submit:focus-visible {
+  background: var(--mid-navy) !important;
+}
+
+.ilv2-closing .sll-identity-waitlist-kit-form .formkit-input:focus,
+.ilv2-closing .sll-identity-waitlist-kit-form .formkit-input:focus-visible {
+  border-color: var(--mid-navy) !important;
+  box-shadow: 0 0 0 2px rgba(239, 124, 98, 0.35) !important;
+}
+
+.ilv2 .ilv2-waitlist-privacy {
+  color: var(--soft);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 1.1rem 0 0.9rem;
+}
+
+.ilv2 .ilv2-waitlist-contact {
+  color: var(--soft);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.ilv2-waitlist-contact a {
+  border-bottom: 1px solid var(--line-strong);
+  color: var(--navy);
+}
+
+.ilv2-waitlist-contact a:hover {
+  border-bottom-color: var(--ember);
+}
+
+/* Dormant "enrollment-open" block, if the status flag is ever switched */
+.ilv2-closing-card .il-action-card {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Responsive — tablet (≤900px) ───────────────────────────────── */
+
+@media (max-width: 900px) {
+  .ilv2-hero .il-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ilv2-hero .il-hero-image-wrap {
+    max-height: none;
+  }
+
+  .ilv2-hero .il-hero-img {
+    aspect-ratio: auto;
+    height: 440px;
+    object-position: 55% 26%;
+  }
+
+
+  .ilv2-possible-grid,
+  .ilv2-how-grid,
+  .ilv2-idea-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ilv2-progression {
+    margin-top: 0;
+  }
+
+  .ilv2-station {
+    gap: 0.4rem 1.4rem;
+    grid-template-columns: 4.2rem minmax(0, 1fr);
+  }
+
+  .ilv2-station-body {
+    grid-column: 2;
+  }
+
+  .ilv2-facts-col {
+    padding-top: 0;
+  }
+
+  .ilv2-collage {
+    margin: 0 auto;
+    max-width: 480px;
+  }
+
+  /* Landscape above, solid card below — no form-on-photo on small screens */
+  .ilv2-closing {
+    display: block;
+    min-height: 0;
+  }
+
+  .ilv2-closing-media {
+    aspect-ratio: 16 / 10;
+    position: relative;
+  }
+
+  .ilv2-closing-media::after {
+    display: none;
+  }
+
+  .ilv2-closing-inner {
+    display: block;
+    padding: 0 5vw 4.5rem;
+  }
+
+  .ilv2-closing-card {
+    box-shadow: 0 16px 40px rgba(32, 40, 65, 0.12);
+    margin: -3.5rem auto 0;
+    position: relative;
+  }
+}
+
+/* ─── Responsive — mobile (≤600px) ───────────────────────────────── */
+
+@media (max-width: 600px) {
+  .ilv2.ilv2-motion [data-ilv2-reveal] {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  .ilv2.ilv2-motion [data-ilv2-reveal].is-in {
+    transform: none;
+  }
+
+  .ilv2-hero .il-hero-img {
+    height: 340px;
+  }
+
+  .ilv2-why .section-inner,
+  .ilv2-journey .section-inner {
+    width: 100%;
+  }
+
+  .ilv2-station {
+    display: block;
+  }
+
+  .ilv2-station-num {
+    font-size: 2.3rem;
+  }
+
+  .ilv2-station-num::after {
+    margin: 0.6rem 0 0.8rem;
+  }
+
+  .ilv2-closing-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .ilv2-closing-inner {
+    padding: 0 4vw 3.5rem;
+  }
+
+  .ilv2-closing-card {
+    margin-top: -2.5rem;
+    padding: 1.9rem 1.4rem;
+  }
+}

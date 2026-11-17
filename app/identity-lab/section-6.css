@@ -1,0 +1,111 @@
+/* Identity Lab — Section 6 "The idea behind the Identity Lab" prototype. Isolated: every selector
+   is scoped under .s6 / .s6main / .s6x. Cream (#EEEAE5) section: a soft, warm step down from the
+   Mid Navy of Section 5, and distinct from Section 4's Paper. Body text Deep Navy at 85% (≈ 9:1 on Cream). */
+
+.s6main { background: #fefdf8; overflow-x: clip; }
+.s6x-spacer { height: 96px; }
+.s6x-bar {
+  position: sticky; top: 70px; z-index: 5;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: rgba(254, 253, 248, 0.94);
+  border-bottom: 1px solid rgba(139, 143, 166, 0.5);
+}
+.s6x-bar button {
+  min-height: 40px; padding: 0.45rem 1rem;
+  border: 1px solid rgba(139, 143, 166, 0.5); border-radius: 0; background: transparent;
+  color: #4d5772; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+}
+.s6x-bar button[aria-pressed="true"] { background: #202841; border-color: #202841; color: #fefdf8; }
+.s6x-bar button:focus-visible { outline: 2px solid #202841; outline-offset: 2px; }
+
+.s6 {
+  --s6-text: rgba(32, 40, 65, 0.86);
+  position: relative;
+  z-index: 0;
+  background: #eeeae5;
+  color: #202841;
+  --s6-pad: clamp(3rem, 4.4vw, 4.2rem);
+  padding: var(--s6-pad) 0 clamp(3.5rem, 5vw, 4.5rem);
+}
+.s6-inner { width: min(var(--max, 1120px), 100% - 2 * 5vw); margin: 0 auto; }
+
+/* one shared column line, the same proportions as Section 5 */
+.s6-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  column-gap: clamp(2.5rem, 6vw, 5.5rem);
+}
+.s6-top { align-items: start; }
+
+.s6 h2 { margin: 0 0 1.2rem; color: #202841; max-width: 17ch; text-wrap: balance; }
+.s6-story p:not(.eyebrow), .s6-end-text {
+  margin: 0 0 1rem; max-width: 37rem; color: var(--s6-text);
+  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); text-wrap: pretty;
+}
+.s6-story p:last-child { margin-bottom: 0; }
+
+/* the founders: a small, loose, slightly asymmetrical trio. The first photo reaches up over the
+   seam with Section 5 (desktop only) to tie the two sections together. */
+.s6-collage { margin: 0; position: relative; z-index: 2; }
+.s6-stage { position: relative; aspect-ratio: 1 / 0.82; width: 100%; max-width: 31rem; margin-left: auto; }
+.s6-photo {
+  position: absolute;
+  overflow: hidden;
+  padding: 5px;
+  background: #fefdf8;
+  border-radius: 2px;
+  box-shadow: 0 6px 20px rgba(32, 40, 65, 0.14);
+}
+.s6-photo img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 1px; }
+.s6-photo--1 { width: 47%; aspect-ratio: 4 / 5; left: 0; top: 0; transform: rotate(-1.6deg); }
+.s6-photo--2 { width: 36%; aspect-ratio: 1 / 1; right: 2%; top: 9%; transform: rotate(1.4deg); }
+.s6-photo--3 { width: 40%; aspect-ratio: 1 / 1; right: 14%; bottom: 0; transform: rotate(-0.8deg); }
+.s6-caption { margin: 0.9rem 0 0; max-width: 31rem; margin-left: auto; color: #4d5772; font-size: 0.9rem; letter-spacing: 0.02em; text-align: right; }
+
+@media (min-width: 861px) {
+  .s6-collage { margin-top: calc(-1 * var(--s6-pad) - 0.95rem); } /* ~40px lower than before; the top photo still overlaps the seam with Section 5 by ~15px */
+}
+
+/* the North Star line: left-aligned serif italic, leading into the last paragraph */
+.s6-star {
+  margin: 0 0 1rem;
+  max-width: 40rem;
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 2vw + 0.9rem, 2.1rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.2;
+  color: #202841;
+  text-wrap: balance;
+}
+
+/* the conclusion: one full-width sequence — North Star, the inspiration paragraph, the closing statement, the link */
+.s6-end { margin-top: clamp(2.2rem, 3.6vw, 3rem); padding-top: clamp(2rem, 3vw, 2.6rem); border-top: 1px solid rgba(77, 87, 114, 0.28); }
+.s6-end-text { margin: 0; max-width: 46rem; }
+.s6-close-line {
+  margin: clamp(1.8rem, 3vw, 2.6rem) 0 1.3rem;
+  max-width: none;
+  color: #202841;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.7rem, 2.2vw + 0.9rem, 2.55rem);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.s6-link { margin: 0; }
+
+@media (max-width: 860px) {
+  .s6 { padding: 3.25rem 0 3.25rem; }
+  .s6-top { display: block; }
+  .s6 h2 { max-width: none; }
+  .s6-story p:not(.eyebrow), .s6-end-text { max-width: none; }
+  .s6 { --s6-pad: 3rem; }
+  .s6-collage { margin: 1.8rem auto 0; max-width: 21rem; }
+  .s6-stage { max-width: none; margin-left: 0; }
+  .s6-caption { margin-left: 0; text-align: left; }
+  .s6-star { max-width: none; }
+  .s6-end { margin-top: 2rem; padding-top: 1.8rem; }
+  .s6-close-line { margin: 1.6rem 0 1rem; font-size: clamp(1.5rem, 5.4vw, 1.8rem); }
+}
