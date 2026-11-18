@@ -41,7 +41,7 @@ export const metadata: Metadata = pageMetadata({
 
 // Section 7 background — TEMPORARY, AI-generated provisional image ("The open Pacific"); to be replaced later
 // with one of the founders' own photographs (swap the file and keep the focal point).
-const CLOSING_COAST = { src: "/images/identity-lab-v2/closing-coast.jpg", width: 2400, height: 1350, objectPosition: "35% 50%" };
+const CLOSING_COAST = { src: "/images/identity-lab-v2/closing-coast-2.jpg", width: 2000, height: 1333, objectPosition: "35% 50%" };
 
 export default function IdentityLabPage() {
   return (
