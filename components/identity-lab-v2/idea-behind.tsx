@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const FOUNDERS = [
   { src: "/images/founder_barbel_v2.jpg", alt: "Bärbel Tress", objectPosition: "center 30%" },
-  { src: "/images/founder_gunther_v2.jpg", alt: "Gunther Tress", objectPosition: "center 30%" },
+  { src: "/images/identity-lab-v2/founder-gunther-monterey.jpg", alt: "Gunther Tress", objectPosition: "center 22%" },
   { src: "/images/founder_scott_v3.jpg", alt: "Scott E. Burton", objectPosition: "center 30%" },
 ];
 
