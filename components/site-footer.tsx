@@ -5,7 +5,7 @@ import Image from "next/image";
 import { site, legalItems } from "@/data/site";
 
 const DESCRIPTOR =
-  "A self-assessment, a guided transformation, and a community — for people ready to move forward.";
+  "For people who want the next chapter of their lives to be more fulfilling.";
 const SUBSTACK_URL = "https://sparklifelab.substack.com/";
 const LINKEDIN_URL = "https://www.linkedin.com/company/sparklifelab/";
 

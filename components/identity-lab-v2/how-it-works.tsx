@@ -34,6 +34,10 @@ const FAQ = [
     a: "Neither. The Identity Lab is a guided program for personal reflection and self-discovery. It combines individual exploration with conversations in a small group. We provide structure, questions, and perspectives to help you discover your own answers.",
   },
   {
+    q: "Do I need to be planning a big change?",
+    a: "No. For some people, the Identity Lab leads to a new career or way of life. For others, it means making more room for what matters within the life they already have. Both are equally valid — you decide what to do with what you discover.",
+  },
+  {
     q: "Do I need to complete the Midlife Clarity Check first?",
     a: "No. The Midlife Clarity Check is a free starting point for reflecting on where you are in life, but it isn’t a requirement for joining the Identity Lab.",
   },
@@ -54,7 +58,7 @@ export function HowItWorks() {
         <div className="s5-row s5-top">
           <div className="s5-intro">
             <p className="s5-eyebrow">How it works</p>
-            <h2 id="s5-heading">Four weeks to discover more about yourself.</h2>
+            <h2 id="s5-heading">Four weeks to a clearer direction.</h2>
             <p className="s5-lede">
               The Identity Lab combines guided personal reflection with live conversations in a small, supportive group.
             </p>
@@ -65,7 +69,7 @@ export function HowItWorks() {
           </div>
 
           <div className="s5-facts-col">
-            <h3 className="s5-visually-hidden">The programme at a glance</h3>
+            <h3 className="s5-visually-hidden">The program at a glance</h3>
             <dl className="s5-facts">
               {FACTS.map((f) => (
                 <div className="s5-fact" key={f.title}>

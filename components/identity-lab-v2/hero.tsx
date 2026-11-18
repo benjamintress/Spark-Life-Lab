@@ -28,8 +28,8 @@ export function Hero() {
           </p>
           <p className="hero-copy">
             <strong>The Identity Lab</strong> is a guided four-week program that
-            helps you uncover what makes you uniquely you, discover what brings
-            you alive, and find a clearer direction for your next chapter.
+            helps you take stock of your strengths, values and interests, see what
+            still fulfills you, and decide which directions to explore next.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={IDENTITY_LAB_ACTION_HREF}>

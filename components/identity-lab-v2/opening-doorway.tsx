@@ -331,7 +331,7 @@ export function OpeningDoorway() {
           <div className="s3h-copy">
             <div className="s3h-copy-1">
               <p className="eyebrow">WHAT BECOMES POSSIBLE</p>
-              <h2 id="s3h-heading">See yourself in a whole new light.</h2>
+              <h2 id="s3h-heading">See how the pieces fit together.</h2>
               <p className="s3h-body">
                 You know many different sides of yourself. But have you ever seen how they all fit
                 together?
@@ -343,7 +343,8 @@ export function OpeningDoorway() {
               </p>
               <p className="s3h-body" ref={outroBRef}>
                 In the Identity Lab, you bring these discoveries together in your personal{" "}
-                <strong>Identity Map</strong>.
+                <strong>Identity Map</strong> — a clear summary of your strengths, interests, values and
+                experiences, how they connect, and the directions you want to explore next.
               </p>
               <p className="s3h-cta" ref={ctaRef}>
                 <a className="button button-primary" href={IDENTITY_LAB_ACTION_HREF}>
