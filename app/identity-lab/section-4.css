@@ -946,8 +946,8 @@
 }
 
 /* ═══ Prototype C3 — Final photographic journey refinement ═══════════════════ */
-/* small Ember station labels: a deeper Ember (#C4472B, 4.8:1 on Paper, WCAG AA) — decorative Ember (rings, pins, doodles) is unchanged */
-.s4e { --s4e-ember-text: #C4472B; }
+/* station labels use the exact brand Ember, as the rings, pins and doodles do */
+.s4e { --s4e-ember-text: var(--ember); } /* Round 3: exact brand Ember (#EF7C62) for the active/hover station label */
 /* full-width introduction above the two-column journey */
 .s4e-head h2 { margin-bottom: 1rem; max-width: none; text-wrap: balance; }
 @media (min-width: 1100px) { .s4e-head h2 { white-space: nowrap; text-wrap: nowrap; } }
@@ -1220,4 +1220,35 @@
   .s4e-inline { transition: none !important; }
   .s4e-sign-wrap,
   .s4e-desc { animation: none; }
+}
+
+/* ═══ Round 3 (18 Nov 2026) ═════════════════════════════════════════ */
+/* Only one instruction is shown: "Tap" on touch devices, "Click" with a mouse. */
+.s4e .s4-cue-tap { display: none; }
+@media (hover: none), (pointer: coarse) {
+  .s4e .s4-cue-click { display: none; }
+  .s4e .s4-cue-tap { display: inline; }
+}
+/* Section 3 → 4: Section 4 starts closer to the end of the animation (both stay on Paper). */
+.s4main .s4e.section { padding-top: clamp(0.4rem, 0.9vw, 0.9rem); }
+@media (max-width: 800px) { .s4main .s4e.section { padding-top: 2.2rem; } }
+/* Phones: a small chevron shows that each station opens. */
+@media (max-width: 800px) {
+  .s4e-btn { position: relative; padding-right: 2rem; }
+  .s4e-btn::after {
+    content: "";
+    position: absolute;
+    right: 0.35rem;
+    top: 0.95rem;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--mid-navy);
+    border-bottom: 1.5px solid var(--mid-navy);
+    transform: rotate(45deg);
+    transition: transform 240ms ease;
+  }
+  .s4e-btn[aria-expanded="true"]::after { transform: rotate(-135deg); top: 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s4e-btn::after { transition: none; }
 }

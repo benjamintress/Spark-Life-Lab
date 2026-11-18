@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { S4_CUE, S4_EYEBROW, S4_HEADLINE, S4_INTRO, STATIONS } from "./stations";
+import { S4_CUE_CLICK, S4_CUE_TAP, S4_EYEBROW, S4_HEADLINE, S4_INTRO, STATIONS } from "./stations";
 
 // Identity Lab V2 — Section 4 "Your Journey" (approved design: Prototype C3).
 // C2 refined further (C3): full-width introduction, stronger hover/selected states, signboard
@@ -155,7 +155,11 @@ export function StationsJourney() {
 
         <div className="s4e-grid">
           <div className="s4e-nav">
-            <p className="s4-cue">{S4_CUE}</p>
+            <p className="s4-cue">
+              {/* only one is shown: "Tap" on touch devices, "Click" with a mouse (see section-4.css) */}
+              <span className="s4-cue-click">{S4_CUE_CLICK}</span>
+              <span className="s4-cue-tap">{S4_CUE_TAP}</span>
+            </p>
             <ol className="s4e-list">
               {STATIONS.map((s, i) => (
                 <li

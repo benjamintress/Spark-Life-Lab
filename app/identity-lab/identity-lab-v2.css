@@ -76,6 +76,12 @@
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
 }
 
+/* Round 3 (18 Nov 2026): tighter hand-over to Section 2 — about 40% less empty space between the hero and the
+   Cream section that follows (the hero's own top and inner spacing are unchanged). */
+.ilv2 .ilv2-hero {
+  padding-bottom: clamp(2.4rem, 3.4vw, 3.6rem);
+}
+
 .ilv2-hero h1 {
   font-size: clamp(2.5rem, 3.9vw, 3.85rem);
   line-height: 1.08;

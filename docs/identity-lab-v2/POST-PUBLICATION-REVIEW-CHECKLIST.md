@@ -30,7 +30,12 @@ Do not mark this review complete because the page has been deployed.
 After the team has reviewed the live page, a small number of final adjustments may follow. Until then the approved design is preserved.
 
 ## Known observations from integration (not defects introduced by publishing)
-- The Section 3 phone animation frame is one screen tall; on short phones (≈ 667 px tall or less) the last paragraph and the new button run past the frame, so the track leaves extra space below it (more on very short screens) so nothing overlaps Section 4.
+- (Round 3, 18 Nov 2026) The Section 3 phone animation was rebuilt: heading and question first, then the animation pinned on its own across the full width, then the supporting text and button in normal flow.
 - Two site-contract tests already failed on `main` before this work and still fail (`keeps both Identity Lab conversion blocks…`, `keeps the Identity Lab waitlist page hidden and Kit-powered`); they concern `components/identity-lab-waitlist.tsx` and the standalone `/identity-lab/waitlist/` page, which were not touched.
 - Site-wide Ember eyebrow text is below WCAG AA contrast on light backgrounds (owner decision to keep it).
 - Section CSS files still contain styles for rejected prototype variants (Section 4 A/B/C1/C2, preview bars); prune in a later cleanup.
+
+## Round 3 (18 Nov 2026) — changes made, and items deliberately deferred
+Changes: hero eyebrow/paragraph; tighter hero → Section 2 hand-over and Cream Section 2 (cards with a small plus/minus indicator, question marks, "Click/Tap … to explore", 3 px Ember rule); Section 3 names stay visible and travel with their arches, calmer/longer timing, "New possibilities" in serif Deep Navy, dedicated phone composition (wider arches, horizontal names, full-width stage, progress indicator fits at 320 px), closer hand-over to Section 4; Section 4 "Click/Tap a station", exact brand Ember (#EF7C62) for the active/hover station label, small chevrons on phones; Section 5 second paragraph and five practical questions; same-page navigation clicks scroll to the top.
+Note: the Section 4 station label is now the exact Ember (#EF7C62), which is below WCAG AA contrast on Paper for small text (the earlier #C4472B variant was replaced at the owner's request).
+Deferred: alternative hero photograph; photographic refinement of the five stations; replacement founder photographs; replacement waitlist background; two-page Program Guide PDF (a code comment marks where the quiet "Download the Identity Lab Program Guide →" link goes in Section 5; nothing is shown until the file exists); final review by Bärbel, Gunther and Scott.

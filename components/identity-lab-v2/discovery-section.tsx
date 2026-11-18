@@ -10,28 +10,28 @@ import { useState } from "react";
 const DIMENSIONS = [
   {
     id: "matters",
-    title: "What matters to me now",
+    title: "What matters to me now?",
     context: "As life changes, so do the things that give it meaning.",
     reflection:
       "Think about a moment recently when you felt that something was genuinely important to you. What made that moment meaningful?",
   },
   {
     id: "alive",
-    title: "What makes me come alive",
+    title: "What makes me come alive?",
     context: "Some experiences leave us feeling energized, inspired, and more ourselves.",
     reflection:
       "When did you last feel genuinely alive and energized by something you were doing? What was it about that experience that made you feel this way?",
   },
   {
     id: "natural",
-    title: "What comes naturally to me",
+    title: "What comes naturally to me?",
     context: "Some of our greatest strengths feel so natural that we barely recognize them.",
     reflection:
       "What do you find surprisingly easy that others often struggle with? And which of these strengths do you genuinely enjoy using?",
   },
   {
     id: "letgo",
-    title: "What I’m ready to let go of",
+    title: "What am I ready to let go of?",
     context: "Some roles and expectations that once suited us no longer feel right.",
     reflection:
       "Is there something you keep doing because you’ve always done it, or because others expect it of you—even though it no longer feels right?",
@@ -58,7 +58,11 @@ export function DiscoverySection() {
           <h3 className="s2p-question" id="s2p-question">
             What are you most curious about?
           </h3>
-          <p className="s2p-cue">Select one to explore.</p>
+          <p className="s2p-cue">
+            {/* only one is shown: "Tap" on touch devices, "Click" with a mouse (see section-2.css) */}
+            <span className="s2p-cue-click">Click a question to explore.</span>
+            <span className="s2p-cue-tap">Tap a question to explore.</span>
+          </p>
         </div>
 
         <ul className="s2p-board" aria-labelledby="s2p-question" data-open={active !== null}>

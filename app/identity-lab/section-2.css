@@ -30,8 +30,12 @@
   text-transform: uppercase;
 }
 
-.s2p-section {
-  background: var(--paper);
+/* Round 3: Section 2 sits on Cream (#EEEAE5) so the step down from the Paper hero is clear but quiet; the
+   padding above and below is tightened to match (Section 3 returns to Paper). */
+.s2p .s2p-section {
+  background: #eeeae5;
+  padding-top: clamp(2.6rem, 3.6vw, 3.9rem);
+  padding-bottom: clamp(2.4rem, 3.2vw, 3.4rem);
 }
 
 /* ─── Opening: eyebrow · headline · intro (V2 Section 2 values) ──── */
@@ -59,6 +63,11 @@
   font-weight: 500;
   line-height: 1.76;
   letter-spacing: inherit; /* same as body paragraphs */
+}
+.s2p-cue-tap { display: none; }
+@media (hover: none), (pointer: coarse) {
+  .s2p-cue-click { display: none; }
+  .s2p-cue-tap { display: inline; }
 }
 .s2p-cue {
   margin: 0;
@@ -116,7 +125,26 @@
 }
 .s2p-panel-text {
   display: block;
+  padding-right: 1.4rem; /* room for the small plus */
   text-wrap: balance;
+}
+/* understated "open" indicator: a small plus that becomes a minus on the selected card */
+.s2p .s2p-panel::after {
+  content: "";
+  position: absolute;
+  top: 1.55rem;
+  right: 1.3rem;
+  width: 11px;
+  height: 11px;
+  background:
+    linear-gradient(var(--mid-navy), var(--mid-navy)) center / 100% 1px no-repeat,
+    linear-gradient(var(--mid-navy), var(--mid-navy)) center / 1px 100% no-repeat;
+  transition: background-size 260ms ease;
+}
+.s2p .s2p-panel[aria-expanded="true"]::after {
+  background:
+    linear-gradient(var(--navy), var(--navy)) center / 100% 1px no-repeat,
+    linear-gradient(var(--navy), var(--navy)) center / 0 100% no-repeat;
 }
 
 /* Motif: one fine line runs through all four panels; each carries a small
@@ -153,13 +181,14 @@
 }
 @media (hover: hover) {
   .s2p .s2p-panel:hover { background: var(--hover); }
+  .s2p .s2p-panel:hover .s2p-panel-text { text-decoration: underline 1px var(--mid-navy); text-underline-offset: 5px; text-decoration-skip-ink: none; }
   .s2p .s2p-panel:hover .s2p-panel-mark::after {
     transform: translateX(0.7rem);
     background: var(--hover);
     border-color: var(--navy);
   }
 }
-.s2p .s2p-panel[aria-expanded="true"] { background: var(--sel); }
+.s2p .s2p-panel[aria-expanded="true"] { background: var(--sel); box-shadow: inset 0 -2px 0 var(--ember); }
 .s2p .s2p-panel[aria-expanded="true"] .s2p-panel-mark::after {
   transform: translateX(0.7rem);
   border-color: var(--ember);
@@ -228,8 +257,8 @@
 .s2p-closing {
   max-width: 46rem;
   margin-top: clamp(2rem, 3.6vw, 2.8rem);
-  padding-left: 1.4rem;
-  border-left: 1px solid var(--ember);
+  padding-left: 1.3rem;
+  border-left: 3px solid var(--ember); /* = the site's highlighted-text treatment */
 }
 .s2p-closing p {
   margin: 0;
@@ -277,9 +306,11 @@
   }
   .s2p-item:first-child::before { top: 1.9rem; }
   .s2p-item:last-child::before { bottom: auto; height: 1.9rem; }
+  .s2p .s2p-panel::after { top: 50%; right: 1.1rem; margin-top: -5.5px; }
+  .s2p .s2p-panel-text { padding-right: 1.8rem; }
   .s2p-reflect-inner { padding: 1.2rem 1.1rem 1.4rem 2.9rem; }
   .s2p-reflect-inner::before { display: none; }
-  .s2p-closing { padding-left: 1.1rem; }
+  .s2p-closing { padding-left: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -287,5 +318,6 @@
   .s2p-panel-mark::after,
   .s2p-reflect,
   .s2p-reflect-clip,
-  .s2p-reflection { transition: none !important; }
+  .s2p-reflection,
+  .s2p .s2p-panel::after { transition: none !important; }
 }

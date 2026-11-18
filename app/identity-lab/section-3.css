@@ -14,8 +14,8 @@
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   column-gap: clamp(2rem, 6vw, 6rem);
-  min-height: 233svh;
-  margin-top: -2.75rem;
+  min-height: 300svh; /* longer scroll: a calmer, more deliberate sequence */
+  margin-top: 0;
   position: relative;
 }
 /* zero-size marker at the top of the track: the animation is measured from it */
@@ -30,6 +30,8 @@
 /* desktop: the frame is transparent to layout (copy and visual stay two pinned columns);
    on mobile it becomes the single pinned frame */
 .s3h-frame { display: contents; }
+/* wraps the pinned visual; transparent on desktop, the animation's own scroll track on phones */
+.s3h-anim { display: contents; }
 
 .s3h-visual {
   position: sticky;
@@ -107,40 +109,21 @@
 }
 .s3h-label-text { display: block; }
 
-/* The four words, one after another, centred on the dark core */
-.s3h-seq {
-  position: absolute;
-  left: 50%;
-  top: 62%;
-  width: 38%;
-  margin: 0;
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  color: var(--paper);
-  font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); /* = V2 body size */
-  font-weight: 500;
-  line-height: 2;
-  letter-spacing: 0.01em;
-  text-align: center;
-  pointer-events: none;
-}
-.s3h-seq span { display: block; opacity: 0; will-change: opacity, transform; }
-
-/* "New possibilities" — in the final opening */
+/* "New possibilities" — in the final opening: the site serif, Deep Navy for contrast */
 .s3h-words {
   position: absolute;
   left: 50%;
-  top: 60%;
-  width: 46%;
+  top: 57%;
+  width: 44%; /* narrower than the opening, so it sets on two lines: "New / possibilities" */
   margin: 0;
   opacity: 0;
   transform: translate(-50%, -50%);
-  color: var(--ember);
+  color: var(--navy);
   font-family: var(--serif);
-  font-size: clamp(2.08rem, 2.86vw, 2.6rem); /* = .ilv2-progression-title × 1.3 */
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.005em;
+  font-size: clamp(2.3rem, 3vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   text-align: center;
   text-wrap: balance;
   pointer-events: none;
@@ -216,7 +199,7 @@
   height: calc(100svh - 120px);
   min-height: 420px;
   max-height: 780px;
-  padding-top: 3.5rem; /* top-aligned instead of centred → heading follows Section 2 closely */
+  padding-top: 2.25rem; /* top-aligned instead of centred → heading follows Section 2 closely */
 }
 .s3h-copy-1,
 .s3h-copy-2 { max-width: 34rem; }
@@ -236,74 +219,54 @@
 .s3h-cta { margin: 1.5rem 0 0; opacity: 0; visibility: hidden; will-change: opacity, transform; }
 .s3h-body strong { color: var(--navy); font-weight: 600; }
 
-/* Mobile: ONE pinned frame — heading, introductory question, animation, supporting text
-   (in that order). Nothing is left blank under the visual and the heading stays with it. */
+/* Phones — a dedicated composition. Headline and question first (normal flow); then the animation pins on its
+   own, across the full content width, with horizontal names; the supporting text and button follow in flow. */
 @media (max-width: 800px) {
-  .s3h-track { display: block; min-height: calc(220svh - 76px); margin-top: -1.75rem; }
-  .s3h-frame {
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 70px;
-    z-index: 2;
-    height: calc(100svh - 76px);
-    background: var(--paper);
-  }
+  .s3h-track { display: block; min-height: 0; margin-top: 0; }
+  .s3h-frame { display: flex; flex-direction: column; position: static; height: auto; }
   .s3h-copy { display: contents; }
-  .s3h-copy-1 { order: 1; padding-top: 1.1rem; max-width: none; }
-  .s3h-visual {
-    order: 2;
-    position: static;
-    flex: none;
-    height: min(44svh, 400px);
-    min-height: 0;
-    max-height: none;
-    margin-top: 0.4rem;
-  }
-  .s3h-copy-2 { order: 3; max-width: none; margin-top: 0.6rem; }
-  .s3h-stage { width: min(100%, calc((min(44svh, 400px) - 2.4rem) * 0.909)); }
-  .s3h-progress { width: min(100%, calc((min(44svh, 400px) - 2.4rem) * 0.909)); height: 2.2rem; margin-top: 0.2rem; padding-left: 0.85rem; }
-  .s3h-stage-word { font-size: 0.7rem; letter-spacing: 0.1em; padding: 0 0.45rem; }
-  .s3h-dot { width: 10px; height: 10px; }
-  /* names run vertically inside the narrow shapes */
-  .s3h-label { font-size: 0.78rem; letter-spacing: 0.08em; }
-  .s3h-label-text { writing-mode: vertical-rl; rotate: 180deg; }
-  .s3h-seq { width: 44%; top: 63%; font-size: 1rem; line-height: 1.9; }
-  .s3h-words { width: 48%; top: 62%; font-size: 1.75rem; /* = site h3 size × 1.3 */ }
+  .s3h-copy-1 { order: 1; padding: 1.4rem 0 1.2rem; max-width: none; }
   .s3h-copy-1 h2 { margin-bottom: 0.7rem; }
   .s3h-copy-1 .s3h-body { margin-bottom: 0; }
-  .s3h-copy-2 .s3h-body:last-child { margin-bottom: 0; }
-  /* The pinned phone frame is exactly one screen tall; on shorter phones its content (now including the button)
-     runs a little past the frame, so the track leaves room below it and the button never overlaps Section 4. */
-  .s3h-track { margin-bottom: 2.5rem; }
-  .s3h-cta { margin-top: 0.9rem; }
+  .s3h-anim { order: 2; display: block; position: relative; min-height: 270svh; }
+  .s3h-visual {
+    position: sticky;
+    top: 70px;
+    display: block;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 0.5rem 0 0.8rem;
+    background: var(--paper);
+  }
+  .s3h-stage { width: 100%; max-width: 30rem; } /* tablets: a comfortable size, centered */
+  .s3h-progress { width: 100%; max-width: 30rem; height: 2.4rem; margin-top: 0.5rem; padding-left: 0.85rem; }
+  .s3h-stage-word { font-size: 0.72rem; letter-spacing: 0.08em; padding: 0 0.4rem; }
+  .s3h-dot { width: 10px; height: 10px; }
+  /* names stay horizontal and fit inside the wider arches */
+  .s3h-label { font-size: 0.8rem; letter-spacing: 0.07em; }
+  .s3h-words { width: 41%; top: 56%; font-size: clamp(1.5rem, 6.6vw, 1.95rem); }
+  .s3h-copy-2 { order: 3; max-width: none; margin-top: 0.6rem; padding-bottom: 0.4rem; }
+  .s3h-copy-2 .s3h-body:last-of-type { margin-bottom: 0; }
+  .s3h-cta { margin-top: 1rem; }
 }
-@media (max-width: 800px) and (max-height: 740px) {
-  .s3h-track { margin-bottom: 5rem; }
-  .s3h-visual { height: min(39svh, 400px); }
-  .s3h-stage { width: min(100%, calc((39svh - 2.4rem) * 0.909)); }
-  .s3h-progress { width: min(100%, calc((39svh - 2.4rem) * 0.909)); }
-}
-@media (max-width: 800px) and (max-height: 620px) {
-  .s3h-track { margin-bottom: 11rem; } /* very short phones: the content runs further past the frame */
+@media (max-width: 340px) {
+  .s3h-stage-word { font-size: 0.66rem; letter-spacing: 0.05em; padding: 0 0.3rem; }
+  .s3h-label { font-size: 0.72rem; letter-spacing: 0.05em; }
 }
 
-/* Reduced motion: nothing pinned or animated; the finished composition, in reading order */
+/* Reduced motion: nothing pinned or animated; the finished composition, in reading order, with the three stages
+   and the four names written out so the same progression is still told */
 @media (prefers-reduced-motion: reduce) {
   .s3h-track { display: block; min-height: 0; margin-top: 0; }
-  .s3h-frame {
-    display: flex;
-    flex-direction: column;
-    position: static;
-    height: auto;
-  }
+  .s3h-frame { display: flex; flex-direction: column; position: static; height: auto; }
   .s3h-copy { display: contents; }
   .s3h-copy-1 { order: 1; max-width: 34rem; padding: 0; }
-  .s3h-visual { order: 2; position: static; height: auto; max-width: 480px; margin: 1.6rem auto 2rem; }
+  .s3h-anim { order: 2; display: block; position: static; min-height: 0; }
+  .s3h-visual { order: 2; position: static; height: auto; max-width: 480px; margin: 1.6rem auto 2rem; padding: 0; }
   .s3h-copy-2 { order: 3; max-width: 34rem; }
   .s3h-stage { width: 100%; }
-  .s3h-label,
-  .s3h-seq { display: none; }
+  .s3h-label { display: none; }
   .s3h-dims {
     display: block;
     margin: 0.9rem 0 0;
@@ -316,6 +279,5 @@
   }
   .s3h-progress { opacity: 1 !important; width: 100%; }
   .s3h-copy-2 .s3h-body { opacity: 1 !important; transform: none !important; }
-  .s3h-track { margin-bottom: 0; }
   .s3h-cta { opacity: 1 !important; visibility: visible !important; transform: none !important; margin-top: 1.4rem; }
 }

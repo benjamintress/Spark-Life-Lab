@@ -3,14 +3,12 @@
 import { useLayoutEffect, useRef } from "react";
 import { IDENTITY_LAB_ACTION_HREF, IDENTITY_LAB_CTA_LABEL } from "@/lib/identity-lab-config";
 
-// Section 3 — Concept C4.2 (isolated, local only). Final refinement of C4.1:
-//  · mobile reading order is now heading → introductory question → animation →
-//    supporting text, all inside ONE pinned frame, so there is no blank area under the
-//    visual and the heading never scrolls away from the animation;
-//  · the animation's start is measured from the section's own top, so it begins at a
-//    natural point on both desktop and mobile;
-//  · slightly longer readable hold in Discover and longer hold of the four words;
-//  · tighter Section 2 → 3 transition.
+// Identity Lab V2 — Section 3 "What becomes possible" (approved design C4.2, revised 18 Nov 2026):
+//  · the four names stay visible through Discover and Connect, travel with their arches and settle on their own
+//    band of the combined shape, and only fade as the opening begins — so the story is never lost;
+//  · calmer timing and a longer scroll; "New possibilities" in the site serif, Deep Navy for contrast;
+//  · phones get their own composition: wider arches, horizontal names, the animation across the full content
+//    width, headline and question first, then the animation pinned on its own, then the supporting text.
 // Scroll-driven and reversible; transforms / opacity / a few path updates only.
 
 const CX = 300;
@@ -32,6 +30,8 @@ type Layer = {
 // Discover geometry: four identical upright arches (170 × 250)
 const D_R = 85;
 const D_STRAIGHT = 165;
+const D_R_NARROW = 118; // phones: 236 × 260 arches in the same 2 × 2 grid
+const D_STRAIGHT_NARROW = 142;
 const N_STRAIGHT = 330; // straight part of the nested arches (arc centre at CY)
 
 const LAYERS: Layer[] = [
@@ -48,19 +48,16 @@ const VB_H = 660;
 
 // Timeline (fractions of the scroll range)
 const T = {
-  enter: [0, 0.1] as const, // Discover: arches scale in (then a readable hold until .22)
-  join: [0.22, 0.43] as const, // Connect: they widen and move together
-  labelFade: [0.29, 0.36] as const, // names fade as the arches begin to overlap substantially
-  seqStart: [0.49, 0.53, 0.57, 0.61] as const, // the four words, one after another
-  seqIn: 0.035,
-  seqOut: [0.73, 0.77] as const, // the words stay a little longer, then fade
-  open: [0.75, 0.89] as const, // Envision: the light opening emerges and expands
-  words: [0.85, 0.92] as const, // "New possibilities"
-  outroA: [0.9, 0.95] as const, // supporting sentence waits for the visual to finish
-  outroB: [0.95, 1] as const,
+  enter: [0, 0.1] as const, // Discover: arches scale in (then a long, readable hold until .28)
+  join: [0.28, 0.48] as const, // Connect: they widen and move together, names travelling with them
+  labelOut: [0.6, 0.67] as const, // names fade only as the opening begins
+  open: [0.6, 0.8] as const, // Envision: the light opening emerges and expands
+  words: [0.74, 0.84] as const, // "New possibilities"
+  outroA: [0.88, 0.94] as const, // supporting sentence waits for the visual to finish
+  outroB: [0.94, 1] as const,
 };
-const DOT_ANCHORS = [0.04, 0.32, 0.78]; // progress at which the dot rests at each stage
-const STAGE_SPLITS = [0.22, 0.73]; // active stage boundaries
+const DOT_ANCHORS = [0.04, 0.38, 0.74]; // progress at which the dot rests at each stage
+const STAGE_SPLITS = [0.28, 0.6]; // active stage boundaries
 
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -82,6 +79,7 @@ export function OpeningDoorway() {
   const trackRef = useRef<HTMLDivElement>(null);
   const anchorRef = useRef<HTMLSpanElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
+  const animRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const geo = useRef({ pinned: 780, track: 2000 });
   const stageRef = useRef<HTMLDivElement>(null);
@@ -92,8 +90,6 @@ export function OpeningDoorway() {
   const openingRef = useRef<SVGPathElement>(null);
   const edgeRef = useRef<SVGPathElement>(null);
   const baseRef = useRef<SVGLineElement>(null);
-  const seqRef = useRef<HTMLDivElement>(null);
-  const seqWordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const wordsRef = useRef<HTMLParagraphElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLSpanElement>(null);
@@ -110,8 +106,8 @@ export function OpeningDoorway() {
   const measure = () => {
     const narrow = window.innerWidth <= 800;
     geo.current = {
-      pinned: (narrow ? frameRef.current : visualRef.current)?.offsetHeight ?? 780,
-      track: trackRef.current?.offsetHeight ?? 2000,
+      pinned: visualRef.current?.offsetHeight ?? 780,
+      track: (narrow ? animRef.current : trackRef.current)?.offsetHeight ?? 2000,
     };
     dotW.current = dotRef.current?.offsetWidth ?? 11;
     progW.current = progressRef.current?.offsetWidth || 1;
@@ -121,7 +117,10 @@ export function OpeningDoorway() {
   const apply = (p: number) => {
     const k = (stageRef.current?.getBoundingClientRect().width ?? VB_W) / VB_W;
     const open = ease(span(p, T.open));
-    const labelFade = 1 - ease(span(p, T.labelFade));
+    const labelOut = 1 - ease(span(p, T.labelOut));
+    const narrow = window.innerWidth <= 800;
+    const dR = narrow ? D_R_NARROW : D_R; // phones: wider arches so the names fit horizontally
+    const dS = narrow ? D_STRAIGHT_NARROW : D_STRAIGHT;
 
     LAYERS.forEach((l, i) => {
       const eIn = ease(clamp((p - i * 0.02) / (T.enter[1] - T.enter[0])));
@@ -139,8 +138,8 @@ export function OpeningDoorway() {
       }
 
       // geometry: identical arches → the nested radii (widen as they join)
-      const r = lerp(D_R, l.ro0, m);
-      const straight = lerp(D_STRAIGHT, N_STRAIGHT, m);
+      const r = lerp(dR, l.ro0, m);
+      const straight = lerp(dS, N_STRAIGHT, m);
       const path = pathRefs.current[i];
       if (path) {
         const ro = lerp(l.ro0, l.ro1, open);
@@ -152,28 +151,22 @@ export function OpeningDoorway() {
         path.setAttribute("d", d);
       }
 
-      // each name sits in the middle of its own arch and fades once they overlap
+      // each name sits in the middle of its own arch, travels with it, and settles on its own band of the
+      // combined shape; it only fades once the opening begins
       const lab = labelRefs.current[i];
       if (lab) {
         const vy = -(straight + r) / 2;
+        const bandY = i < LAYERS.length - 1 ? CY - l.ro0 + l.t0 / 2 : CY - l.ro0 + 34;
         const x = (CX + tx) * k;
-        const y = (BASE + ty + s * vy) * k;
-        lab.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-        lab.style.opacity = String(clamp((eIn - 0.4) / 0.6) * labelFade);
+        const archY = BASE + ty + s * vy;
+        const y = lerp(archY, bandY, m) * k;
+        const sc = lerp(1, narrow ? 0.9 : 0.86, m);
+        lab.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${sc})`;
+        lab.style.opacity = String(clamp((eIn - 0.4) / 0.6) * labelOut);
       }
     });
 
-    if (baseRef.current) baseRef.current.style.transform = `scaleX(${ease(span(p, [0.4, 0.52]))})`;
-
-    // the four words, one after another, centred in the dark arch; then they fade
-    const seq = seqRef.current;
-    if (seq) seq.style.opacity = String(1 - ease(span(p, T.seqOut)));
-    seqWordRefs.current.forEach((w, i) => {
-      if (!w) return;
-      const o = ease(clamp((p - T.seqStart[i]) / T.seqIn));
-      w.style.opacity = String(o);
-      w.style.transform = `translateY(${(1 - o) * 6}px)`;
-    });
+    if (baseRef.current) baseRef.current.style.transform = `scaleX(${ease(span(p, [0.42, 0.54]))})`;
 
     // the white opening: a small shape in the centre that grows into the final arch
     const r = FINAL_R * open;
@@ -251,7 +244,7 @@ export function OpeningDoorway() {
       const narrow = window.innerWidth <= 800;
       // where the animation starts (fraction of the viewport the section's top has reached),
       // where the pinned frame sticks, and how long the finished state is held
-      const start = vh * (narrow ? 0.38 : 0.56);
+      const start = vh * (narrow ? 0.5 : 0.56);
       const pinTop = narrow ? 70 : 92;
       const hold = vh * 0.25;
       const range = start - pinTop + (geo.current.track - geo.current.pinned) - hold;
@@ -285,8 +278,9 @@ export function OpeningDoorway() {
     <section className="section s3h" aria-labelledby="s3h-heading">
       <div className="section-inner">
         <div className="s3h-track" ref={trackRef}>
-          <span className="s3h-anchor" ref={anchorRef} aria-hidden="true" />
           <div className="s3h-frame" ref={frameRef}>
+          <div className="s3h-anim" ref={animRef}>
+          <span className="s3h-anchor" ref={anchorRef} aria-hidden="true" />
           <div className="s3h-visual" ref={visualRef}>
             <p className="s3h-sr">
               Four dimensions of who you are — strengths, interests, values and experiences — come
@@ -315,13 +309,6 @@ export function OpeningDoorway() {
                   <span className="s3h-label-text">{l.label}</span>
                 </span>
               ))}
-              <div className="s3h-seq" ref={seqRef} aria-hidden="true">
-                {LAYERS.map((l, i) => (
-                  <span key={l.label} ref={(el) => { seqWordRefs.current[i] = el; }}>
-                    {l.label}
-                  </span>
-                ))}
-              </div>
               <p className="s3h-words" ref={wordsRef}>
                 New possibilities
               </p>
@@ -338,6 +325,7 @@ export function OpeningDoorway() {
               ))}
               <span className="s3h-dot" ref={dotRef} />
             </div>
+          </div>
           </div>
 
           <div className="s3h-copy">

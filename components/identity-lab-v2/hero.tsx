@@ -17,7 +17,7 @@ export function Hero() {
     <section className="hero ilv2-hero">
       <div className="il-hero-grid section-inner">
         <div>
-          <p className="eyebrow">The Identity Lab</p>
+          <p className="eyebrow">The Identity Lab Program</p>
           <h1>
             Discover who you truly are.{" "}
             <span className="ilv2-hero-h1-second">And what you want from life now.</span>
@@ -27,9 +27,9 @@ export function Hero() {
             the years ahead?
           </p>
           <p className="hero-copy">
-            The Identity Lab is a guided four-week experience that helps you
-            uncover what makes you uniquely you, discover what brings you alive,
-            and find a clearer direction for your next chapter.
+            <strong>The Identity Lab</strong> is a guided four-week program that
+            helps you uncover what makes you uniquely you, discover what brings
+            you alive, and find a clearer direction for your next chapter.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href={IDENTITY_LAB_ACTION_HREF}>

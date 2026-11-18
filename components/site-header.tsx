@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState, type MouseEvent } from "react";
 
-// All nav destinations are page routes — no anchor-scroll behaviour in the header.
+// All nav destinations are page routes. Clicking the item for the page you are already on scrolls to the top
+// (smoothly, unless reduced motion is requested) instead of doing nothing.
 // The homepage has its own internal anchor links for on-page scroll.
 const navLinks = [
   { label: "Identity Lab", href: "/identity-lab/" },
@@ -14,6 +16,19 @@ const navLinks = [
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  // Same-page click → back to the top; any other destination navigates normally.
+  const toTopIfCurrent = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    const norm = (v: string) => (v.length > 1 ? v.replace(/\/+$/, "") : v);
+    if (norm(pathname ?? "") !== norm(href)) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    setMenuOpen(false);
+    if (window.location.hash) window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "instant" : "smooth" });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -24,7 +39,7 @@ export function SiteHeader() {
 
   return (
     <header className={`site-header${scrolled ? " is-scrolled" : ""}${menuOpen ? " is-menu-open" : ""}`}>
-      <Link className="wordmark" href="/" aria-label="SparkLifeLab — home">
+      <Link className="wordmark" href="/" aria-label="SparkLifeLab — home" onClick={(e) => toTopIfCurrent(e, "/")}>
         <Image
           src="/images/sparklifelab-wordmark.png"
           alt="SparkLifeLab"
@@ -37,7 +52,7 @@ export function SiteHeader() {
 
       <nav className="desktop-nav" aria-label="Primary navigation">
         {navLinks.map((item) => (
-          <Link key={item.label} href={item.href}>{item.label}</Link>
+          <Link key={item.label} href={item.href} onClick={(e) => toTopIfCurrent(e, item.href)}>{item.label}</Link>
         ))}
       </nav>
 
@@ -67,7 +82,10 @@ export function SiteHeader() {
             <Link
               key={item.label}
               href={item.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={(e) => {
+                setMenuOpen(false);
+                toTopIfCurrent(e, item.href);
+              }}
             >
               {item.label}
             </Link>

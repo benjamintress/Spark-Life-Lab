@@ -5,7 +5,8 @@ export const S4_EYEBROW = "YOUR JOURNEY";
 export const S4_HEADLINE = "Five stations. A new perspective on yourself.";
 export const S4_INTRO =
   "The Identity Lab takes you through five connected stations. Each builds on what you’ve discovered before, helping you move from understanding yourself more deeply to exploring what you want from your future.";
-export const S4_CUE = "Select one to explore.";
+export const S4_CUE_CLICK = "Click a station to explore.";
+export const S4_CUE_TAP = "Tap a station to explore.";
 
 export type Station = {
   n: string;

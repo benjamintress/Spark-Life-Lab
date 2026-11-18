@@ -22,20 +22,24 @@ const FACTS = [
 
 const FAQ = [
   {
-    q: "Do I need to attend the live sessions?",
-    a: "The three live sessions are an important part of the experience. They provide opportunities to exchange perspectives, reflect together, and deepen your discoveries. Recordings are not currently planned.",
+    q: "When are the live group sessions?",
+    a: "The Identity Lab includes three live online group sessions of 90 minutes each. You’ll receive the exact dates and times during the registration process, well in advance of the program, so you can check whether they fit your schedule before committing.",
   },
   {
     q: "Do I need any previous experience with personal development?",
-    a: "No. You only need curiosity about yourself and a willingness to explore new perspectives.",
-  },
-  {
-    q: "When does the next program start?",
-    a: "We expect the next Identity Lab cohort to begin in 2027. Join the waitlist to hear when enrollment opens.",
+    a: "No. You don’t need any previous experience. The Identity Lab guides you through the reflections step by step, so you can explore the questions at your own pace.",
   },
   {
     q: "Is the Identity Lab coaching or therapy?",
-    a: "The Identity Lab is a guided learning and self-discovery experience. It combines personal reflection, structured exercises and conversations with others. It isn’t therapy, and it doesn’t involve someone telling you what to do with your life.",
+    a: "Neither. The Identity Lab is a guided program for personal reflection and self-discovery. It combines individual exploration with conversations in a small group. We provide structure, questions, and perspectives to help you discover your own answers.",
+  },
+  {
+    q: "Do I need to complete the Midlife Clarity Check first?",
+    a: "No. The Midlife Clarity Check is a free starting point for reflecting on where you are in life, but it isn’t a requirement for joining the Identity Lab.",
+  },
+  {
+    q: "When does the next program start, and how do I register?",
+    a: "The next Identity Lab is planned for 2027. Join the waitlist to receive information about the dates, program details, and registration when they become available. Joining the waitlist is free and does not commit you to participating.",
   },
 ];
 
@@ -55,8 +59,8 @@ export function HowItWorks() {
               The Identity Lab combines guided personal reflection with live conversations in a small, supportive group.
             </p>
             <p className="s5-lede">
-              Over four weeks, you explore different dimensions of yourself at your own pace, exchange perspectives with others,
-              and bring your discoveries together in your personal Identity Map.
+              Through guided reflection, you explore different dimensions of yourself at your own pace, exchange perspectives
+              with others, and bring your discoveries together in your personal Identity Map.
             </p>
           </div>
 
@@ -101,6 +105,11 @@ export function HowItWorks() {
               );
             })}
           </ul>
+          {/*
+            FUTURE (not active): when the two-page Identity Lab program guide (PDF) exists, add a quiet secondary link
+            here, after the practical information and the questions:  "Download the Identity Lab Program Guide →"
+            pointing at the real file in /public. Do not render a link or button until the PDF exists.
+          */}
         </div>
       </div>
     </section>
