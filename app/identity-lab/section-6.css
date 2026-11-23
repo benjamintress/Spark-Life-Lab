@@ -30,42 +30,42 @@
 }
 .s6-inner { width: min(var(--max, 1120px), 100% - 2 * 5vw); margin: 0 auto; }
 
-/* one shared column line, the same proportions as Section 5 */
+/* Top: heading left, the two paragraphs right (revised 23 Nov 2026 so the founder photos can be larger) */
 .s6-top {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
   column-gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
 }
-.s6-top { align-items: start; }
 
-.s6 h2 { margin: 0 0 1.2rem; color: #202841; max-width: 17ch; text-wrap: balance; }
-.s6-story p:not(.eyebrow), .s6-end-text {
+.s6 h2 { margin: 0; color: #202841; max-width: 17ch; text-wrap: balance; }
+.s6-story { padding-top: 2.1rem; } /* aligns the first paragraph with the heading rather than the eyebrow */
+.s6-story p, .s6-end-text {
   margin: 0 0 1rem; max-width: 37rem; color: var(--s6-text);
   font-size: clamp(1.06rem, 0.4vw + 0.98rem, 1.18rem); text-wrap: pretty;
 }
 .s6-story p:last-child { margin-bottom: 0; }
 
-/* the founders: a small, loose, slightly asymmetrical trio. The first photo reaches up over the
-   seam with Section 5 (desktop only) to tie the two sections together. */
-.s6-collage { margin: 0; position: relative; z-index: 2; }
-.s6-stage { position: relative; aspect-ratio: 1 / 0.82; width: 100%; max-width: 31rem; margin-left: auto; }
-.s6-photo {
-  position: absolute;
+/* The founders: three equal 4:3 landscape photographs in one aligned row across the full content width.
+   Straight, untilted frames with the same gap and corner radius; each photo keeps its own setting. */
+.s6-trio { margin: clamp(2.4rem, 4vw, 3.25rem) 0 0; }
+.s6-trio-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.6vw, 1.35rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.s6-trio-photo {
+  aspect-ratio: 4 / 3;
+  background: #dcdde4;
+  border-radius: 3px;
+  box-shadow: 0 10px 28px rgba(32, 40, 65, 0.12);
   overflow: hidden;
-  padding: 5px;
-  background: #fefdf8;
-  border-radius: 2px;
-  box-shadow: 0 6px 20px rgba(32, 40, 65, 0.14);
 }
-.s6-photo img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 1px; }
-.s6-photo--1 { width: 47%; aspect-ratio: 4 / 5; left: 0; top: 0; transform: rotate(-1.6deg); }
-.s6-photo--2 { width: 36%; aspect-ratio: 1 / 1; right: 2%; top: 9%; transform: rotate(1.4deg); }
-.s6-photo--3 { width: 40%; aspect-ratio: 1 / 1; right: 14%; bottom: 0; transform: rotate(-0.8deg); }
-.s6-caption { margin: 0.9rem 0 0; max-width: 31rem; margin-left: auto; color: #4d5772; font-size: 0.9rem; letter-spacing: 0.02em; text-align: right; }
-
-@media (min-width: 861px) {
-  .s6-collage { margin-top: calc(-1 * var(--s6-pad) - 0.95rem); } /* ~40px lower than before; the top photo still overlaps the seam with Section 5 by ~15px */
-}
+.s6-trio-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.s6-caption { margin: 0.85rem 0 0; color: #4d5772; font-size: 0.9rem; letter-spacing: 0.02em; }
 
 /* the North Star line: left-aligned serif italic, leading into the last paragraph */
 .s6-star {
@@ -99,13 +99,17 @@
 @media (max-width: 860px) {
   .s6 { padding: 3.25rem 0 3.25rem; }
   .s6-top { display: block; }
-  .s6 h2 { max-width: none; }
-  .s6-story p:not(.eyebrow), .s6-end-text { max-width: none; }
+  .s6 h2 { max-width: none; margin-bottom: 1.2rem; }
+  .s6-story { padding-top: 0; }
+  .s6-story p, .s6-end-text { max-width: none; }
   .s6 { --s6-pad: 3rem; }
-  .s6-collage { margin: 1.8rem auto 0; max-width: 21rem; }
-  .s6-stage { max-width: none; margin-left: 0; }
-  .s6-caption { margin-left: 0; text-align: left; }
+  .s6-trio { margin-top: 2rem; }
   .s6-star { max-width: none; }
   .s6-end { margin-top: 2rem; padding-top: 1.8rem; }
   .s6-close-line { margin: 1.6rem 0 1rem; font-size: clamp(1.5rem, 5.4vw, 1.8rem); }
+}
+
+/* Phones: the three landscape photos stack at full width, all the same size, so each person stays clearly visible */
+@media (max-width: 520px) {
+  .s6-trio-row { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
 }
