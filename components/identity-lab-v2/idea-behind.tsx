@@ -6,14 +6,15 @@ import Link from "next/link";
 //
 // Founder photos (revised 23 Nov 2026): three equal 4:3 landscape photographs in one aligned row,
 // cropped (never extended) from the camera originals to show upper body and surroundings:
-//   Bärbel  — IMG_1136_zweiter_Schritt_v2.jpeg (tree-bark portrait, 24 Nov 2026; 4:3 crop of the 2576 × 1717 file)
+//   Bärbel  — IMG_1136_zweiter_Schritt_v2.jpeg (tree-bark portrait, 24 Nov 2026), zoomed out ~15%: bark above and
+//             at the sides added from IMG_1133 (same tree and session), person unchanged; 4:3
 //   Gunther — IMG_0918.JPG (corrugated-metal portrait, 24 Nov 2026; 4:3 crop of the 2576 × 1717 file; temporary)
 //   Scott   — Scott--2026.jpg (1254 px square original; temporary, to be replaced)
 // To replace a photo later, swap the file and, if needed, adjust objectPosition. Other pages are unaffected.
 
 const FOUNDERS = [
   {
-    src: "/images/identity-lab-v2/founder-barbel-tree.jpg",
+    src: "/images/identity-lab-v2/founder-barbel-tree-wide.jpg",
     alt: "Bärbel Tress",
     width: 1440,
     height: 1080,
