@@ -11,10 +11,10 @@ export function ClarityCheckCard() {
       {/* Final cover visual with soft depth shadow */}
       <div className="clarity-cover-wrap">
         <Image
-          src="/images/Midlife-Clarity-Check-cover-V2.2.jpg"
+          src="/images/Midlife-Clarity-Check-cover-V3.jpg"
           alt="The Midlife Clarity Check — a free personal self-assessment"
-          width={998}
-          height={1296}
+          width={1218}
+          height={1578}
           className="clarity-cover-img"
           priority
         />
