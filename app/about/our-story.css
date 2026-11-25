@@ -1,0 +1,1819 @@
+/* ============================================================
+   Our Story V2 — page-scoped styles (revision 2, 23 Nov 2026)
+   Prefixes: .os1 (Section 1) · .os2 (Section 2) · .os-ph / .os3 (placeholders)
+   Uses the global design tokens from globals.css; changes nothing outside /about/.
+   ============================================================ */
+
+/* Eyebrows use the site-wide Ember style again (revision 3, as requested). */
+
+/* ─── Section 1 — Why we created SparkLifeLab ─────────────────────────────── */
+
+.os1 {
+  background: var(--page-bg);
+  padding: clamp(3.75rem, 6vw, 6.25rem) 5vw clamp(3.5rem, 5vw, 5rem);
+}
+
+.os1-grid {
+  align-items: center;
+  display: grid;
+  gap: clamp(3rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  margin: 0 auto;
+  width: min(var(--max), 100%);
+}
+
+.os1-copy { max-width: 36rem; }
+
+.os1 h1 {
+  font-size: clamp(2.6rem, 4.3vw, 4.35rem);
+  letter-spacing: -0.015em;
+  margin-bottom: 1.5rem;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+.os1-copy p {
+  font-size: clamp(1.05rem, 0.35vw + 0.98rem, 1.16rem);
+  line-height: 1.76;
+  margin-bottom: 1.05rem;
+  text-wrap: pretty;
+}
+
+/* Opening paragraph: same measure as the body copy; 3 px Ember rule = the site's highlight treatment */
+.os1-copy p.os1-lead {
+  border-left: 3px solid var(--ember);
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 0.7vw + 1.08rem, 1.48rem);
+  line-height: 1.5;
+  margin: 0 0 1.6rem;
+  padding-left: 1.25rem;
+}
+
+.os1-copy p:last-child { margin-bottom: 0; }
+
+/* Shared collage wrapper (R3 and R4) */
+/* Collage (revision 3): three separate round portraits, each joined by a fine Ember line to a small
+   spark between them. Positions are % of a 100 × 118 stage, matching the SVG viewBox in markup. */
+.os1-media {
+  justify-self: end;
+  width: min(100%, 460px);
+}
+
+.os1-constellation {
+  aspect-ratio: 100 / 118;
+  position: relative;
+  width: 100%;
+}
+
+.os1-constellation .os1-links {
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+}
+
+.os1-constellation .os1-links line {
+  stroke: var(--ember);
+  stroke-linecap: round;
+  stroke-opacity: 0.75;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.os1-constellation .os1-spark {
+  fill: var(--ember);
+  filter: drop-shadow(0 0 6px rgba(239, 124, 98, 0.45));
+  height: auto;
+  left: 50%;
+  position: absolute;
+  top: calc(52 / 118 * 100%);
+  transform: translate(-50%, -50%);
+  width: 7.5%;
+}
+
+.os1-constellation .os1-collage {
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.os1-constellation .os1-tile {
+  position: absolute;
+  transform: translate(-50%, calc(-1 * var(--r)));
+  width: var(--d);
+}
+
+/* --d: portrait diameter; --r: radius as % of the tile height, used to centre the circle on the point */
+.os1-constellation .os1-tile--barbel { --d: 36%; left: 21%; top: calc(19 / 118 * 100%); }
+.os1-constellation .os1-tile--gunther { --d: 33%; left: 80%; top: calc(40 / 118 * 100%); }
+.os1-constellation .os1-tile--scott { --d: 35%; left: 40%; top: calc(94 / 118 * 100%); }
+.os1-constellation .os1-tile { --r: 0px; }
+.os1-constellation .os1-tile figure { margin: 0; position: relative; }
+
+.os1-constellation .os1-frame {
+  aspect-ratio: 1 / 1;
+  background: var(--lavender);
+  border-radius: 50%;
+  box-shadow: 0 10px 26px rgba(32, 43, 65, 0.14);
+  outline: 5px solid var(--page-bg);
+  overflow: hidden;
+  transform: translateY(-50%);
+}
+
+.os1-constellation .os1-frame img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.os1-constellation .os1-tile figcaption {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 500;
+  left: 50%;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 50%;
+  transform: translate(-50%, 0.85rem);
+  white-space: nowrap;
+}
+
+
+/* Collage (revision 4): three separate, larger rectangular portraits in an asymmetric cluster
+   around an open centre; three short Ember lines lead to the genuine brand spark.
+   Coordinates are in a 500 × 660 stage, matching the SVG viewBox in founder-collage.tsx. */
+.os1-cluster {
+  aspect-ratio: 500 / 660;
+  position: relative;
+  width: 100%;
+}
+
+.os1-cluster .os1-links {
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+}
+
+.os1-cluster .os1-links line {
+  stroke: var(--ember);
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.os1-cluster .os1-spark {
+  aspect-ratio: 810 / 974;
+  left: calc(245 / 500 * 100%);
+  position: absolute;
+  top: calc(316 / 660 * 100%);
+  transform: translate(-50%, -50%);
+  width: 6.4%;
+}
+
+.os1-cluster .os1-collage {
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.os1-cluster .os1-tile { position: absolute; }
+.os1-cluster .os1-tile--barbel  { left: 0;                       top: 0;                       width: calc(190 / 500 * 100%); }
+.os1-cluster .os1-tile--gunther { left: calc(300 / 500 * 100%);  top: calc(90 / 660 * 100%);  width: calc(200 / 500 * 100%); }
+.os1-cluster .os1-tile--scott   { left: calc(80 / 500 * 100%);   top: calc(395 / 660 * 100%); width: calc(185 / 500 * 100%); }
+
+.os1-cluster figure { margin: 0; }
+
+.os1-cluster .os1-frame {
+  aspect-ratio: 4 / 5;
+  background: var(--lavender);
+  border-radius: 2px;
+  box-shadow: 0 14px 34px rgba(32, 43, 65, 0.12);
+  overflow: hidden;
+}
+
+.os1-cluster .os1-frame img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.os1-cluster figcaption {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  margin-top: 0.6rem;
+  text-transform: uppercase;
+}
+
+.os1-cluster .os1-tile--gunther figcaption { text-align: right; }
+
+/* The genuine SparkLifeLab spark (brand asset), coloured via CSS mask — use for any "spark". */
+.brand-spark {
+  background-color: var(--ember);
+  display: inline-block;
+  -webkit-mask: url("/images/sparklifelab-spark.png") center / contain no-repeat;
+  mask: url("/images/sparklifelab-spark.png") center / contain no-repeat;
+}
+
+/* ─── Section 2 — More than 70 years (light, one shared content area) ─────── */
+
+.os2 {
+  background:
+    radial-gradient(ellipse 55% 45% at 92% 6%, rgba(197, 199, 211, 0.45), transparent 70%),
+    linear-gradient(180deg, #F1F1F5 0%, #F6F5F2 100%);
+  border-top: 1px solid rgba(32, 40, 65, 0.06);
+  padding: clamp(4.5rem, 7vw, 7.5rem) 5vw;
+}
+
+.os2-inner {
+  margin: 0 auto;
+  width: min(var(--max), 100%);
+}
+
+.os2-head {
+  align-items: end;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+/* Cormorant's default old-style figures make "70" read like "7o" — use lining figures. */
+.os2 h2,
+.os2-figure,
+.os2-num {
+  font-variant-numeric: lining-nums;
+}
+
+.os2 h2 {
+  margin-bottom: 1.3rem;
+  max-width: 19ch;
+  text-wrap: balance;
+}
+
+.os2-intro {
+  font-size: clamp(1.05rem, 0.35vw + 0.98rem, 1.16rem);
+  line-height: 1.76;
+  margin-bottom: 0;
+  max-width: 62ch;
+}
+
+/* Decorative outlined numeral echoing the headline (aria-hidden in markup) */
+.os2-figure {
+  -webkit-text-stroke: 1.2px rgba(77, 87, 114, 0.5);
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--serif);
+  font-size: clamp(7rem, 13vw, 12.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  margin: 0 0 -0.35rem;
+  user-select: none;
+}
+
+.os2-figure span {
+  -webkit-text-stroke: 0;
+  color: var(--ember);
+  font-size: 0.42em;
+  margin-left: 0.04em;
+  vertical-align: 0.95em;
+}
+
+/* Four equal selectors */
+.os2-selectors {
+  display: grid;
+  gap: clamp(0.75rem, 1.4vw, 1.1rem);
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+}
+
+.os2-tab {
+  align-items: stretch;
+  background: var(--white);
+  border: 1px solid rgba(32, 40, 65, 0.12);
+  border-radius: 4px;
+  box-shadow: inset 0 3px 0 var(--lavender), 0 1px 2px rgba(32, 43, 65, 0.04);
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: inherit;
+  padding: clamp(1.15rem, 1.8vw, 1.5rem) clamp(1.1rem, 1.7vw, 1.4rem) clamp(1rem, 1.5vw, 1.25rem);
+  position: relative;
+  text-align: left;
+  transition: background-color var(--t-quick) var(--ease-soft),
+              box-shadow var(--t-quick) var(--ease-soft),
+              border-color var(--t-quick) var(--ease-soft);
+}
+
+.os2-tab-top {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.os2-num {
+  color: var(--ember-deep);
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 2.6vw, 2.6rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.os2-num-dot { opacity: 0.7; }
+
+.os2-tab-motif {
+  flex: none;
+  height: auto;
+  margin-top: 0.15rem;
+  width: clamp(64px, 6.5vw, 92px);
+}
+
+.os2-tab-title {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 1.55vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.18;
+  margin: clamp(1.25rem, 2.2vw, 1.9rem) 0 1.1rem;
+  text-wrap: balance;
+}
+
+.os2-cue {
+  align-items: center;
+  color: var(--mid-navy);
+  display: inline-flex;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  gap: 0.6rem;
+  letter-spacing: 0.16em;
+  margin-top: auto;
+  text-transform: uppercase;
+}
+
+.os2-cue-icon {
+  border: 1px solid rgba(32, 40, 65, 0.35);
+  border-radius: 50%;
+  color: var(--navy);
+  display: inline-block;
+  flex: none;
+  height: 1.75rem;
+  position: relative;
+  width: 1.75rem;
+}
+
+/* Unselected: plus sign */
+.os2-cue-icon::before,
+.os2-cue-icon::after {
+  background: currentColor;
+  content: "";
+  height: 1.5px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.7rem;
+}
+
+.os2-cue-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+/* Selected: inverted tile, Ember top bar, chevron pointing to the shared content, "Selected" label */
+.os2-tab[aria-selected="true"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  box-shadow: inset 0 5px 0 var(--ember), 0 10px 28px rgba(32, 43, 65, 0.18);
+  cursor: default;
+}
+
+.os2-tab[aria-selected="true"] .os2-tab-title { color: var(--white); }
+.os2-tab[aria-selected="true"] .os2-num { color: var(--ember); }
+.os2-tab[aria-selected="true"] .os2-cue { color: rgba(255, 255, 255, 0.86); }
+
+.os2-tab[aria-selected="true"] .os2-cue-icon {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--navy);
+}
+
+.os2-tab[aria-selected="true"] .os2-cue-icon::before,
+.os2-tab[aria-selected="true"] .os2-cue-icon::after {
+  width: 0.5rem;
+}
+
+.os2-tab[aria-selected="true"] .os2-cue-icon::before {
+  transform: translate(-82%, -10%) rotate(45deg);
+}
+
+.os2-tab[aria-selected="true"] .os2-cue-icon::after {
+  transform: translate(-18%, -10%) rotate(-45deg);
+}
+
+/* Notch linking the selected selector to the shared content area (wide layout only) */
+.os2-tab[aria-selected="true"]::after {
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 11px solid var(--navy);
+  bottom: -11px;
+  content: "";
+  left: clamp(1.1rem, 1.7vw, 1.4rem);
+  position: absolute;
+}
+
+@media (hover: hover) {
+  .os2-tab[aria-selected="false"]:hover {
+    border-color: rgba(32, 40, 65, 0.28);
+    box-shadow: inset 0 3px 0 var(--ember), 0 6px 18px rgba(32, 43, 65, 0.08);
+  }
+}
+
+.os2 .os2-tab:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+/* Motifs */
+.os2-motif { display: block; overflow: visible; }
+
+.os2-m-line {
+  fill: none;
+  stroke: var(--mid-navy);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+/* Fill that matches whatever sits behind the motif, so layered shapes overlap cleanly */
+.os2-m-fill { fill: var(--motif-bg, var(--white)); }
+.os2-tab[aria-selected="true"] { --motif-bg: var(--navy); }
+.os2-art-disc { --motif-bg: #F1F1F5; }
+
+.os2-m-soft { stroke-opacity: 0.45; }
+.os2-m-dashed { stroke-dasharray: 2 6; stroke-opacity: 0.55; }
+
+.os2-m-accent {
+  fill: none;
+  stroke: var(--ember);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.os2-m-dot { fill: var(--ember); }
+
+.os2-m-ring {
+  fill: var(--white);
+  stroke: var(--mid-navy);
+  stroke-width: 1.6;
+}
+
+.os2-tab[aria-selected="true"] .os2-m-line { stroke: var(--lavender); }
+.os2-tab[aria-selected="true"] .os2-m-ring { fill: var(--navy); stroke: var(--lavender); }
+
+/* Shared content area */
+.os2-stage { margin-top: clamp(1.35rem, 2vw, 1.75rem); }
+
+.os2-tabpanel {
+  background: var(--white);
+  border: 1px solid rgba(32, 40, 65, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 12px 36px rgba(32, 43, 65, 0.07);
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  display: grid;
+  grid-template-columns: clamp(150px, 17vw, 210px) minmax(0, 1fr);
+  padding: clamp(1.75rem, 4vw, 3.25rem);
+}
+
+.os2-tabpanel[hidden] { display: none; }
+
+.os2-tabpanel:not([hidden]) {
+  animation: os2-in var(--t-medium) var(--ease-soft);
+}
+
+@keyframes os2-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.os2-tabpanel:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+.os2-tabpanel-art { align-self: start; }
+
+/* Soft lavender disc framing the larger motif */
+.os2-art-disc {
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at 50% 50%, #F1F1F5 0 70%, rgba(241, 241, 245, 0) 71%);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.os2-panel-motif {
+  height: auto;
+  width: 76%;
+}
+
+.os2-tabpanel h3 {
+  font-size: clamp(1.65rem, 2.3vw, 2.15rem);
+  margin-bottom: 1.25rem;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.os2-tabpanel p {
+  font-size: clamp(1rem, 0.25vw + 0.96rem, 1.08rem);
+  line-height: 1.76;
+  margin-bottom: 1rem;
+  max-width: 64ch;
+}
+
+.os2-tabpanel p:last-child { margin-bottom: 0; }
+
+/* Closing statement — always visible */
+.os2-closing {
+  border-top: 1px solid rgba(32, 40, 65, 0.14);
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 1.6vw + 1rem, 2.15rem);
+  line-height: 1.38;
+  margin: clamp(3rem, 5vw, 4.5rem) auto 0;
+  max-width: 36ch;
+  padding-top: clamp(2.25rem, 4vw, 3.25rem);
+  position: relative;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.os2-closing::before {
+  background: var(--ember);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(239, 124, 98, 0.18);
+  content: "";
+  height: 7px;
+  left: 50%;
+  position: absolute;
+  top: -4px;
+  transform: translateX(-50%);
+  width: 7px;
+}
+
+/* ─── Section 2 ALTERNATIVE — "path" (revision 3) ─────────────────────────────
+   A meandering narrative line with the four areas along it; full text and a photograph beside it. */
+
+.os2p {
+  background:
+    radial-gradient(ellipse 50% 40% at 95% 4%, rgba(197, 199, 211, 0.35), transparent 70%),
+    linear-gradient(180deg, #F3F2F5 0%, #F8F7F3 100%);
+  border-top: 1px solid rgba(32, 40, 65, 0.06);
+  padding: clamp(4.25rem, 6.5vw, 6.75rem) 5vw clamp(4rem, 6vw, 6rem);
+}
+
+.os2p-inner {
+  margin: 0 auto;
+  width: min(var(--max), 100%);
+}
+
+/* Header: headline on two lines on desktop; the outlined 70+ sits quietly behind, top right */
+.os2p-head {
+  position: relative;
+}
+
+.os2p-head h2 {
+  font-variant-numeric: lining-nums;
+  margin-bottom: 1.2rem;
+  max-width: 30ch;
+  position: relative;
+  text-wrap: balance;
+}
+
+.os2p-intro {
+  font-size: clamp(1.05rem, 0.35vw + 0.98rem, 1.14rem);
+  line-height: 1.76;
+  margin-bottom: 0;
+  max-width: 64ch;
+  position: relative;
+}
+
+.os2p-figure {
+  -webkit-text-stroke: 1px rgba(77, 87, 114, 0.28);
+  color: transparent;
+  font-family: var(--serif);
+  font-size: clamp(6rem, 13vw, 12.5rem);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  margin: 0;
+  bottom: -0.08em;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  user-select: none;
+}
+
+.os2p-figure span {
+  -webkit-text-stroke: 0;
+  color: rgba(239, 124, 98, 0.75);
+  font-size: 0.4em;
+  margin-left: 0.04em;
+  vertical-align: 1em;
+}
+
+/* Body: path | (text + photograph) */
+.os2p-body {
+  align-items: stretch;
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.75rem);
+  grid-template-columns: minmax(240px, 0.85fr) minmax(0, 2.15fr);
+  margin-top: clamp(2.5rem, 4.5vw, 3.75rem);
+}
+
+/* The path */
+.os2p-path {
+  position: relative;
+}
+
+.os2p-line {
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.os2p-line path {
+  fill: none;
+  stroke: var(--slate-mist);
+  stroke-linecap: round;
+  stroke-opacity: 0.8;
+  stroke-width: 1.5;
+}
+
+.os2p-tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  padding: 1.5rem 0 0.5rem;
+  position: relative;
+  row-gap: 0.6rem;
+}
+
+.os2p-tab {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  color: var(--mid-navy);
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 1rem;
+  grid-template-columns: 22px minmax(0, 1fr);
+  margin-left: var(--offset, 0px);
+  min-height: 48px;
+  padding: 0.55rem 0.25rem;
+  text-align: left;
+}
+
+.os2p-node {
+  background: #F6F5F4;
+  border: 1.5px solid var(--slate-mist);
+  border-radius: 50%;
+  display: block;
+  height: 14px;
+  justify-self: center;
+  position: relative;
+  transition: background-color var(--t-quick) var(--ease-soft),
+              border-color var(--t-quick) var(--ease-soft),
+              box-shadow var(--t-quick) var(--ease-soft),
+              transform var(--t-quick) var(--ease-soft);
+  width: 14px;
+}
+
+.os2p-node--spark {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  height: 22px;
+  width: 22px;
+}
+
+.os2p-node--spark svg {
+  display: block;
+  fill: #F6F5F4;
+  height: 100%;
+  stroke: var(--ember);
+  stroke-width: 1.4;
+  width: 100%;
+}
+
+.os2p-label {
+  font-family: var(--serif);
+  font-size: clamp(1.22rem, 1.4vw, 1.42rem);
+  font-weight: 500;
+  line-height: 1.22;
+  text-wrap: balance;
+  text-decoration-color: transparent;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  transition: color var(--t-quick) var(--ease-soft),
+              text-decoration-color var(--t-quick) var(--ease-soft);
+}
+
+/* Selected: filled node with a soft ring, navy heading with an Ember underline */
+.os2p-tab[aria-selected="true"] { color: var(--navy); cursor: default; }
+.os2p-tab[aria-selected="true"] .os2p-label { text-decoration-color: var(--ember); }
+
+.os2p-tab[aria-selected="true"] .os2p-node:not(.os2p-node--spark) {
+  background: var(--ember);
+  border-color: var(--ember);
+  box-shadow: 0 0 0 5px rgba(239, 124, 98, 0.2);
+  transform: scale(1.15);
+}
+
+.os2p-tab[aria-selected="true"] .os2p-node--spark svg {
+  fill: var(--ember);
+  filter: drop-shadow(0 0 5px rgba(239, 124, 98, 0.5));
+}
+
+.os2p-tab[aria-selected="true"] .os2p-node--spark { transform: scale(1.2); }
+
+@media (hover: hover) {
+  .os2p-tab[aria-selected="false"]:hover { color: var(--navy); }
+  .os2p-tab[aria-selected="false"]:hover .os2p-label { text-decoration-color: var(--lavender); }
+  .os2p-tab[aria-selected="false"]:hover .os2p-node:not(.os2p-node--spark) { border-color: var(--ember); }
+}
+
+.os2p .os2p-tab:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
+/* Panels — stacked in one cell on wide screens so switching never changes the section height */
+.os2p-panels {
+  display: grid;
+}
+
+.os2p-panel {
+  column-gap: clamp(1.75rem, 3vw, 2.75rem);
+  display: grid;
+  grid-area: 1 / 1;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  opacity: 1;
+  transition: opacity var(--t-medium) var(--ease-soft), visibility 0s linear 0s;
+}
+
+.os2p-panel[data-active="false"] {
+  opacity: 0;
+  transition: opacity var(--t-quick) var(--ease-soft), visibility 0s linear var(--t-quick);
+  visibility: hidden;
+}
+
+.os2p-panel:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--ember);
+  outline-offset: 6px;
+}
+
+.os2p-copy h3 {
+  font-size: clamp(1.55rem, 2vw, 1.95rem);
+  margin-bottom: 1.1rem;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.os2p-copy p {
+  font-size: clamp(0.98rem, 0.2vw + 0.95rem, 1.04rem);
+  line-height: 1.72;
+  margin-bottom: 0.9rem;
+  max-width: 60ch;
+}
+
+.os2p-copy p:last-child { margin-bottom: 0; }
+
+.os2p-photo {
+  border-radius: 3px;
+  min-height: 340px;
+  overflow: hidden;
+  position: relative;
+}
+
+.os2p-photo img {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.os2p-closing { margin-top: clamp(3rem, 5vw, 4.25rem); }
+
+/* Medium screens: photograph above the text, beside the path */
+@media (max-width: 1100px) {
+  .os2p-figure { bottom: auto; font-size: 6.5rem; top: -0.45em; }
+  .os2p-body { grid-template-columns: minmax(210px, 0.8fr) minmax(0, 1.9fr); }
+  .os2p-panel { grid-template-columns: minmax(0, 1fr); row-gap: 1.5rem; }
+  .os2p-photo { aspect-ratio: 16 / 9; min-height: 0; order: -1; }
+}
+
+/* Phones and small tablets: path on top, then the selected text with its photograph */
+@media (max-width: 760px) {
+  .os2p-figure { bottom: auto; font-size: 5.5rem; opacity: 0.8; top: -0.45em; }
+  .os2p-body { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .os2p-tabs { height: auto; padding: 0.5rem 0 0; row-gap: 0.15rem; }
+  .os2p-label { font-size: 1.24rem; }
+  .os2p-panel { grid-area: auto; }
+  .os2p-panel[data-active="false"] { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .os2p-panel,
+  .os2p-panel[data-active="false"],
+  .os2p-node,
+  .os2p-label {
+    transition: none !important;
+  }
+}
+
+/* ─── Section 2 — REVISION 4 ───────────────────────────────────────────────────
+   Slim straight-line navigation → wide text → portrait photograph. Calm, editorial, few boxes. */
+
+.os4 {
+  background:
+    radial-gradient(ellipse 45% 40% at 96% 0%, rgba(197, 199, 211, 0.32), transparent 70%),
+    linear-gradient(180deg, #F3F2F5 0%, #F8F7F3 100%);
+  border-top: 1px solid rgba(32, 40, 65, 0.06);
+  padding: clamp(4rem, 6vw, 6rem) 5vw clamp(3.75rem, 5.5vw, 5.5rem);
+}
+
+.os4-inner {
+  margin: 0 auto;
+  width: min(var(--max), 100%);
+}
+
+/* Header: copy left; the outlined 70+ with a quiet label on the right */
+.os4-head {
+  align-items: end;
+  column-gap: clamp(2rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.os4-head h2 {
+  font-variant-numeric: lining-nums;
+  margin-bottom: 1.1rem;
+  max-width: 30ch;
+  text-wrap: balance;
+}
+
+.os4-intro {
+  font-size: clamp(1.05rem, 0.35vw + 0.98rem, 1.14rem);
+  line-height: 1.74;
+  margin-bottom: 0;
+  max-width: 66ch;
+}
+
+.os4-figure {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.3rem;
+  user-select: none;
+}
+
+.os4-figure-num {
+  -webkit-text-stroke: 1px rgba(77, 87, 114, 0.38);
+  color: transparent;
+  font-family: var(--serif);
+  font-size: clamp(5.5rem, 9vw, 8.5rem);
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+}
+
+.os4-figure-plus {
+  -webkit-text-stroke: 0;
+  color: var(--ember);
+  font-size: 0.42em;
+  margin-left: 0.04em;
+  vertical-align: 0.95em;
+}
+
+.os4-figure-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  margin-top: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Body: slim navigation | selected content */
+.os4-body {
+  align-items: start;
+  column-gap: clamp(2rem, 3.8vw, 3.75rem);
+  display: grid;
+  grid-template-columns: clamp(215px, 18vw, 250px) minmax(0, 1fr);
+  margin-top: clamp(2.25rem, 3.5vw, 3rem);
+}
+
+.os4-nav-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  margin: 0 0 0.9rem;
+  text-transform: uppercase;
+}
+
+.os4-tabs {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* The straight, thin line: from the first node to the spark */
+.os4-tabs::before {
+  background: var(--slate-mist);
+  bottom: 1.55rem;
+  content: "";
+  left: 8px;
+  opacity: 0.7;
+  position: absolute;
+  top: 1.4rem;
+  width: 1px;
+}
+
+.os4-tab {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  color: var(--mid-navy);
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 1rem;
+  grid-template-columns: 17px minmax(0, 1fr);
+  min-height: 48px;
+  padding: 0.55rem 0;
+  position: relative;
+  text-align: left;
+}
+
+.os4-node {
+  background: #F5F4F5;
+  border: 1.5px solid var(--slate-mist);
+  border-radius: 50%;
+  height: 11px;
+  justify-self: center;
+  transition: background-color var(--t-quick) var(--ease-soft),
+              border-color var(--t-quick) var(--ease-soft),
+              box-shadow var(--t-quick) var(--ease-soft);
+  width: 11px;
+}
+
+.os4-node--spark {
+  background-color: var(--ember);
+  border: 0;
+  border-radius: 0;
+  height: 21px;
+  opacity: 0.72;
+  transition: opacity var(--t-quick) var(--ease-soft), transform var(--t-quick) var(--ease-soft);
+  width: 17px;
+}
+
+.os4-tab-label {
+  font-family: var(--serif);
+  font-size: clamp(1.16rem, 1.25vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration-color: transparent;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.28em;
+  text-wrap: balance;
+  transition: color var(--t-quick) var(--ease-soft), text-decoration-color var(--t-quick) var(--ease-soft);
+}
+
+/* Selected: Ember node with a soft ring, navy semi-bold label, Ember underline */
+.os4-tab[aria-selected="true"] { color: var(--navy); cursor: default; }
+.os4-tab[aria-selected="true"] .os4-tab-label { font-weight: 600; text-decoration-color: var(--ember); }
+
+.os4-tab[aria-selected="true"] .os4-node:not(.os4-node--spark) {
+  background: var(--ember);
+  border-color: var(--ember);
+  box-shadow: 0 0 0 4px rgba(239, 124, 98, 0.18);
+}
+
+.os4-tab[aria-selected="true"] .os4-node--spark { opacity: 1; transform: scale(1.15); }
+
+@media (hover: hover) {
+  .os4-tab[aria-selected="false"]:hover { color: var(--navy); }
+  .os4-tab[aria-selected="false"]:hover .os4-tab-label { text-decoration-color: var(--lavender); }
+  .os4-tab[aria-selected="false"]:hover .os4-node:not(.os4-node--spark) { border-color: var(--ember); }
+}
+
+.os4 .os4-tab:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+/* Panels: stacked in one cell → stable height */
+.os4-panels { display: grid; }
+
+.os4-panel {
+  align-items: start;
+  column-gap: clamp(2rem, 3.5vw, 3.25rem);
+  display: grid;
+  grid-area: 1 / 1;
+  grid-template-columns: minmax(0, 1fr) clamp(240px, 22vw, 310px);
+  opacity: 1;
+  transition: opacity var(--t-medium) var(--ease-soft), visibility 0s linear 0s;
+}
+
+.os4-panel[data-active="false"] {
+  opacity: 0;
+  transition: opacity var(--t-quick) var(--ease-soft), visibility 0s linear var(--t-quick);
+  visibility: hidden;
+}
+
+.os4-panel:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--ember);
+  outline-offset: 6px;
+}
+
+.os4-copy { padding-top: 0; }
+
+.os4-copy h3 {
+  font-size: clamp(1.55rem, 1.9vw, 1.9rem);
+  line-height: 1.15;
+  margin: -0.2rem 0 1rem;
+  text-wrap: balance;
+}
+
+.os4-copy p {
+  font-size: clamp(1rem, 0.2vw + 0.96rem, 1.06rem);
+  line-height: 1.74;
+  margin-bottom: 0.95rem;
+  max-width: 62ch;
+}
+
+.os4-copy p:last-child { margin-bottom: 0; }
+
+.os4-photo { margin: 0; }
+
+.os4-photo img {
+  aspect-ratio: 4 / 5;
+  border-radius: 2px;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.os4-placeholder-tag {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin-top: 0.55rem;
+  text-transform: uppercase;
+}
+
+/* Closing statement: a quiet editorial note, not another headline */
+.os4-closing {
+  align-items: center;
+  border-top: 1px solid rgba(32, 40, 65, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: clamp(2.5rem, 3.5vw, 3.25rem) auto 0;
+  max-width: 50rem;
+  padding-top: clamp(2rem, 3vw, 2.5rem);
+}
+
+.os4-closing-spark {
+  height: 22px;
+  width: 18px;
+}
+
+.os4-closing p {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 0.8vw + 1.05rem, 1.6rem);
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 44ch;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Medium: photo above the text inside the content column */
+@media (max-width: 1100px) {
+  .os4-panel { grid-template-columns: minmax(0, 1fr); row-gap: 1.5rem; }
+  .os4-photo { max-width: none; order: -1; }
+  .os4-photo img { aspect-ratio: 16 / 10; }
+  .os4-copy { padding-top: 0; }
+}
+
+/* Phones: header stacks; navigation list, then the selected photo and text */
+@media (max-width: 760px) {
+  .os4-head { grid-template-columns: minmax(0, 1fr); }
+  .os4-figure {
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    order: 2;
+    padding: 0;
+  }
+  .os4-figure-num { font-size: 4.5rem; }
+  .os4-figure-label { margin-top: 0; }
+  .os4-body { grid-template-columns: minmax(0, 1fr); row-gap: 1.75rem; }
+  .os4-panel { grid-area: auto; }
+  .os4-panel[data-active="false"] { display: none; }
+  .os4-photo img { aspect-ratio: 4 / 3; }
+  .os4-tab-label { font-size: 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .os4-panel,
+  .os4-panel[data-active="false"],
+  .os4-node,
+  .os4-tab-label {
+    transition: none !important;
+  }
+}
+
+/* ─── Section 3 — Meet the founders (revision 5) ──────────────────────────────
+   Editorial, alternating profiles on a warm cream field. No cards, borders or numbering. */
+
+.os3f {
+  background: var(--cream);
+  padding: clamp(4.25rem, 6.5vw, 6.5rem) 5vw clamp(4.5rem, 7vw, 7rem);
+}
+
+.os3f--r6 { padding-bottom: clamp(3.5rem, 5.5vw, 5rem); }
+
+.os3f-inner {
+  margin: 0 auto;
+  width: min(var(--max), 100%);
+}
+
+.os3f-head h2 {
+  margin-bottom: 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+/* Revision 6: heading on one line on desktop when it fits; wraps naturally on smaller screens */
+.os3f--r6 .os3f-head h2 { max-width: none; }
+
+/* ─── Contextual CTA after the founder profiles (revision 6) ─────────────────── */
+.os3cta {
+  background: var(--cream);
+  padding: 0 5vw clamp(4.5rem, 7vw, 6.5rem);
+}
+
+.os3cta-inner {
+  border-top: 1px solid rgba(32, 40, 65, 0.14);
+  margin: 0 auto;
+  max-width: 40rem;
+  padding-top: clamp(3rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.os3cta h2 {
+  font-size: clamp(1.75rem, 2.2vw + 1rem, 2.4rem);
+  margin: 0 0 0.8rem;
+  text-wrap: balance;
+}
+
+.os3cta p {
+  font-size: clamp(1.04rem, 0.3vw + 0.98rem, 1.14rem);
+  line-height: 1.7;
+  margin: 0 auto 1.75rem;
+  max-width: 34rem;
+  text-wrap: balance;
+}
+
+.os3f-list {
+  display: grid;
+  margin-top: clamp(2.75rem, 4.5vw, 4rem);
+  row-gap: clamp(4rem, 7vw, 6.5rem);
+}
+
+.os3f-profile {
+  align-items: center;
+  column-gap: clamp(2.5rem, 6vw, 6rem);
+  display: grid;
+  grid-template-areas: "photo text";
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+}
+
+.os3f-profile--reverse {
+  grid-template-areas: "text photo";
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+}
+
+/* A slight inward offset of the text side gives the alternating rhythm some ease */
+.os3f-photo { grid-area: photo; margin: 0; }
+.os3f-text { grid-area: text; max-width: 36rem; }
+.os3f-profile--reverse .os3f-text { justify-self: end; }
+
+.os3f-frame {
+  aspect-ratio: 4 / 5;
+  background: var(--lavender);
+  border-radius: 4px;
+  box-shadow: 0 18px 44px rgba(32, 43, 65, 0.12);
+  overflow: hidden;
+}
+
+.os3f-frame img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.os3f-temp {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin-top: 0.6rem;
+  text-transform: uppercase;
+}
+
+.os3f-text h3 {
+  font-size: clamp(2rem, 2.8vw, 2.7rem);
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  margin: 0;
+}
+
+.os3f-role {
+  align-items: center;
+  color: var(--mid-navy);
+  display: flex;
+  font-size: 0.76rem;
+  font-weight: 500;
+  gap: 0.75rem;
+  letter-spacing: 0.16em;
+  margin: 0.85rem 0 1.6rem;
+  text-transform: uppercase;
+}
+
+.os3f-role::before {
+  background: var(--ember);
+  content: "";
+  display: block;
+  flex: none;
+  height: 1px;
+  width: 1.75rem;
+}
+
+.os3f-bio p {
+  font-size: clamp(1.02rem, 0.25vw + 0.97rem, 1.1rem);
+  line-height: 1.76;
+  margin-bottom: 1.05rem;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.os3f-bio p:last-child { margin-bottom: 0; }
+
+.os3f-linkedin {
+  align-items: center;
+  border-radius: 2px;
+  color: var(--navy);
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 500;
+  gap: 0.55rem;
+  letter-spacing: 0.04em;
+  margin-top: 1.5rem;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+.os3f-linkedin svg {
+  fill: var(--mid-navy);
+  flex: none;
+  height: 17px;
+  transition: fill var(--t-quick) var(--ease-soft);
+  width: 17px;
+}
+
+.os3f-linkedin span {
+  border-bottom: 1px solid rgba(239, 124, 98, 0.55);
+  padding-bottom: 1px;
+  transition: border-color var(--t-quick) var(--ease-soft);
+}
+
+.os3f-linkedin:hover svg { fill: var(--ember); }
+.os3f-linkedin:hover span { border-bottom-color: var(--ember); }
+
+.os3f .os3f-linkedin:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+}
+
+/* Laptop: slightly narrower photo column */
+@media (max-width: 1100px) {
+  .os3f-profile { column-gap: 3rem; grid-template-columns: minmax(0, 4.6fr) minmax(0, 6fr); }
+  .os3f-profile--reverse { grid-template-columns: minmax(0, 6fr) minmax(0, 4.6fr); }
+}
+
+/* Tablets and phones: photo above the text, full biographies remain visible */
+@media (max-width: 900px) {
+  .os3f-list { row-gap: 3.5rem; }
+  .os3f-profile,
+  .os3f-profile--reverse {
+    grid-template-areas: "photo" "text";
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.5rem;
+  }
+  .os3f-profile--reverse .os3f-text { justify-self: start; }
+  .os3f-frame { aspect-ratio: 5 / 6; }
+  .os3f-photo { max-width: 440px; }
+  .os3f-role { margin-bottom: 1.25rem; }
+  .os3f-text { max-width: 40rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .os3f-linkedin svg,
+  .os3f-linkedin span { transition: none !important; }
+}
+
+/* ─── Placeholders (Sections 3–5) — clearly marked, not final ─────────────── */
+
+.os-ph {
+  background: var(--page-bg);
+  padding: clamp(3.5rem, 5vw, 5rem) 5vw;
+}
+
+.os-ph--founders,
+.os-ph--cta { background: var(--cream); }
+
+.os-ph-inner {
+  border: 1.5px dashed rgba(32, 43, 65, 0.32);
+  border-radius: 6px;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+  width: min(var(--max), 100%);
+}
+
+.os-ph-flag {
+  background: var(--navy);
+  border-radius: 2px;
+  color: var(--white);
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  padding: 0.3rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.os-ph h2 { margin-bottom: 0.9rem; }
+
+.os-ph-note {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+  max-width: 68ch;
+}
+
+.os3-portraits {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 2.25rem 0 0;
+  padding: 0;
+}
+
+.os3-slot-frame {
+  align-items: center;
+  aspect-ratio: 4 / 5;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.os3-slot--empty .os3-slot-frame {
+  border: 1.5px dashed rgba(32, 43, 65, 0.3);
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.os3-slot-frame img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  width: 100%;
+}
+
+.os3-slot p {
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0.75rem 0 0;
+}
+
+.os3-slot-hint {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .os1-grid { grid-template-columns: minmax(0, 1fr); }
+  .os1 h1 { max-width: 16ch; }
+  /* Mobile reading order: copy first, collage beneath */
+  .os1-media { justify-self: center; width: min(100%, 400px); }
+
+  .os2-head { grid-template-columns: minmax(0, 1fr); }
+  .os2-figure { display: none; }
+
+  /* Selectors become an equal 2 × 2 grid; the notch is dropped (other selected cues remain) */
+  .os2-selectors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .os2-tab[aria-selected="true"]::after { display: none; }
+
+  .os2-tabpanel { grid-template-columns: minmax(0, 1fr); row-gap: 1.25rem; }
+  .os2-art-disc { width: 112px; }
+}
+
+@media (max-width: 720px) {
+  .os3-portraits { grid-template-columns: minmax(0, 1fr); max-width: 360px; }
+}
+
+@media (max-width: 480px) {
+  .os2-tab { padding: 1rem 0.9rem 0.95rem; }
+  .os2-tab-motif { width: 54px; }
+  .os2-num { font-size: 1.9rem; }
+  .os2-tab-title { font-size: 1.14rem; margin: 1rem 0 0.9rem; }
+  .os2-cue { font-size: 0.68rem; gap: 0.45rem; letter-spacing: 0.12em; }
+  .os2-cue-icon { height: 1.5rem; width: 1.5rem; }
+  .os2-tabpanel { padding: 1.5rem 1.25rem; }
+}
+
+@media (max-width: 480px) {
+  .os1-media { width: 100%; }
+}
+
+/* ─── Reduced motion: no animation or transitions; content and state remain clear ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .os2-tab,
+  .os2-tabpanel:not([hidden]) {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Revision 6: on narrow screens the CTA label wraps into two balanced lines */
+.os3cta .button { text-wrap: balance; }
+
+/* ─── Section 4 — "What we believe about midlife" (Revision 8 / preview r11, 24 Nov 2026) ───
+   A statement of philosophy, not a marketing block: a light, warm field after the cream of Section 3,
+   three equal statements in an open editorial row (no cards, boxes, numbers or icons), and one
+   italic serif conclusion marked by the genuine SparkLifeLab spark. */
+.osp {
+  background: linear-gradient(180deg, #fcfaf5 0%, #f9f5ee 100%);
+  padding: clamp(4rem, 6vw, 5.75rem) 5vw clamp(4rem, 6vw, 5.5rem);
+}
+.osp-inner { width: min(var(--max), 100%); margin: 0 auto; }
+.osp-head h2 { margin: 0; text-wrap: balance; }
+
+/* three equal statements; subgrid keeps the paragraphs on one line even when statements wrap differently */
+.osp-beliefs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  column-gap: clamp(2rem, 4.2vw, 3.75rem);
+  list-style: none;
+  margin: clamp(2.6rem, 4.2vw, 3.6rem) 0 0;
+  padding: 0;
+}
+.osp-belief {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(32, 40, 65, 0.16);
+}
+.osp-belief::before {               /* a short Ember accent on the hairline — the same for all three */
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 2.25rem;
+  height: 2px;
+  background: var(--ember);
+}
+.osp-statement {
+  margin: 0 0 1rem;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 1.05rem + 1.05vw, 2rem);
+  line-height: 1.16;
+  letter-spacing: -0.005em;
+  color: var(--navy);
+  text-wrap: balance;
+}
+.osp-belief p {
+  margin: 0;
+  color: var(--mid-navy);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.07rem);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+/* the conclusion: centred, italic serif, marked by the brand spark */
+.osp-closing {
+  max-width: 44rem;
+  margin: clamp(3.1rem, 5vw, 4.4rem) auto 0;
+  text-align: center;
+}
+.osp-spark { display: block; width: 18px; height: 22px; margin: 0 auto 1.15rem; }
+.osp-conclusion {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.05rem + 1.35vw, 2.1rem);
+  line-height: 1.36;
+  color: var(--navy);
+  text-wrap: balance;
+}
+
+/* tablet: one statement per row — statement left, paragraph right */
+@media (max-width: 900px) {
+  .osp-beliefs { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 2.2rem; }
+  .osp-belief {
+    grid-row: auto;
+    grid-template-rows: none;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    column-gap: 2rem;
+    align-items: start;
+  }
+  .osp-statement { margin: 0; font-size: clamp(1.5rem, 1.1rem + 1.2vw, 1.8rem); }
+}
+
+/* phones: stacked */
+@media (max-width: 600px) {
+  .osp { padding: 3.5rem 6vw 3.75rem; }
+  .osp-beliefs { row-gap: 2rem; margin-top: 2.25rem; }
+  .osp-belief { display: block; padding-top: 1.25rem; }
+  .osp-statement { margin-bottom: 0.75rem; font-size: 1.55rem; }
+  .osp-closing { margin-top: 2.75rem; }
+  .osp-conclusion { font-size: 1.45rem; }
+}
+
+/* ─── Section 5 — "Your next step" (Revision 12, 24 Nov 2026) ───
+   The page's quiet close: a personal invitation, not a banner. Full-width brand navy, centred,
+   no imagery or gradients; the standard Ember CTA (as in the header) to the Clarity Check. A faint
+   hairline at the bottom separates the invitation from the navy footer that follows. */
+.os5 {
+  background: var(--navy);
+  color: var(--page-bg);
+  padding: clamp(4.5rem, 7vw, 6.5rem) 5vw 0;
+  text-align: center;
+}
+.os5-inner {
+  width: min(var(--max), 100%);
+  margin: 0 auto;
+  padding-bottom: clamp(4.5rem, 7vw, 6.5rem);
+  border-bottom: 1px solid rgba(254, 253, 248, 0.1);
+}
+.os5 .eyebrow-center { color: var(--ember); margin-bottom: 1.1rem; }
+.os5 h2 {
+  max-width: 20ch;
+  margin: 0 auto 1.15rem;
+  color: var(--page-bg);
+  font-size: clamp(2.2rem, 1.4rem + 2.4vw, 3.15rem);
+  text-wrap: balance;
+}
+.os5-text {
+  max-width: 34rem;
+  margin: 0 auto 2.25rem;
+  color: rgba(254, 253, 248, 0.8);
+  font-size: clamp(1.05rem, 0.98rem + 0.3vw, 1.16rem);
+  line-height: 1.7;
+  text-wrap: balance;
+}
+/* the standard Ember CTA, as used by the header and form buttons */
+.os5 .button.os5-button {
+  width: auto;
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--white);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+  font-weight: 500;
+}
+.os5 .button.os5-button:hover { background: var(--ember-deep); border-color: var(--ember-deep); }
+.os5 .button.os5-button:focus-visible { outline: 2px solid var(--page-bg); outline-offset: 3px; }
+
+@media (max-width: 600px) {
+  .os5 { padding: 3.75rem 6vw 0; }
+  .os5-inner { padding-bottom: 3.75rem; }
+  .os5-text { margin-bottom: 1.9rem; }
+  .os5 .button.os5-button { width: 100%; max-width: 22rem; white-space: normal; line-height: 1.4; text-wrap: balance; }
+}
+
+/* ═══ Revision 13 (25 Nov 2026) — final editorial refinements ═══════════════════════════════════════ */
+
+.os-sr-only {
+  border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden;
+  padding: 0; position: absolute; white-space: nowrap; width: 1px;
+}
+
+/* ─── Section 1: introduction, the three questions, the story ─── */
+.os1-copy p.os1-intro {
+  color: var(--navy);
+  font-size: clamp(1.1rem, 0.4vw + 1.02rem, 1.22rem);
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
+}
+.os1-questions {
+  border-left: 2px solid var(--ember);
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0.15rem 0 0.15rem 1.3rem;
+}
+.os1-questions li {
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(1.28rem, 0.5vw + 1.1rem, 1.4rem);
+  font-weight: 500;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.os1-copy p { margin-bottom: 1.2rem; }
+
+/* ─── Section 1: three equal vertical photographs ("People beyond their professional roles") ─── */
+/* R15: the text keeps the page's left edge; the photo row may extend up to 8rem into the right margin,
+   so the three full-length photographs get real presence without narrowing the text. */
+.os1-grid:has(.os1-media--row) {
+  align-items: center;
+  gap: clamp(2.5rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 32rem) minmax(0, 1fr);
+  margin-left: max(0px, calc((100% - var(--max)) / 2));
+  margin-right: 0;
+  width: min(calc(var(--max) + 8rem), calc(100% - max(0px, (100% - var(--max)) / 2)));
+}
+.os1-media--row { justify-self: end; width: min(100%, 700px); }
+.os1-row {
+  align-items: start;
+  display: grid;
+  gap: clamp(0.6rem, 1vw, 0.9rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.os1-row-item--gunther { margin-top: clamp(2rem, 4vw, 3.25rem); } /* a slight stagger, nothing more */
+.os1-row figure { margin: 0; }
+.os1-row-frame {
+  aspect-ratio: 1 / 2;
+  border-radius: 2px;
+  box-shadow: 0 10px 26px rgba(32, 40, 65, 0.1);
+  overflow: hidden;
+}
+.os1-row-frame img { display: block; height: 100%; object-fit: cover; width: 100%; }
+.os1-row-frame--placeholder {
+  align-items: flex-end;
+  background: #ebe7e0;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+.os1-row-placeholder {
+  color: var(--mid-navy);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.os1-row figcaption {
+  color: var(--mid-navy);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  margin-top: 0.65rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+  .os1-grid:has(.os1-media--row) { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); margin: 0 auto; width: min(var(--max), 100%); }
+}
+@media (max-width: 900px) {
+  .os1-grid:has(.os1-media--row) { grid-template-columns: minmax(0, 1fr); }
+  .os1-media--row { justify-self: start; width: min(100%, 640px); }
+}
+@media (max-width: 480px) {
+  .os1-row { gap: 0.6rem; }
+  .os1-row-item--gunther { margin-top: 1.5rem; }
+  .os1-row figcaption { font-size: 0.62rem; letter-spacing: 0.12em; }
+  .os1-row-placeholder { font-size: 0.56rem; letter-spacing: 0.08em; white-space: nowrap; }
+}
+
+/* ─── Section 2: introduction with link, Area 4 list, visual frames, convergence diagram ─── */
+.os4-head-copy .os4-intro + .os4-intro { margin-top: 0.85rem; }
+.os4-intro a {
+  color: var(--navy);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgba(239, 124, 98, 0.7);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.os4-intro a:hover { text-decoration-color: var(--ember); }
+.os4-intro a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; border-radius: 2px; }
+
+.os4-points {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+.os4-points li {
+  color: var(--navy);
+  font-size: clamp(1rem, 0.2vw + 0.96rem, 1.06rem);
+  line-height: 1.6;
+  max-width: 58ch;
+  padding-left: 1.45rem;
+  position: relative;
+}
+.os4-points li::before {
+  background: var(--ember);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 0.82em;
+  width: 0.8rem;
+}
+
+/* R14: the four illustrations use the existing .os4-photo frame (4:5 desktop · 16:10 medium · 4:3 phones). */
+.os4-photo img { box-shadow: 0 8px 24px rgba(32, 40, 65, 0.08); }
+/* Image 4 carries labels: never crop it as hard as the wide frames below do */
+@media (max-width: 1100px) {
+  .os4-photo--drawing { max-width: 560px; }
+  .os4-photo--drawing img { aspect-ratio: 1 / 1; object-position: 50% 55%; }
+}
+
+/* ─── Section 5: the next lighter blue of the brand palette (Mid navy); the footer keeps Deep navy ─── */
+.os5 { background: var(--mid-navy); }
+.os5-inner { border-bottom: 0; }
+.os5-text { max-width: 40rem; }
+.os5-line { display: block; }
+@media (max-width: 600px) {
+  .os5-line { display: inline; }
+}
