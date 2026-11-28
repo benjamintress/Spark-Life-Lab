@@ -130,7 +130,8 @@ export function FounderCollageR3() {
 // something meaningful to each founder; deliberately not headshots. A slight stagger (middle photo lower) keeps
 // the row editorial. No connecting lines, circles or central spark.
 //
-// Revision 15 (25 Nov 2026): narrow full-length frames (1:2). Bärbel and Gunther are in; Scott follows.
+// Revision 15 (25 Nov 2026): narrow full-length frames (1:2). Order since 28 Nov 2026: Gunther · Bärbel · Scott;
+// the middle frame (whoever it is) sits slightly lower. Bärbel and Gunther are in; Scott follows.
 // Each crop shows the whole person, who fills about 83 % of the frame height with matching headroom.
 // To add Scott: a 1:2 crop, 640 × 1280 px, saved as /images/our-story/founder-scott-personal.jpg; set `src`
 // and `alt` below. While `src` is null the frame shows a labelled placeholder of the same size.
@@ -147,21 +148,21 @@ type PersonalPhoto = {
 
 export const FOUNDER_PERSONAL_PHOTOS: readonly PersonalPhoto[] = [
   {
-    id: "barbel",
-    name: "Bärbel",
-    src: "/images/our-story/founder-barbel-personal.jpg",
-    width: 640,
-    height: 1280,
-    alt: "Bärbel Tress, smiling, in a white shirt and white jeans in front of a softly lit golden glass facade.",
-    focus: "50% 50%",
-  },
-  {
     id: "gunther",
     name: "Gunther",
     src: "/images/our-story/founder-gunther-personal.jpg",
     width: 640,
     height: 1280,
     alt: "Gunther Tress, smiling, holding a book outside a bookshop with a blue door, a sweater over his shoulders.",
+    focus: "50% 50%",
+  },
+  {
+    id: "barbel",
+    name: "Bärbel",
+    src: "/images/our-story/founder-barbel-personal-v2.jpg", // 28 Nov 2026: corrected photo (IMG_0854_siebter_Schritt_final_C), same crop proportions
+    width: 640,
+    height: 1280,
+    alt: "Bärbel Tress, smiling, in a white shirt and white jeans in front of a softly lit golden glass facade.",
     focus: "50% 50%",
   },
   { id: "scott", name: "Scott", src: null, width: 640, height: 1280, alt: "", focus: "50% 50%" },

@@ -1716,7 +1716,7 @@
   margin: 0;
   padding: 0;
 }
-.os1-row-item--gunther { margin-top: clamp(2rem, 4vw, 3.25rem); } /* a slight stagger, nothing more */
+.os1-row-item:nth-child(2) { margin-top: clamp(2rem, 4vw, 3.25rem); } /* the middle photo sits slightly lower, whoever it is */
 .os1-row figure { margin: 0; }
 .os1-row-frame {
   aspect-ratio: 1 / 2;
@@ -1758,7 +1758,7 @@
 }
 @media (max-width: 480px) {
   .os1-row { gap: 0.6rem; }
-  .os1-row-item--gunther { margin-top: 1.5rem; }
+  .os1-row-item:nth-child(2) { margin-top: 1.5rem; }
   .os1-row figcaption { font-size: 0.62rem; letter-spacing: 0.12em; }
   .os1-row-placeholder { font-size: 0.56rem; letter-spacing: 0.08em; white-space: nowrap; }
 }
