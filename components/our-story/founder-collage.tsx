@@ -165,7 +165,15 @@ export const FOUNDER_PERSONAL_PHOTOS: readonly PersonalPhoto[] = [
     alt: "Bärbel Tress, smiling, in a white shirt and white jeans in front of a softly lit golden glass facade.",
     focus: "50% 50%",
   },
-  { id: "scott", name: "Scott", src: null, width: 640, height: 1280, alt: "", focus: "50% 50%" },
+  {
+    id: "scott",
+    name: "Scott",
+    src: "/images/our-story/founder-scott-personal.jpg", // 28 Nov 2026: PRELIMINARY (from a 944 px screenshot); replace with a larger file
+    width: 640,
+    height: 1280,
+    alt: "Scott E. Burton, holding a folded umbrella, under an arch of holiday lights with the word joy behind him.",
+    focus: "50% 50%",
+  },
 ];
 
 export function FounderPhotoRow() {

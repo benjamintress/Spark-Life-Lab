@@ -190,13 +190,13 @@ test("Our Story R13 Section 1: three equal vertical photographs, no connecting l
   assert.match(page, /SECTION_1\.questions\.map/);
   for (const id of ["barbel", "gunther", "scott"]) assert.match(collage, new RegExp(`id: "${id}",\\s*name: `));
   assert.doesNotMatch(row, /<svg|<line|brand-spark/); // no connecting lines, circles or central spark
-  assert.match(row, /Photo to follow/); // Scott's frame stays labelled until his photograph is supplied
+  assert.match(row, /Photo to follow/); // the row still supports a labelled placeholder for a missing photo
   // R15: Bärbel and Gunther in, 1:2 full-length frames; Scott still a placeholder
-  for (const file of ["founder-barbel-personal-v2.jpg", "founder-gunther-personal.jpg"]) {
+  for (const file of ["founder-barbel-personal-v2.jpg", "founder-gunther-personal.jpg", "founder-scott-personal.jpg"]) {
     assert.ok(collage.includes(`src: "/images/our-story/${file}"`), `Section 1 photo missing: ${file}`);
     assert.equal(existsSync(join(root, `public/images/our-story/${file}`)), true);
   }
-  assert.match(collage, /id: "scott", name: "Scott", src: null/);
+  assert.ok(collage.includes('src: "/images/our-story/founder-scott-personal.jpg"'));
   assert.match(read("app/about/our-story.css"), /\.os1-row-frame \{[^}]*aspect-ratio: 1 \/ 2;/);
 });
 
