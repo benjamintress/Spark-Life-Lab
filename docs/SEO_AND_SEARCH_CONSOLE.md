@@ -5,16 +5,21 @@ that can only be completed from a Google/Bing account.
 
 ## Canonical domain
 
-`https://www.spark-life-lab.com` — defined once in `data/site.ts` (`site.url`)
-and consumed by `metadataBase`, the sitemap, robots.txt and all structured data.
+`https://sparklifelab.com` (no www, no hyphens) — since 28 Nov 2026; defined once
+in `data/site.ts` (`site.url`) and consumed by `metadataBase`, the sitemap,
+robots.txt, Open Graph URLs and all structured data. Email addresses stay on
+`@spark-life-lab.com` until the separate Zoho mail migration.
 
-Verified redirect behavior in production (Vercel):
+Redirects are configured in Vercel (Domains), not in this repo. Each keeps the
+path and query string:
 
 | From | Result |
 | --- | --- |
-| `http://spark-life-lab.com/` | 308 → `https://spark-life-lab.com/` |
-| `https://spark-life-lab.com/` | 308 → `https://www.spark-life-lab.com/` |
-| `http://www.spark-life-lab.com/` | 308 → `https://www.spark-life-lab.com/` |
+| `https://www.sparklifelab.com/…` | 308 → `https://sparklifelab.com/…` |
+| `https://spark-life-lab.com/…` | 308 → `https://sparklifelab.com/…` |
+| `https://www.spark-life-lab.com/…` | 308 → `https://sparklifelab.com/…` |
+
+Previous canonical domain (until 28 Nov 2026): `https://www.spark-life-lab.com`.
 
 `trailingSlash: true` (`next.config.ts`) — every canonical URL ends in `/`.
 
@@ -77,7 +82,7 @@ Nothing in this repo can verify the property or submit the sitemap; both require
 an authenticated Google account.
 
 **1. Verify ownership.** The code side is already wired. In Google Search
-Console choose the *URL prefix* property `https://www.spark-life-lab.com`, pick
+Console choose the *URL prefix* property `https://sparklifelab.com`, pick
 the **HTML tag** method, and copy the token out of the
 `<meta name="google-site-verification" content="TOKEN">` snippet. Then:
 
@@ -95,12 +100,17 @@ A *Domain* property (DNS TXT record at the registrar) also works and needs no
 code change — it additionally covers the non-www host and `http://`.
 
 **2. Submit the sitemap.** Search Console → Sitemaps → enter `sitemap.xml`.
-Full URL: `https://www.spark-life-lab.com/sitemap.xml`
+Full URL: `https://sparklifelab.com/sitemap.xml`
 
 **3. Request indexing** for `/` and `/identity-lab/` via URL Inspection.
 
 **4. Bing Webmaster Tools** can import the verified Google property directly,
 which is faster than verifying again.
+
+**5. Domain move (28 Nov 2026).** Verify the new property, then in the *old*
+property (`spark-life-lab.com`) use Settings → **Change of address** → new site
+`https://sparklifelab.com`. Bing has the equivalent *Site Move* tool. Keep the
+old domain and its 308 redirects in place for at least 12 months.
 
 ## Validating changes
 

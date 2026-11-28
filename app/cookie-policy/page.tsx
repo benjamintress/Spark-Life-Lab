@@ -25,7 +25,7 @@ export default function CookiePolicyPage() {
             “our”) uses cookies, browser storage, and similar technologies when you visit:
           </p>
           <p>
-            <a href="https://www.spark-life-lab.com">https://www.spark-life-lab.com</a>
+            <a href="https://sparklifelab.com">https://sparklifelab.com</a>
           </p>
           <p>
             We use only a limited number of technologies needed to operate the website, remember

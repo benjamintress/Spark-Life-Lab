@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => readFileSync(join(root, p), "utf-8");
 
-const CANONICAL_ORIGIN = "https://www.spark-life-lab.com";
+const CANONICAL_ORIGIN = "https://sparklifelab.com";
 
 // ─── Route discovery ─────────────────────────────────────────────────────────
 // Walk the App Router instead of hardcoding a list, so a new page cannot be
@@ -141,8 +141,8 @@ test("no preview, localhost, or non-www domain leaks into SEO surfaces", () => {
     assert.doesNotMatch(source, /localhost/, `${file} references localhost`);
     assert.doesNotMatch(
       source,
-      /https:\/\/spark-life-lab\.com/,
-      `${file} uses the non-www domain instead of ${CANONICAL_ORIGIN}`
+      /https:\/\/(www\.)?spark-life-lab\.com|https:\/\/www\.sparklifelab\.com/,
+      `${file} uses a redirecting domain instead of ${CANONICAL_ORIGIN}`
     );
   }
 });

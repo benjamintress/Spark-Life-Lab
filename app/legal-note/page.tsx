@@ -55,11 +55,11 @@ export default function LegalNotePage() {
               <br />
               Website:{" "}
               <a
-                href="https://www.spark-life-lab.com"
+                href="https://sparklifelab.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                https://www.spark-life-lab.com
+                https://sparklifelab.com
               </a>
             </p>
           </div>

@@ -77,12 +77,12 @@ test("uses the final production assets, locked homepage copy, and official Linke
   assert.equal(existsSync(join(root, "public/images/sparklifelab-wordmark.png")), true);
   assert.equal(existsSync(join(root, "public/images/sparklifelab-spark.png")), true);
   assert.equal(existsSync(join(root, "public/images/ID-Lab-section-on-Home-001.jpg")), true);
-  assert.equal(existsSync(join(root, "public/images/Midlife-Clarity-Check-cover-V2.2.jpg")), true);
+  assert.equal(existsSync(join(root, "public/images/Midlife-Clarity-Check-cover-V3.jpg")), true);
   assert.match(header, /sparklifelab-wordmark\.png/);
   assert.match(footer, /sparklifelab-wordmark\.png/);
   assert.match(cursor, /sparklifelab-spark\.png/);
   assert.match(cursor, /ember-trail-grad/);
-  assert.match(clarity, /Midlife-Clarity-Check-cover-V2\.2\.jpg/);
+  assert.match(clarity, /Midlife-Clarity-Check-cover-V3\.jpg/);
   assert.match(home, /ID-Lab-section-on-Home-001\.jpg/);
   assert.match(home, /The Identity Lab helps you discover more about yourself/);
   assert.doesNotMatch(home, /Small cohorts\. See current dates and enrollment details\./);
@@ -103,7 +103,7 @@ test("enables Vercel Analytics against the canonical live domain", () => {
 
   assert.match(layout, /@vercel\/analytics\/next/);
   assert.match(layout, /<Analytics \/>/);
-  assert.match(site, /https:\/\/www\.spark-life-lab\.com/);
+  assert.match(site, /url: "https:\/\/sparklifelab\.com"/);
   assert.match(cookiePolicy, /Vercel Web Analytics/);
   assert.match(cookiePolicy, /does not use cookies/);
   assert.match(cookiePolicy, /ckid/);

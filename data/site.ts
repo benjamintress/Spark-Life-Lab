@@ -2,8 +2,9 @@ export const site = {
   name: "SparkLifeLab",
   displayName: "SparkLifeLab",
   tagline: "Ignite Your Best Life — On Purpose",
-  domain: "www.spark-life-lab.com",
-  url: "https://www.spark-life-lab.com",
+  domain: "sparklifelab.com",
+  url: "https://sparklifelab.com",
+  // Email stays on spark-life-lab.com until the separate Zoho mail migration.
   email: "hello@spark-life-lab.com",
   year: 2026,
 };

@@ -20,9 +20,9 @@ const indexablePages: Array<{
   priority: number;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
 }> = [
-  { path: "/", lastModified: "2026-08-02", priority: 1.0, changeFrequency: "monthly" },
-  { path: "/identity-lab/", lastModified: "2026-07-24", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/about/", lastModified: "2026-07-25", priority: 0.7, changeFrequency: "yearly" },
+  { path: "/", lastModified: "2026-11-25", priority: 1.0, changeFrequency: "monthly" },
+  { path: "/identity-lab/", lastModified: "2026-11-24", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/about/", lastModified: "2026-11-28", priority: 0.7, changeFrequency: "yearly" },
   { path: "/contact/", lastModified: "2026-07-19", priority: 0.6, changeFrequency: "yearly" },
   { path: "/privacy-policy/", lastModified: "2026-07-19", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms-and-conditions/", lastModified: "2026-07-19", priority: 0.3, changeFrequency: "yearly" },
